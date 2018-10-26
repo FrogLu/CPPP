@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/CPPP/PartA.cpp
+/CPPP/PartA.h
+/CPPP/Sales_data.h
+/CPPP/string.txt
