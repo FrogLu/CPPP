@@ -24,10 +24,13 @@
     <ClInclude Include="PartA.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Sales_data.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="CPPP.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sales_data.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,6 +42,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PartA.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sales_data.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
