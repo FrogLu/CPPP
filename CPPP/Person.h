@@ -4,14 +4,16 @@
 #include <string>
 
 struct Person {
+private:
     //数据成员
     std::string name;
     std::string address;
+public:
     //成员函数
-    std::string findName() {
+    std::string getName() {
         return this->name;
     }
-    std::string findAdress() {
+    std::string getAdress() {
         return this->address;
     }
 };
