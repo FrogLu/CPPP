@@ -1,10 +1,10 @@
 #pragma once
 #ifndef SALES_DATA_H
 #define SALES_DATA_H
-#include <string>
+//using namespace std;
 struct Sales_data
 {
-private:
+//private:
     // 数据成员
     std::string bookNo;
     unsigned units_sold = 0;

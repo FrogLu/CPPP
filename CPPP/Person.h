@@ -1,10 +1,9 @@
 #pragma once
 #ifndef _PERSON_H_
 #define _PERSON_H_
-#include <string>
 
 struct Person {
-private:
+//private:
     //数据成员
     std::string name;
     std::string address;
@@ -17,4 +16,6 @@ public:
         return this->address;
     }
 };
+std::istream &read(std::istream &is, Person &item);
+std::ostream &print(std::ostream &os, Person &item);
 #endif // !_PERSON_H_
