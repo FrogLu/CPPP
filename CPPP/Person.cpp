@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "Person.h"
 
-std::istream &read(std::istream &is, Person &item) {
-    is >> item.name >> item.address;
+std::istream &read(std::istream &is, Person &pre) {
+    is >> pre.name >> pre.address;
     return is;
 }
-std::ostream &print(std::ostream &os, Person &item) {
-    os << item.name << " " << item.address;
+std::ostream &print(std::ostream &os, Person &pre) {
+    os << pre.name << " " << pre.address;
     return os;
 }
