@@ -14,19 +14,20 @@ public:
     Screen(const pos &ht, const pos& wd)
         :height(ht), width(wd), contents(ht*wd, ' ') { }
     // normal memeber function
-    char get() const {
-        return contents[cursor];
-    }
-    inline char get(pos ht, pos wd) const;
+	char get() const;
+    char get(pos ht, pos wd) const;
     Screen &set(char c);
     Screen &set(pos r, pos col, char ch);
     Screen &move(pos r, pos c);
+	Screen &display(std::ostream &os);
+	const Screen &display(std::ostream &os) const;
     void some_member() const;   // just a example function
 private:
     pos cursor = 0;
     pos height = 0, width = 0;
     std::string contents;
     mutable size_t access_ctr = 0;  // count times of calling some_member()
+	void do_display(std::ostream &os) const;
 };
 inline Screen & Screen::set(char c)
 {
@@ -57,8 +58,23 @@ inline Screen &Screen::move(pos r, pos c) {
     cursor = row + c;
     return *this;
 }
-char Screen::get(pos r, pos c) const {
+inline char Screen::get() const
+{
+	return contents[cursor];
+}
+inline char Screen::get(pos r, pos c) const {
     pos row = r * width;
     return contents[row + c];
+}
+inline Screen &Screen::display(std::ostream &os) {
+	do_display(os);
+	return *this;
+}
+inline const Screen &Screen::display(std::ostream &os) const {
+	do_display(os);
+	return *this;
+}
+inline void Screen::do_display(std::ostream &os) const {
+	os << contents;
 }
 #endif // !SCREEN_H
