@@ -21,6 +21,9 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PartA.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="CPPP.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -36,15 +39,15 @@
     <ClInclude Include="Window_mgr.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Test.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CPPP.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PartA.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Sales_data.cpp">
@@ -57,9 +60,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Window_mgr.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
