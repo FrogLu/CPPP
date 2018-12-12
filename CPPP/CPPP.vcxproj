@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="CPPP.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Sales_data.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Window_mgr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="CPPP.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Sales_data.cpp" />
