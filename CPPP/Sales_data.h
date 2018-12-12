@@ -10,8 +10,10 @@ class Sales_data
     friend std::istream &read(std::istream&, Sales_data&);
 public:
     // 构造函数
-    Sales_data() = default;
-    Sales_data(const std::string &s) :bookNo(s) {}
+    //Sales_data() = default;
+	// 下面这个函数设置了默认实参，所以其包含了上面这个默认构造函数。
+	// 下面这个函数可以忽略实参即Sales_data()，也可以加入实参Sales_data(str).
+    Sales_data(const std::string &s=" ") :bookNo(s) {}
     Sales_data(const std::string &s, unsigned n, double p) :
         bookNo(s), units_sold(n), revenue(p*n) {}
     Sales_data(std::istream &is);
