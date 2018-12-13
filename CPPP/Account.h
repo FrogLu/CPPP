@@ -10,8 +10,19 @@ public:
 	Money balance() {
 		return bal;// Õâ¸öbalÊÇprivate Money bal
 	}
+	void calculate() {
+		amount += amount * interestRate;
+	}
+	static double rate() {
+		return interestRate;
+	}
+	static void rate(double dval);
 private:
 	Money bal;
 	typedef double Money;
+	std::string owner;
+	double amount;
+	static double interestRate;
+	static double initRate();
 };
 #endif // !_ACCOUNT_H_
