@@ -27,10 +27,10 @@ public:
 	Sales_data() :Sales_data("", 0, 0) {
 		cout << "This is first delegating constructor" << endl;
 	}
-	Sales_data(std::string s) :Sales_data(s, 0, 0) {
+	explicit Sales_data(std::string s) :Sales_data(s, 0, 0) {
 		cout << "This is second delegating constructor" << endl;
 	}
-	Sales_data(std::istream &is) :Sales_data() {
+	explicit Sales_data(std::istream &is) :Sales_data() {
 		read(is, *this);
 		cout << "This is third delegating constructor" << endl;
 	}
