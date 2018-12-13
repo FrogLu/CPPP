@@ -14,7 +14,7 @@ class X {
 
 class NoDefault {
 public:
-
+	NoDefault(int val) {};
 	NoDefault(const std::string& = " ") {};
 };
 struct A {
@@ -24,5 +24,11 @@ A a;
 struct B {
 	//B() {}
 	NoDefault b_member;
+};
+// Practice7.43
+struct C {
+	C() :NDc(NoDefault(10)) {}
+public:
+	NoDefault NDc;
 };
 #endif
