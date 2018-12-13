@@ -27,7 +27,7 @@ struct B {
 };
 // Practice7.43
 struct C {
-	C() :NDc(NoDefault(10)) {}
+	C() :NDc(10) {}
 public:
 	NoDefault NDc;
 };
