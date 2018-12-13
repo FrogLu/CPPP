@@ -15,12 +15,12 @@ class X {
 class NoDefault {
 public:
 	NoDefault(int val) {};
-	NoDefault(const std::string& = " ") {};
+	NoDefault(const std::string&) {};
 };
 struct A {
 	NoDefault my_mem;
 }; 
-A a;
+//A a;
 struct B {
 	//B() {}
 	NoDefault b_member;
