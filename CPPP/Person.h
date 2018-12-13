@@ -20,7 +20,7 @@ public:
     // ¹¹Ôìº¯Êı
     Person() = default;
     Person(const string &name, const string &address) :name(name), address(address) {}
-    Person(std::istream &is) {
+    explicit Person(std::istream &is) {
         read(is, *this);
     }
 };
