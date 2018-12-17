@@ -6,6 +6,7 @@
 #include "myStream.h"
 int main()
 {
+	cout << "Please enter some integer, press Ctrl + Z to end." << endl;
 	myprint(cin);
 	return 0;
 }
