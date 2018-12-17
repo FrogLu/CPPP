@@ -149,7 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
-    <ClInclude Include="CPPP.h" />
+    <ClInclude Include="Chapter7.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Sales_data.h" />
@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
-    <ClCompile Include="CPPP.cpp" />
+    <ClCompile Include="Chapter7.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Sales_data.cpp" />
