@@ -2,22 +2,19 @@
 //
 
 #include "pch.h"
-#include <iostream>
 #include "myStream.h"
+string infile = "input" ;
+const string outfile =  "output" ;
 int main()
 {
-	cout << "Please enter some integer, press Ctrl + Z to end." << endl;
-	myprint(cin);
+	//cout << "Please enter some integer, press Ctrl + Z to end." << endl;
+	//myprint(cin);
+	
+	ifstream in(infile);
+	ofstream out(outfile, std::ofstream::app);// 显式指定app模式，保留原文件内容
+	vector<string> vstr;
+	if (process(in, vstr)) {
+		return process(out, vstr);
+	}
 	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

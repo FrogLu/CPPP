@@ -8,6 +8,9 @@
 #define PCH_H
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 // TODO: add headers that you want to pre-compile here
 

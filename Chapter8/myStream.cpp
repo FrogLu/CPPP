@@ -19,3 +19,25 @@ std::istream& myprint(std::istream& is) {
 	return is;
 }
 
+bool process(std::ifstream& ifs,std::vector<string>& vstr) {
+	string str;
+	if (!ifs.is_open()) {
+		return false;
+	}
+	while (getline(ifs,str)) {
+		vstr.push_back(str);
+	}
+	return true;
+}
+
+bool process(std::ofstream& ofs, std::vector<string>& vstr) {
+	string str;
+	if (!ofs.is_open()) {
+		return false;
+	}
+	for (auto &str : vstr) {
+		ofs << str << endl;
+	}
+	return true;
+}
+
