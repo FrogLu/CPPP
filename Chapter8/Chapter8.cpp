@@ -7,14 +7,35 @@ string infile = "input" ;
 const string outfile =  "output" ;
 int main()
 {
+	// istream
 	//cout << "Please enter some integer, press Ctrl + Z to end." << endl;
 	//myprint(cin);
-	
+	// fstream
 	ifstream in(infile);
 	ofstream out(outfile, std::ofstream::app);// 显式指定app模式，保留原文件内容
-	vector<string> vstr;
-	if (process(in, vstr)) {
-		return process(out, vstr);
+	//vector<string> vstr;
+	//if (process(in, vstr)) {
+	//	in.close();
+	//	process(out, vstr);
+	//	out.close();
+	//}
+	// stringstream
+	string line, word;
+	vector<PersonInfo> people;
+	while (getline(in, line)) {
+		PersonInfo info;
+		std::istringstream record(line);
+		//myprint(record);// 要使用该函数，需先对myprint进行修改
+		if (out.is_open()) {
+			out << line << endl;
+		}
+		record >> info.name;
+		while (record >> word) {
+			info.phones.push_back(word);
+		}
+		people.push_back(info);
 	}
+	in.close();
+	out.close();
 	return 0;
 }
