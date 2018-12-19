@@ -41,13 +41,22 @@ bool process(std::ofstream& ofs, std::vector<string>& vstr) {
 	return true;
 }
 
-bool myfind(std::vector<int> vint,const int& val) {
+std::vector<int>::iterator myfind(std::vector<int> vint, const int& val) {
 	bool flag = false;
-	for (auto it = vint.begin(); it != vint.end(); ++it) {
-		if (flag == false && *it == val) {
+	auto it = vint.begin();
+	for (; it != vint.end(); ++it) {
+		if (flag == false && (*it) == val) {
 			flag = true;
 		}
 	}
-	return flag;
+	if (flag == true) {
+		cout << "The position is " << vint.capacity() << endl;
+	}
+	else {
+		cout << "Can't find the same value in the containter, "
+			<< "return the end of iterator" << endl;
+	}
+	return vint.end();
 }
+
 
