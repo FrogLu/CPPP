@@ -5,6 +5,7 @@
 std::istream& myprint(std::istream& is);
 bool process(std::ifstream& ifs, std::vector<string>& vstr);
 bool process(std::ofstream& ofs, std::vector<string>& vstr);
+bool myfind(std::vector<int> vint, const int& val);
 
 struct PersonInfo {
 	string name;

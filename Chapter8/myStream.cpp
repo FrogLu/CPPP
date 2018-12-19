@@ -41,3 +41,13 @@ bool process(std::ofstream& ofs, std::vector<string>& vstr) {
 	return true;
 }
 
+bool myfind(std::vector<int> vint,const int& val) {
+	bool flag = false;
+	for (auto it = vint.begin(); it != vint.end(); ++it) {
+		if (flag == false && *it == val) {
+			flag = true;
+		}
+	}
+	return flag;
+}
+

@@ -37,5 +37,11 @@ int main()
 	}
 	in.close();
 	out.close();
+	// Practice9.4
+	vector<int> vint = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	const int val = 11;
+	cout << "The result is:"
+		<< std::boolalpha 
+		<< myfind(vint, val) << endl;
 	return 0;
 }
