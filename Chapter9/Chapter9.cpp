@@ -5,12 +5,12 @@ int main()
 {
 	std::ifstream fin("input1.txt");
 	fin.tie(&cout);
-	deque<string> sdeq;
+	list<string> slist;
 	string str;
 	while (fin >> str) {
-		sdeq.push_front(str);
+		slist.push_front(str);
 	}
-	for (auto iter = sdeq.begin(); iter !=sdeq.end(); ++iter)
+	for (auto iter = slist.begin(); iter !=slist.end(); ++iter)
 	{
 		cout << *iter << " ";
 	}
