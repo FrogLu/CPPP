@@ -12,23 +12,12 @@ int main()
 	while (fin >> val) {
 		ivec.push_back(val);
 	}
-	cout << "The raw data is ";
-	for (auto &val : ivec) {
-		cout << val << " ";
-	}
-	cout << endl;
-	std::vector<int>::iterator iter = ivec.begin(),
-		mid = ivec.begin() + ivec.size() / 2;
-	while (iter != (ivec.begin()+ivec.size()/2)) {
-		if (*iter == some_val) {
-			iter=ivec.insert(iter, 2 * some_val);
-			++iter;
-			++iter;
-			cout << *iter << endl;
-		}
-		else {
-			++iter;
-		}
+	// 如果在空容器下运行会抛出out_of_range异常
+	if (!ivec.empty()) {
+		cout << "The first member(at): " << ivec.at(0) << endl;
+		cout << "The first member(subscript): " << ivec[0] << endl;
+		cout << "The first member(front()): " << ivec.front() << endl;
+		cout << "The first member(begin()): " << *ivec.begin() << endl;
 	}
 	return 0;
 }
