@@ -3,14 +3,17 @@
 using namespace std;
 int main()
 {
-	vector<string> svec = { "quasi","simba","frollo","scar" };
-	list<string> slist;
-
-	cout << *slist.insert(slist.begin(), { "xixi" ,"Hello!" ,"world!"}) 
-		<< endl;
-	cout << *slist.insert(slist.end(), svec.begin(), svec.end()) << endl;
-	cout << *slist.insert(slist.end(), { "xixi" ,"Hello!" ,"world!" }) 
-		<< endl;
-
+	std::ifstream fin("input1.txt");
+	fin.tie(&cout);
+	deque<string> sdeq;
+	string str;
+	while (fin >> str) {
+		sdeq.push_front(str);
+	}
+	for (auto iter = sdeq.begin(); iter !=sdeq.end(); ++iter)
+	{
+		cout << *iter << " ";
+	}
+	cout << endl;
 	return 0;
 }
