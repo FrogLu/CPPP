@@ -1,36 +1,31 @@
 #include "pch.h"
+#include "myfunction.h"
 #include <iostream>
 using namespace std;
-#define some_val 3
 int main()
 {
-	/*文件流输入*/
-	std::ifstream fin("input2.txt");
+	/*文件流输入初始化*/
+	std::ifstream fin("input1.txt");
 	fin.tie(&cout);
-	vector<int> ivec;
-	list<int> ilist;
-	forward_list<int> flst;
-	int val;
-	while (fin >> val) {
-		ivec.push_back(val);
+	std::forward_list<string> flststr;
+	std::string str;
+	std::string str1("xixi"), str2("FrogLu");
+	while (fin >> str) {
+		flststr.push_front(str);
 	}
-	ilist.assign(ivec.begin(),ivec.end());
-	flst.assign(ivec.begin(), ivec.end());
-	/*赋值结束*/
-	auto prev = flst.before_begin(), curr = flst.begin();
-	while (curr != flst.end()) {
-		if ((*curr) & 1) {
-			curr = flst.erase_after(prev);
-		}
-		else {
-			prev = curr;
-			++curr;
-		}
+	/*原容器对象输出*/
+	cout << "flststr(prev): ";
+	for (auto &str : flststr) {
+		cout << str << " ";
 	}
+	cout << endl;
+	/*判断*/
+	auto prev = flststr.before_begin(), curr = flststr.begin();
+	flstInsertStr(flststr, str1, str2);
 	/*输出*/
-	cout << "flst: ";
-	for (auto &val : flst) {
-		cout << val << " ";
+	cout << "flststr(curr): ";
+	for (auto &str : flststr) {
+		cout << str << " ";
 	}
 	cout << endl;
 	return 0;
