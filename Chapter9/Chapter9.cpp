@@ -1,32 +1,22 @@
 #include "pch.h"
 #include "myfunction.h"
-#include <iostream>
 using namespace std;
+#define MAX_LIMIT 1000
+#define MYSTRING "hello"
 int main()
 {
-	list<int> ilist(10, 42);
-	cout << "first: ";
-	for (auto &val : ilist) {
-		cout << val << " ";
+	vector<string> svec;
+	svec.reserve(1024);
+	string word;
+	int val = 0;
+	while ( val!=MAX_LIMIT) {
+		svec.push_back(MYSTRING);
+		++val;
 	}
-	cout << endl;
-	ilist.resize(15);
-	cout << "second: ";
-	for (auto &val : ilist) {
-		cout << val << " ";
-	}
-	cout << endl;
-	ilist.resize(25, -1);
-	cout << "third: ";
-	for (auto &val : ilist) {
-		cout << val << " ";
-	}
-	cout << endl;
-	ilist.resize(5);
-	cout << "forth: ";
-	for (auto &val : ilist) {
-		cout << val << " ";
-	}
-	cout << endl;
+	cout << "size: " << svec.size()
+		<< " capacity: " << svec.capacity() << endl;
+	svec.resize(svec.size() + svec.size() / 2);
+	cout << "size: " << svec.size()
+		<< " capacity: " << svec.capacity() << endl;
 	return 0;
 }

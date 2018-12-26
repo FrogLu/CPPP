@@ -11,8 +11,11 @@
 #include <array>
 #include <deque>
 #include <forward_list>
+#include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+
 using namespace std;
 // TODO: add headers that you want to pre-compile here
 
