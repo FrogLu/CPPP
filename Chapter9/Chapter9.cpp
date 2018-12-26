@@ -4,50 +4,33 @@ using namespace std;
 #define some_val 3
 int main()
 {
+	/*文件流输入*/
 	std::ifstream fin("input2.txt");
 	fin.tie(&cout);
 	vector<int> ivec;
 	list<int> ilist;
+	forward_list<int> flst;
 	int val;
 	while (fin >> val) {
 		ivec.push_back(val);
 	}
 	ilist.assign(ivec.begin(),ivec.end());
-	auto liter = ilist.begin();
-	cout << "list: ";
-	for (auto liter = ilist.begin(); liter != ilist.end(); ++liter)
-	{
-		cout << *liter << " ";
-	}
-	cout << endl;
-	cout << "vector: ";
-	for (auto iter = ivec.begin(); iter != ivec.end(); ++iter)
-	{
-		cout << *iter << " ";
-	}
-	cout << endl;
-	liter = ilist.begin();
-	for (auto iter = ivec.begin(); iter != ivec.end(); )
-	{
-		if (*iter & 1) {
-				liter = ilist.erase(liter);
-				++iter;
+	flst.assign(ivec.begin(), ivec.end());
+	/*赋值结束*/
+	auto prev = flst.before_begin(), curr = flst.begin();
+	while (curr != flst.end()) {
+		if ((*curr) & 1) {
+			curr = flst.erase_after(prev);
 		}
 		else {
-				iter = ivec.erase(iter);
-				++liter;
+			prev = curr;
+			++curr;
 		}
 	}
-	cout << "list: ";
-	for (auto liter = ilist.begin(); liter != ilist.end(); ++liter)
-	{
-		cout << *liter << " ";
-	}
-	cout << endl;
-	cout << "vector: ";
-	for (auto iter = ivec.begin(); iter != ivec.end(); ++iter)
-	{
-		cout << *iter << " ";
+	/*输出*/
+	cout << "flst: ";
+	for (auto &val : flst) {
+		cout << val << " ";
 	}
 	cout << endl;
 	return 0;

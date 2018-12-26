@@ -10,7 +10,10 @@
 #include <list>
 #include <array>
 #include <deque>
+#include <forward_list>
 #include <fstream>
+#include <string>
+using namespace std;
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H
