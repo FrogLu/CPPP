@@ -44,3 +44,14 @@ int replace_string_KMP(string &s, const string &p1,const string p2) {
 		return 0;
 	}
 }
+
+string& fullname(string& name, const string& prefix, const string& suffix) {
+	auto nameiter = name.begin();
+	auto iter = prefix.end();
+	do {
+		--iter;
+		nameiter = name.insert(nameiter, *iter);
+	} while (iter > prefix.begin());
+	name.append(suffix);
+	return name;
+}
