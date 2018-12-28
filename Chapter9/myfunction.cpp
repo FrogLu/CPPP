@@ -35,8 +35,9 @@ int replace_string_KMP(string &s, const string &p1,const string p2) {
 		}
 	}
 	if (j >= p1.size()) {
-		s.erase(i - p1.size(), p1.size());
-		s.insert(i-p1.size(), p2);
+		//s.erase(i - p1.size(), p1.size());
+		//s.insert(i-p1.size(), p2);
+		s.replace(i - p1.size(), p1.size(), p2);
 		return i - p1.size();
 	}
 	else {
