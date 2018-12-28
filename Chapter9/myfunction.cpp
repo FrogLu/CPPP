@@ -1,26 +1,45 @@
 #include "pch.h"
 #include "myfunction.h"
 
-std::forward_list<string>::iterator flstInsertStr(
-	std::forward_list<string> &flststr,
-	std::string &str1,
-	std::string &str2) {
-	bool flag = false;
-	auto prev = flststr.before_begin();
-	auto curr = flststr.begin();
-	for (; curr !=flststr.end(); ++curr,++prev)
-	{
-		if ((*curr) == str1) {
-			flststr.insert_after(curr, str2);
-			flag = true;
-			break;
+std::vector<int> get_next(const string& P) {
+	const int sentinel = -1;
+	size_t m = P.size(), j = 0;
+	std::vector<int> next(m, -1);
+	int t = sentinel;
+	while (j < m - 1) {
+		if (0 > t || P[j] == P[t]) {
+			//next.push_back(++t);
+			//++j;
+			next[++j] = ++t;
+		}
+		else {
+			t = next[t];
 		}
 	}
-	if (flag) {
-		return curr;
+	return next;
+}
+
+int replace_string_KMP(string &s, const string &p1,const string p2) {
+	int i = 0;
+	int j = 0;
+	vector<int> next;
+	next = get_next(p1);
+	/*next.assign(get_next(p1).begin(), get_next(p1).end());*/
+	while (i < s.size() && j < p1.size()) {
+		if (j == 0 || s[i] == p1[j]) {
+			++i;
+			++j;
+		}
+		else {
+			j = next[j];
+		}
+	}
+	if (j >= p1.size()) {
+		s.erase(i - p1.size(), p1.size());
+		s.insert(i-p1.size(), p2);
+		return i - p1.size();
 	}
 	else {
-		flststr.insert_after(prev, str2);
-		return prev;
+		return 0;
 	}
 }

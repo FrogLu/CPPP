@@ -1,8 +1,7 @@
 #pragma once
 #ifndef _MYFUNCTION_H_
 #define _MYFUNCTION_H_
-std::forward_list<string>::iterator flstInsertStr(
-	std::forward_list<string> &flststr,
-	std::string &str1,
-	std::string &str2);
+
+std::vector<int> get_next(const string& P);
+int replace_string_KMP(string &s, const string &p1, const string p2);
 #endif // !_MYFUNCTION_H_
