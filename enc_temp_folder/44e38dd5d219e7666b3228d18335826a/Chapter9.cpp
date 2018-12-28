@@ -10,6 +10,12 @@ int main()
 {
 	std::ifstream fin("input1.txt");
 	fin.tie(&cout);
+	int i = 0, j;
+	//cout << "i: " << i << "j: " << j << endl;
+	j = ++i;
+	cout << "i: " << i << "j: " << j << endl;
+	j = i++;
+	cout << "i: " << i << "j: " << j << endl;
 	/* 参考答案更好 */
 	bool bpre=false, bcurr=false;
 	string pre,curr;

@@ -83,3 +83,14 @@ std::vector<std::string::size_type>  findletter(std::string &str) {
 	}
 	return vpos;
 }
+
+bool findword(string& word) {
+	const string num("acemnorsuvwxz");
+	auto pos = word.find_first_not_of(num);
+	if (pos != std::string::npos) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
