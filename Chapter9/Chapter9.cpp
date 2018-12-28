@@ -8,35 +8,24 @@ using namespace std;
 
 int main()
 {
-	std::ifstream fin("input1.txt");
+	std::ifstream fin("input2.txt");
 	fin.tie(&cout);
-	/* 参考答案更好 */
-	bool bpre=false, bcurr=false;
-	string pre,curr;
-	string maxword;
-	while (bpre == false && fin >> pre) {
-		bpre = findword(pre);
+	string num;
+	vector<string> svec;
+	vector<int> ivec;
+	vector<double> dvec;
+	int isum = 0;
+	double dsum = 0;
+	while(fin >> num) {
+		svec.push_back(num);
 	}
-	if (bpre == true) {
-		maxword = pre;
+	for (auto &c : svec) {
+		ivec.push_back(stoi(c));
+		dvec.push_back(stod(c));
+		isum += stoi(c);
+		dsum += stod(c);
 	}
-	while (fin >> curr) {
-		bcurr = findword(curr);
-		if (bcurr == true) {
-			if (curr.size() >= pre.size()) {
-				maxword = curr;
-				pre = curr;
-			}
-			else {
-				maxword = pre;
-			}
-		}
-	}
-	if (maxword == "") {
-		cout << "Can't find the word!" << endl;
-	}
-	else {
-		cout << "The max word is: " << maxword << endl;
-	}
+	cout << "int sum: " << isum << endl;
+	cout << "double sum: " << dsum << endl;
 	return 0;
 }
