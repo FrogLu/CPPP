@@ -46,12 +46,16 @@ int replace_string_KMP(string &s, const string &p1,const string p2) {
 }
 
 string& fullname(string& name, const string& prefix, const string& suffix) {
-	auto nameiter = name.begin();
-	auto iter = prefix.end();
-	do {
-		--iter;
-		nameiter = name.insert(nameiter, *iter);
-	} while (iter > prefix.begin());
-	name.append(suffix);
+	/* Practice9.45 with iterator */
+	//auto nameiter = name.begin();
+	//auto iter = prefix.end();
+	//do {
+	//	--iter;
+	//	nameiter = name.insert(nameiter, *iter);
+	//} while (iter > prefix.begin());
+	//name.append(suffix);
+	name.insert(0, prefix);
+	name.insert(name.size(), suffix);
+
 	return name;
 }
