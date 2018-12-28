@@ -8,11 +8,34 @@ using namespace std;
 
 int main()
 {
-	std::ifstream fin("input1.txt");
+	std::ifstream fin("input2.txt");
 	fin.tie(&cout);
-	string name;
-	while (fin >> name) {
-		cout << fullname(name,MPREFIX,MSUFFIX) << endl;
+	string str;
+	while (fin >> str) {
+		/* find numbers */
+		auto vposnum=findnum(str);
+		if (!vposnum.empty()) {
+			cout << "The position of numbers are: ";
+			for (auto &pos : vposnum) {
+				cout << pos << " ";
+			}
+			cout << endl;
+		}
+		else {
+			cout << "Can't find any numbers in the string!" << endl;
+		}
+		/* find letters */
+		auto vposletter = findletter(str);
+		if (!vposletter.empty()) {
+			cout << "The position of letters are: ";
+			for (auto &pos : vposletter) {
+				cout << pos << " ";
+			}
+			cout << endl;
+		}
+		else {
+			cout << "Can't find any letters in the string!" << endl;
+		}
 	}
 
 	return 0;

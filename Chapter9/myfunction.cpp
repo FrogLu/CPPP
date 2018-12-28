@@ -59,3 +59,27 @@ string& fullname(string& name, const string& prefix, const string& suffix) {
 
 	return name;
 }
+
+std::vector<std::string::size_type>  findnum(std::string &str) {
+	const string num("0123456789");
+	auto pos = str.find_first_of(num);
+	vector<decltype(pos)> vpos;
+	while ((pos = str.find_first_of(num, pos))
+		!= string::npos) {
+		vpos.push_back(pos);
+		++pos;
+	}
+	return vpos;
+}
+
+std::vector<std::string::size_type>  findletter(std::string &str) {
+	const string num("0123456789");
+	auto pos = str.find_first_not_of(num);
+	vector<decltype(pos)> vpos;
+	while ((pos = str.find_first_not_of(num, pos))
+		!= string::npos) {
+		vpos.push_back(pos);
+		++pos;
+	}
+	return vpos;
+}
