@@ -8,13 +8,11 @@ int main()
 	finnum.tie(&cout);
 	int val;
 	const int target = 4519;
-	vector<int> ivec;
+	vector<double> dvec;
 	while (finnum >> val) {
-		ivec.push_back(val);
+		dvec.push_back(val);
 	}
-	auto numsum = accumulate(ivec.cbegin(), ivec.cend(), 0);
-	cout << "The sum of nums: " << numsum << endl;
-
+	fill_n(dvec.begin(), dvec.size(), 0);
 	//std::ifstream finstr("inputstr.txt");
 	//finstr.tie(&cout);
 	//string str;
