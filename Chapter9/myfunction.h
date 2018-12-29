@@ -8,4 +8,5 @@ string& fullname(string& name, const string& prefix, const string& suffix);
 std::vector<std::string::size_type> findnum(std::string &str);
 std::vector<std::string::size_type>  findletter(std::string &str);
 bool findword(string& word);
+void elimDups(vector<string>& words);
 #endif // !_MYFUNCTION_H_
