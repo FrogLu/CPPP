@@ -15,7 +15,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <stack>
+#include <algorithm>
 using namespace std;
 // TODO: add headers that you want to pre-compile here
 

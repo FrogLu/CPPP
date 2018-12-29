@@ -1,31 +1,18 @@
 #include "pch.h"
 #include "myfunction.h"
 using namespace std;
-#define MPREFIX "Mr. "
-#define FMPREFIX "Ms. "
-#define MSUFFIX " Jr."
-#define FMSUFFIX " III"
 
 int main()
 {
-	std::ifstream fin("input2.txt");
+	std::ifstream fin("inputnum.txt");
 	fin.tie(&cout);
-	string num;
-	vector<string> svec;
+	int val;
+	const int target = 4519;
 	vector<int> ivec;
-	vector<double> dvec;
-	int isum = 0;
-	double dsum = 0;
-	while(fin >> num) {
-		svec.push_back(num);
+	while (fin >> val) {
+		ivec.push_back(val);
 	}
-	for (auto &c : svec) {
-		ivec.push_back(stoi(c));
-		dvec.push_back(stod(c));
-		isum += stoi(c);
-		dsum += stod(c);
-	}
-	cout << "int sum: " << isum << endl;
-	cout << "double sum: " << dsum << endl;
+	cout << "The count of " << target << " : ";
+	cout << count(ivec.begin(), ivec.end(), target) << endl;
 	return 0;
 }
