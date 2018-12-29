@@ -17,6 +17,7 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
+#include <numeric>
 using namespace std;
 // TODO: add headers that you want to pre-compile here
 

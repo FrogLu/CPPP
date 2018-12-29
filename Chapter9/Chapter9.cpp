@@ -4,15 +4,25 @@ using namespace std;
 
 int main()
 {
-	std::ifstream fin("inputnum.txt");
-	fin.tie(&cout);
+	std::ifstream finnum("inputnum.txt");
+	finnum.tie(&cout);
 	int val;
 	const int target = 4519;
-	list<int> ilst;
-	while (fin >> val) {
-		ilst.push_back(val);
+	vector<int> ivec;
+	while (finnum >> val) {
+		ivec.push_back(val);
 	}
-	cout << "The count of " << target << " : ";
-	cout << count(ilst.begin(), ilst.end(), target) << endl;
+	auto numsum = accumulate(ivec.cbegin(), ivec.cend(), 0);
+	cout << "The sum of nums: " << numsum << endl;
+
+	//std::ifstream finstr("inputstr.txt");
+	//finstr.tie(&cout);
+	//string str;
+	//vector<string> svec;
+	//while (finstr >> str) {
+	//	svec.push_back(str);
+	//}
+	//string sum = accumulate(svec.cbegin(), svec.cend(), string(""));
+
 	return 0;
 }
