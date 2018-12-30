@@ -9,4 +9,5 @@ std::vector<std::string::size_type> findnum(std::string &str);
 std::vector<std::string::size_type>  findletter(std::string &str);
 bool findword(string& word);
 void elimDups(vector<string>& words);
+bool isShorter(const string & s1, const string & s2);
 #endif // !_MYFUNCTION_H_

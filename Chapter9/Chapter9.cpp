@@ -21,7 +21,7 @@ int main()
 	while (finstr >> str) {
 		svec.push_back(str);
 	}
-	elimDups(svec);
-
+	//sort(svec.begin(), svec.end(), isShorter);
+	stable_sort(svec.begin(), svec.end(), isShorter);
 	return 0;
 }

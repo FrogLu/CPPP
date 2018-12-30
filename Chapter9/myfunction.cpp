@@ -99,4 +99,9 @@ void elimDups(vector<string> &words) {
 	sort(words.begin(), words.end());
 	auto end_unique = unique(words.begin(), words.end());
 	words.erase(end_unique, words.end());
+	return;
+}
+
+bool isShorter(const string &s1, const string &s2) {
+	return s1.size() < s2.size();
 }
