@@ -4,23 +4,27 @@
 
 int main()
 {
-	std::ifstream fin("./data/Sales_data");
+	std::ifstream fin("./data/InputStr");
 	assert(!fin.fail());
 	fin.tie(&cout);
-	Sales_data sd;
-	vector<Sales_data> sdvec;
-	while (read(fin, sd)) {
-		sdvec.push_back(sd);
+	string str;
+	vector<string> svec;
+	while (fin>>str) {
+		svec.push_back(str);
 	}
-	for (auto c : sdvec) {
-		print(cout, c);
-		cout << endl;
+	for (auto c : svec) {
+		cout << c <<" ";
 	}
 	cout << endl;
-	sort(sdvec.begin(), sdvec.end(), compareIsbn);
-	for (auto c : sdvec) {
-		print(cout, c);
-		cout << endl;
+	auto iter=partition(svec.begin(), svec.end(), stringgeq5);
+	for (auto c : svec) {
+		cout << c << " ";
 	}
+	cout << endl;
+	while (iter != svec.end()) {
+		cout << *iter << " ";
+		++iter;
+	}
+	cout << endl;
 	return 0;
 }
