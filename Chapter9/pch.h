@@ -18,7 +18,10 @@
 #include <stack>
 #include <algorithm>
 #include <numeric>
-using namespace std;
+using std::string; using std::vector;
+using std::sort; using std::unique;
+using std::cout;
+//using std::vector;
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H

@@ -3,7 +3,7 @@
 #define _MYFUNCTION_H_
 #include "Sales_data.h"
 
-bool compareIsbn(string & sd1, string & sd2);
+bool compareIsbn(Sales_data & sd1, Sales_data & sd2);
 
 bool stringgeq5(std::string & str);
 

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "myfunction.h"
 
-std::vector<int> get_next(const string& P) {
+std::vector<int> get_next(const std::string& P) {
 	const int sentinel = -1;
 	size_t m = P.size(), j = 0;
 	std::vector<int> next(m, -1);
@@ -19,10 +19,11 @@ std::vector<int> get_next(const string& P) {
 	return next;
 }
 
-int replace_string_KMP(string &s, const string &p1,const string p2) {
+int replace_string_KMP(std::string &s, const std::string &p1,
+						const std::string p2) {
 	int i = 0;
 	int j = 0;
-	vector<int> next;
+	std::vector<int> next;
 	next = get_next(p1);
 	/*next.assign(get_next(p1).begin(), get_next(p1).end());*/
 	while (i < s.size() && j < p1.size()) {
@@ -45,7 +46,8 @@ int replace_string_KMP(string &s, const string &p1,const string p2) {
 	}
 }
 
-string& fullname(string& name, const string& prefix, const string& suffix) {
+std::string& fullname(std::string& name, const std::string& prefix,
+					const std::string& suffix) {
 	/* Practice9.45 with iterator */
 	//auto nameiter = name.begin();
 	//auto iter = prefix.end();
@@ -61,11 +63,11 @@ string& fullname(string& name, const string& prefix, const string& suffix) {
 }
 
 std::vector<std::string::size_type>  findnum(std::string &str) {
-	const string num("0123456789");
+	const std::string num("0123456789");
 	auto pos = str.find_first_of(num);
-	vector<decltype(pos)> vpos;
+	std::vector<decltype(pos)> vpos;
 	while ((pos = str.find_first_of(num, pos))
-		!= string::npos) {
+		!= std::string::npos) {
 		vpos.push_back(pos);
 		++pos;
 	}
@@ -73,19 +75,19 @@ std::vector<std::string::size_type>  findnum(std::string &str) {
 }
 
 std::vector<std::string::size_type>  findletter(std::string &str) {
-	const string num("0123456789");
+	const std::string num("0123456789");
 	auto pos = str.find_first_not_of(num);
-	vector<decltype(pos)> vpos;
+	std::vector<decltype(pos)> vpos;
 	while ((pos = str.find_first_not_of(num, pos))
-		!= string::npos) {
+		!= std::string::npos) {
 		vpos.push_back(pos);
 		++pos;
 	}
 	return vpos;
 }
 
-bool findword(string& word) {
-	const string num("acemnorsuvwxz");
+bool findword(std::string& word) {
+	const std::string num("acemnorsuvwxz");
 	auto pos = word.find_first_not_of(num);
 	if (pos != std::string::npos) {
 		return false;
@@ -95,13 +97,13 @@ bool findword(string& word) {
 	}
 }
 
-void elimDups(vector<string> &words) {
-	sort(words.begin(), words.end());
-	auto end_unique = unique(words.begin(), words.end());
+void elimDups(std::vector<std::string> &words) {
+	std::sort(words.begin(), words.end());
+	auto end_unique = std::unique(words.begin(), words.end());
 	words.erase(end_unique, words.end());
 	return;
 }
 
-bool isShorter(const string &s1, const string &s2) {
+bool isShorter(const std::string &s1, const std::string &s2) {
 	return s1.size() < s2.size();
 }

@@ -1,7 +1,7 @@
 #pragma once
 #ifndef SALES_DATA_H
 #define SALES_DATA_H
-//using namespace std;
+
 class Sales_data
 {
     // ÓÑÔªº¯Êý

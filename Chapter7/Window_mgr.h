@@ -3,6 +3,7 @@
 #define WINDOW_MGR_H
 #include "Screen.h"
 #include <vector>
+using std::vector;
 
 class Window_mgr {
 public:
@@ -14,7 +15,7 @@ private:
 };
 inline void Window_mgr::clear(ScreenIndex index) {
 	Screen &s = screens[index];
-	s.contents = string(s.height*s.width, ' ');
+	s.contents = std::string(s.height*s.width, ' ');
 }
 inline Window_mgr::ScreenIndex Window_mgr::addScreen(const Screen & screen)
 {

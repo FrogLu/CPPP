@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "myfunction.h"
-using namespace std;
 
 int main()
 {

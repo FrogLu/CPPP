@@ -7,24 +7,24 @@ int main()
 	std::ifstream fin("./data/InputStr");
 	assert(!fin.fail());
 	fin.tie(&cout);
-	string str;
-	vector<string> svec;
+	std::string str;
+	std::vector<std::string> svec;
 	while (fin>>str) {
 		svec.push_back(str);
 	}
 	for (auto c : svec) {
-		cout << c <<" ";
+		std::cout << c <<" ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 	auto iter=partition(svec.begin(), svec.end(), stringgeq5);
 	for (auto c : svec) {
-		cout << c << " ";
+		std::cout << c << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 	while (iter != svec.end()) {
-		cout << *iter << " ";
+		std::cout << *iter << " ";
 		++iter;
 	}
-	cout << endl;
+	std::cout << std::endl;
 	return 0;
 }

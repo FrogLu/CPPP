@@ -11,8 +11,8 @@ int main()
 	//cout << "Please enter some integer, press Ctrl + Z to end." << endl;
 	//myprint(cin);
 	// fstream
-	ifstream in(infile);
-	ofstream out(outfile, std::ofstream::app);// 显式指定app模式，保留原文件内容
+	std::ifstream in(infile);
+	std::ofstream out(outfile, std::ofstream::app);// 显式指定app模式，保留原文件内容
 	//vector<string> vstr;
 	//if (process(in, vstr)) {
 	//	in.close();
@@ -20,14 +20,14 @@ int main()
 	//	out.close();
 	//}
 	// stringstream
-	string line, word;
-	vector<PersonInfo> people;
+	std::string line, word;
+	std::vector<PersonInfo> people;
 	while (getline(in, line)) {
 		PersonInfo info;
 		std::istringstream record(line);
 		//myprint(record);// 要使用该函数，需先对myprint进行修改
 		if (out.is_open()) {
-			out << line << endl;
+			out << line << std::endl;
 		}
 		record >> info.name;
 		while (record >> word) {
@@ -38,7 +38,7 @@ int main()
 	in.close();
 	out.close();
 	// Practice9.4
-	vector<int> vint = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	std::vector<int> vint = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	const int val = 11;
 	myfind(vint, val);
 	//cout << "The result is:"

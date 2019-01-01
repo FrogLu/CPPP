@@ -5,22 +5,23 @@ std::istream& myprint(std::istream& is) {
 	int val;
 	while (is >> val, !is.eof()) {
 		if (is.bad()) {
-			throw runtime_error("IO stream wrong!");
+			throw std::runtime_error("IO stream wrong!");
 		}
 		if(is.fail()) {
-			cerr << "date wrong, please enter correct number again:" << endl;
+			std::cerr << "date wrong, please enter correct number again:" 
+				<< std::endl;
 			is.clear(old_state);
 			is.ignore(100, '\n');
 			continue;	// ±ÜÃâÖ´ÐÐcout<<val<<endl
 		}
-		cout << val << endl;
+		std::cout << val << std::endl;
 	}
 	is.clear(old_state);
 	return is;
 }
 
 bool process(std::ifstream& ifs,std::vector<string>& vstr) {
-	string str;
+	std::string str;
 	if (!ifs.is_open()) {
 		return false;
 	}
@@ -31,12 +32,12 @@ bool process(std::ifstream& ifs,std::vector<string>& vstr) {
 }
 
 bool process(std::ofstream& ofs, std::vector<string>& vstr) {
-	string str;
+	std::string str;
 	if (!ofs.is_open()) {
 		return false;
 	}
 	for (auto &str : vstr) {
-		ofs << str << endl;
+		ofs << str << std::endl;
 	}
 	return true;
 }
@@ -50,11 +51,11 @@ std::vector<int>::iterator myfind(std::vector<int> vint, const int& val) {
 		}
 	}
 	if (flag == true) {
-		cout << "The position is " << vint.capacity() << endl;
+		std::cout << "The position is " << vint.capacity() << std::endl;
 	}
 	else {
-		cout << "Can't find the same value in the containter, "
-			<< "return the end of iterator" << endl;
+		std::cout << "Can't find the same value in the containter, "
+			<< "return the end of iterator" << std::endl;
 	}
 	return vint.end();
 }

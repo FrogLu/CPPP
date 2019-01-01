@@ -3,7 +3,7 @@
 #define SCREEN_H
 #include <string>
 //#include "Window_mgr.h"
-
+using std::cerr; using std::endl;
 class Screen {
 public:
     typedef std::string::size_type pos;
@@ -45,7 +45,7 @@ inline Screen& Screen::set(char c)
     }
     catch (const std::out_of_range& cursor_out_of_range)
     {
-        cerr << cursor_out_of_range.what() << endl;
+		std::cerr << cursor_out_of_range.what() << std::endl;
         // 还需要补充如何解决越界问题
     }
     return *this;

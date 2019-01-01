@@ -1,6 +1,7 @@
 #pragma once
 #ifndef _PERSON_H_
 #define _PERSON_H_
+using std::string;
 
 struct Person {
     friend std::istream &read(std::istream &is, Person &pre);
@@ -19,7 +20,7 @@ public:
     }
     // ¹¹Ôìº¯Êı
     Person() = default;
-    Person(const string &name, const string &address) :
+    Person(const std::string &name, const std::string &address) :
 		name(name), address(address) {}
     explicit Person(std::istream &is) {
         read(is, *this);

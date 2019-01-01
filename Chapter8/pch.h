@@ -12,7 +12,9 @@
 #include <sstream>
 #include <string>
 #include <vector>
-using namespace std;
+using std::vector; using std::string;
+using std::ifstream; using std::ofstream; using std::endl;
+using std::runtime_error; using std::cout; using std::cerr;
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H

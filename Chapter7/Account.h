@@ -2,7 +2,7 @@
 #ifndef _ACCOUNT_H_
 #define _ACCOUNT_H_
 #include <string>
-using namespace std;
+using std::string;
 typedef  double Money;
 string bal;
 class Account {

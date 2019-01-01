@@ -1,7 +1,7 @@
 #pragma once
 #ifndef SALES_DATA_H
 #define SALES_DATA_H
-//using namespace std;
+using std::cout; using std::endl;
 class Sales_data
 {
     // 友元函数
@@ -21,18 +21,18 @@ public:
 	/*非委托构造函数*/
 	Sales_data(std::string s, unsigned cnt, double price) :
 		bookNo(s), units_sold(cnt), revenue(cnt*price) {
-		cout << "This is first constructor" << endl;
+		std::cout << "This is first constructor" << std::endl;
 	}
 	/*其余构造函数全都委托给另一个构造函数*/
 	Sales_data() :Sales_data("", 0, 0) {
-		cout << "This is first delegating constructor" << endl;
+		std::cout << "This is first delegating constructor" << std::endl;
 	}
 	explicit Sales_data(std::string s) :Sales_data(s, 0, 0) {
-		cout << "This is second delegating constructor" << endl;
+		std::cout << "This is second delegating constructor" << std::endl;
 	}
 	explicit Sales_data(std::istream &is) :Sales_data() {
 		read(is, *this);
-		cout << "This is third delegating constructor" << endl;
+		std::cout << "This is third delegating constructor" << std::endl;
 	}
     // 成员函数
     std::string isbn() const { return this->bookNo; }

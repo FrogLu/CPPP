@@ -8,7 +8,8 @@
 #include <algorithm>
 #include <numeric>
 #include <cassert>
-using namespace std;
+using std::string; using std::cout; using std::endl;
+using std::vector;
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H
