@@ -3,10 +3,19 @@
 #define _MYFUNCTION_H_
 #include "Sales_data.h"
 
+void elimDups(std::vector<std::string> &words);
+
+bool isShorter(const std::string &s1, const std::string &s2);
+
 bool compareIsbn(Sales_data & sd1, Sales_data & sd2);
+
+void biggies(std::vector<std::string> &words,
+	std::vector<std::string>::size_type sz);
 
 bool stringgeq5(std::string & str);
 
+const std::string make_plural(int count, const string &words, 
+	const string &suffix);
 #endif // _MYFUNCTION_H_
 
 

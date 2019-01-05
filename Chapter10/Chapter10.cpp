@@ -16,15 +16,7 @@ int main()
 		std::cout << c <<" ";
 	}
 	std::cout << std::endl;
-	auto iter=partition(svec.begin(), svec.end(), stringgeq5);
-	for (auto c : svec) {
-		std::cout << c << " ";
-	}
-	std::cout << std::endl;
-	while (iter != svec.end()) {
-		std::cout << *iter << " ";
-		++iter;
-	}
-	std::cout << std::endl;
+	biggies(svec, 5);
+
 	return 0;
 }
