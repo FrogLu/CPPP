@@ -5,27 +5,20 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/Sales_data");
+	std::ifstream fin("./data/InputStr");
 	assert(!fin.fail());
 	fin.tie(&cout);
-	Sales_data sd;
-	std::vector<Sales_data> sdvec;
-	while (read(fin,sd)) {
-		sdvec.push_back(sd);
+	std::string str;
+	std::vector<std::string> svec;
+	while (fin>>str) {
+		svec.push_back(str);
 	}
-	for (auto c : sdvec) {
-		print(cout, c);
-		cout << endl;
+	for (auto c : svec) {
+		std::cout << c << " ";
 	}
 	std::cout << std::endl;
 	/* fin done */
-	std::sort(sdvec.begin(), sdvec.end(),
-		[](Sales_data&sd1, Sales_data&sd2) {return sd1.isbn() < sd2.isbn(); });
-	cout << "sorted:" << endl;
-	for (auto c : sdvec) {
-		print(cout, c);
-		cout << endl;
-	}
-	std::cout << std::endl;
+	biggies(svec, 5);
+
 	return 0;
 }
