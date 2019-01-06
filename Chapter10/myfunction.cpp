@@ -28,13 +28,14 @@ void biggies(std::vector<std::string> &words,
 		[](const string &a, const string &b) {
 			return a.size() < b.size();
 		});
-	auto wc = std::stable_partition(words.begin(), words.end(),
-		[sz](const string &words) -> bool {
-			return words.size() < sz;
-		});
-	auto count = words.end() - wc;
+	//auto wc = std::stable_partition(words.begin(), words.end(),
+	//	[sz](const string &words) -> bool {
+	//		return words.size() < sz;
+	//	});
+	auto count = std::count_if(words.begin(), words.end(),
+		[sz](const string&words)->bool {return words.size() >= sz; });
 	cout << count << " " << make_plural(count, "word", "s") << endl;
-	for_each(wc, words.end(),
+	for_each(words.end()-count, words.end(),
 		[](const string &s) {
 			std::cout << s << " ";
 		});

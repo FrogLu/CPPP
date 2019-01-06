@@ -18,7 +18,7 @@ int main()
 	}
 	std::cout << std::endl;
 	/* fin done */
-	biggies(svec, 5);
+	biggies(svec, 6);
 
 	return 0;
 }
