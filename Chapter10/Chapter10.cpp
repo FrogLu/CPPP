@@ -5,23 +5,27 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/InputStr");
+	std::ifstream fin("./data/Sales_data");
 	assert(!fin.fail());
 	fin.tie(&cout);
-	std::string str;
-	std::vector<std::string> svec;
-	while (fin>>str) {
-		svec.push_back(str);
+	Sales_data sd;
+	std::vector<Sales_data> sdvec;
+	while (read(fin,sd)) {
+		sdvec.push_back(sd);
 	}
-	for (auto c : svec) {
-		std::cout << c <<" ";
+	for (auto c : sdvec) {
+		print(cout, c);
+		cout << endl;
 	}
 	std::cout << std::endl;
 	/* fin done */
-	int capval = 0;
-	cin >> capval;
-	auto f = [capval](int a)->int {return a + capval; };
-	std::cout << f(4) << std::endl;
-
+	std::sort(sdvec.begin(), sdvec.end(),
+		[](Sales_data&sd1, Sales_data&sd2) {return sd1.isbn() < sd2.isbn(); });
+	cout << "sorted:" << endl;
+	for (auto c : sdvec) {
+		print(cout, c);
+		cout << endl;
+	}
+	std::cout << std::endl;
 	return 0;
 }
