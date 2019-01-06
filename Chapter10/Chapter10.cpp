@@ -16,7 +16,6 @@ int main()
 		std::cout << c <<" ";
 	}
 	std::cout << std::endl;
-	biggies(svec, 5);
 
 	return 0;
 }

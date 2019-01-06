@@ -14,8 +14,9 @@ void biggies(std::vector<std::string> &words,
 
 bool stringgeq5(std::string & str);
 
-const std::string make_plural(int count, const string &words, 
+const std::string& make_plural(std::string::size_type count, const string &words,
 	const string &suffix);
+
 #endif // _MYFUNCTION_H_
 
 

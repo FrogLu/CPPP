@@ -33,14 +33,18 @@ void biggies(std::vector<std::string> &words,
 			return words.size() >= sz;
 		});
 	auto count = words.end() - wc;
-	cout << count << " " << make_plural(count, "word", "s");
+	auto state = cout.rdstate();
+	cout << count << " ";cout << make_plural(count, "word", "s") << endl;
+	state = cout.rdstate();
 	for_each(wc, words.end(),
 		[](const string &s) {
 			std::cout << s << " ";
 		});
 }
 
-const std::string make_plural(int count, const string &words, 
+const std::string& make_plural(
+	std::string::size_type count,
+	const string &words, 
 	const string &suffix) {
 	try
 	{
@@ -62,12 +66,16 @@ const std::string make_plural(int count, const string &words,
 			return make_plural(num, words, suffix);
 		}
 	}
-
+	
 	if (count == 1) {
 		return words;
 	}
 	else {
-		return words + suffix;
-		//return const_cast<const string &>(word.append(suffix));
+		// Can't use "words+suffix" as return value,even use const_cast.
+		// Because words+suffix return a temp value,
+		// and return type is a reference.
+		// The most serious consequence is that it will cause cout bad!!!
+		// So if use "words+suffix",need to change return type to const string.
+		return const_cast<string &>(words).append(suffix);
 	}
 }
