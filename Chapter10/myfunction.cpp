@@ -28,8 +28,8 @@ void biggies(std::vector<std::string> &words,
 		[](const string &a, const string &b) {
 			return a.size() < b.size();
 		});
-	auto wc = std::partition(words.begin(), words.end(),
-		[sz](const string &words) {
+	auto wc = std::stable_partition(words.begin(), words.end(),
+		[sz](const string &words) -> bool {
 			return words.size() < sz;
 		});
 	auto count = words.end() - wc;
