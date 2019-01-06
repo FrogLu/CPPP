@@ -18,8 +18,10 @@ int main()
 	}
 	std::cout << std::endl;
 	/* fin done */
-	auto f = [](int a, int b)->int {return a + b; };
-	std::cout << f(4, 5) << std::endl;
+	int capval = 0;
+	cin >> capval;
+	auto f = [capval](int a)->int {return a + capval; };
+	std::cout << f(4) << std::endl;
 
 	return 0;
 }
