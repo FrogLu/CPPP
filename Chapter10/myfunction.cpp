@@ -34,7 +34,8 @@ void biggies(std::vector<std::string> &words,
 	//	});
 	auto count = std::count_if(words.begin(), words.end(),
 		[sz](const string&words)->bool {return words.size() >= sz; });
-	cout << count << " " << make_plural(count, "word", "s") << endl;
+	std::cout << count << " " << make_plural(count, "word", "s")
+		<< " of length " << sz << " or longer" << std::endl;
 	for_each(words.end()-count, words.end(),
 		[](const string &s) {
 			std::cout << s << " ";
