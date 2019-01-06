@@ -4,6 +4,7 @@
 
 int main()
 {
+	/* fin starts */
 	std::ifstream fin("./data/InputStr");
 	assert(!fin.fail());
 	fin.tie(&cout);
@@ -16,6 +17,9 @@ int main()
 		std::cout << c <<" ";
 	}
 	std::cout << std::endl;
+	/* fin done */
+	auto f = [](int a, int b)->int {return a + b; };
+	std::cout << f(4, 5) << std::endl;
 
 	return 0;
 }
