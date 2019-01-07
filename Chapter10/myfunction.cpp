@@ -26,15 +26,14 @@ void biggies(std::vector<std::string> &words,
 	elimDups(words);
 	stable_sort(words.begin(), words.end(),
 		bind(isShorter,_1,_2));
-	//auto wc = std::stable_partition(words.begin(), words.end(),
-	//	[sz](const string &words) -> bool {
-	//		return words.size() < sz;
-	//	});
-	auto count = std::count_if(words.begin(), words.end(),
+	auto wc = std::stable_partition(words.begin(), words.end(),
 		std::bind(check_size,_1,sz));
+	auto count = wc - words.begin();
+	//auto count = std::count_if(words.begin(), words.end(),
+	//	std::bind(check_size,_1,sz));
 	std::cout << count << " " << make_plural(count, "word", "s")
 		<< " of length " << sz << " or longer" << std::endl;
-	for_each(words.end()-count, words.end(),
+	for_each(words.begin(), words.begin()+count,
 		std::bind(printstr,_1));
 }
 
