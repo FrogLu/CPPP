@@ -33,7 +33,7 @@ void biggies(std::vector<std::string> &words,
 	//		return words.size() < sz;
 	//	});
 	auto count = std::count_if(words.begin(), words.end(),
-		[sz](const string&words)->bool {return words.size() >= sz; });
+		std::bind(check_size,_1,sz));
 	std::cout << count << " " << make_plural(count, "word", "s")
 		<< " of length " << sz << " or longer" << std::endl;
 	for_each(words.end()-count, words.end(),
@@ -42,7 +42,7 @@ void biggies(std::vector<std::string> &words,
 		});
 }
 
-const std::string& make_plural(
+const std::string make_plural(
 	std::string::size_type count,
 	const string &words, 
 	const string &suffix) {
@@ -71,11 +71,17 @@ const std::string& make_plural(
 		return words;
 	}
 	else {
-		// Can't use "words+suffix" as return value,even use const_cast.
+		// Can't use "words+suffix" as return value, even use const_cast.
 		// Because words+suffix return a temp value,
 		// and return type is a reference.
 		// The most serious consequence is that it will cause cout bad!!!
-		// So if use "words+suffix",need to change return type to const string.
-		return const_cast<string &>(words).append(suffix);
+		// So if use "words+suffix", need to change return type to const string.
+		// Hits(Important): After testing, return const string type 
+		// and using "words+suffix" can be safer than return a reference.
+		return words+suffix;
 	}
+}
+
+bool check_size(const std::string&s, std::string::size_type sz) {
+	return s.size() >= sz;
 }
