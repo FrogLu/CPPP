@@ -19,6 +19,8 @@ const std::string make_plural(std::string::size_type count, const string &words,
 
 bool check_size(const std::string & s, std::string::size_type sz);
 
+void printstr(const string & s);
+
 #endif // _MYFUNCTION_H_
 
 

@@ -25,9 +25,7 @@ void biggies(std::vector<std::string> &words,
 	std::vector<std::string>::size_type sz) {
 	elimDups(words);
 	stable_sort(words.begin(), words.end(),
-		[](const string &a, const string &b) {
-			return a.size() < b.size();
-		});
+		bind(isShorter,_1,_2));
 	//auto wc = std::stable_partition(words.begin(), words.end(),
 	//	[sz](const string &words) -> bool {
 	//		return words.size() < sz;
@@ -37,9 +35,7 @@ void biggies(std::vector<std::string> &words,
 	std::cout << count << " " << make_plural(count, "word", "s")
 		<< " of length " << sz << " or longer" << std::endl;
 	for_each(words.end()-count, words.end(),
-		[](const string &s) {
-			std::cout << s << " ";
-		});
+		std::bind(printstr,_1));
 }
 
 const std::string make_plural(
@@ -84,4 +80,8 @@ const std::string make_plural(
 
 bool check_size(const std::string&s, std::string::size_type sz) {
 	return s.size() >= sz;
+}
+
+void printstr(const string &s) {
+	std::cout << s << " ";
 }
