@@ -18,24 +18,28 @@ int main()
 	}
 	std::cout << std::endl;
 	/* fin done */
-	std::list<std::string> slst;
-	std::list<std::string> uslst;
-	copy(svec.cbegin(), svec.cend(), back_inserter(slst));
-	//copy(svec.cbegin(), svec.cend(), front_inserter(slst));
-	//copy(svec.cbegin(), svec.cend(), inserter(slst,slst.end()));
-	unique_copy(svec.cbegin(), svec.cend(), back_inserter(uslst));
-	//unique_copy(svec.cbegin(), svec.cend(), front_inserter(uslst));
-	//unique_copy(svec.cbegin(), svec.cend(), inserter(uslst, uslst.end()));
-
+	std::list<int> ilst1, ilst2, ilst3;
+	std::vector<int> ivec;
+	for (auto count = 1; count != 10; ++count) {
+		ivec.push_back(count);
+	}
+	std::copy(ivec.cbegin(), ivec.cend(), front_inserter(ilst1));
+	std::copy(ivec.cbegin(), ivec.cend(), inserter(ilst2,ilst2.end()));
+	std::copy(ivec.cbegin(), ivec.cend(), back_inserter(ilst3));
 	/* Output */
-	std::cout << "This is slst member: " << std::endl;
-	for (auto c : slst) {
-		std::cout << c << " ";
+	std::cout << "ilst1 members: " << std::endl;
+	for (auto val : ilst1) {
+		std::cout << val << " ";
 	}
 	std::cout << std::endl;
-	std::cout << "This is uslst member: " << std::endl;
-	for (auto c : uslst) {
-		std::cout << c << " ";
+	std::cout << "ilst2 members: " << std::endl;
+	for (auto val : ilst2) {
+		std::cout << val << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "ilst3 members: " << std::endl;
+	for (auto val : ilst3) {
+		std::cout << val << " ";
 	}
 
 	return 0;
