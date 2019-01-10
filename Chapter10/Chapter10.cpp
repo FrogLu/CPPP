@@ -18,8 +18,25 @@ int main()
 	}
 	std::cout << std::endl;
 	/* fin done */
-	biggies(svec, 5);
+	std::list<std::string> slst;
+	std::list<std::string> uslst;
+	copy(svec.cbegin(), svec.cend(), back_inserter(slst));
+	//copy(svec.cbegin(), svec.cend(), front_inserter(slst));
+	//copy(svec.cbegin(), svec.cend(), inserter(slst,slst.end()));
+	unique_copy(svec.cbegin(), svec.cend(), back_inserter(uslst));
+	//unique_copy(svec.cbegin(), svec.cend(), front_inserter(uslst));
+	//unique_copy(svec.cbegin(), svec.cend(), inserter(uslst, uslst.end()));
 
+	/* Output */
+	std::cout << "This is slst member: " << std::endl;
+	for (auto c : slst) {
+		std::cout << c << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "This is uslst member: " << std::endl;
+	for (auto c : uslst) {
+		std::cout << c << " ";
+	}
 
 	return 0;
 }
