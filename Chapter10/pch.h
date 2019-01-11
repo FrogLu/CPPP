@@ -15,7 +15,7 @@
 using std::string; using std::cout; using std::cin; using std::endl;
 using std::vector; using std::range_error; using std::list;
 using std::placeholders::_1; using std::placeholders::_2;
-using std::copy;
+using std::copy; using std::istream_iterator; using std::ostream_iterator;
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H
