@@ -13,6 +13,8 @@ int main()
 	std::vector<int> ivec(isiter, eof);
 	std::sort(ivec.begin(), ivec.end());
 	std::copy(ivec.begin(), ivec.end(), ositer);
+	std::cout << std::endl;
+	std::unique_copy(ivec.begin(), ivec.end(), ositer);
 
 	return 0;
 }
