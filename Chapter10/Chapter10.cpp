@@ -13,20 +13,21 @@ int main()
 	assert(fout2.good());
 	fin.tie(&cout);
 	std::istream_iterator<int> isiter(fin), eof;
-	std::vector<int> ivec(isiter, eof);
-	std::cout << "Ascending: " << std::endl;
-	for (auto iter = ivec.cbegin(); iter != ivec.cend(); iter++)
-	{
-		cout << *iter << " ";
+	std::list<int> ilst(isiter, eof);
+	for (auto val : ilst) {
+		std::cout << val << " ";
 	}
-	std::cout<<std::endl;
-	std::cout << "Descending: " << std::endl;
-	auto riter = ivec.cend();
-	while (--riter != ivec.cbegin())
-	{
-		std::cout << *riter << " ";
+	std::cout << std::endl;
+	const int number = 9;
+	auto last_z = find(ilst.crbegin(), ilst.crend(), number);
+	int pos = 0;
+	for (auto iter = ilst.cbegin(); iter != last_z.base(); ++iter, ++pos);
+	if (!pos) {
+		std::cout << "Can't find number " << number << " in container" << std::endl;
 	}
-	std::cout << *riter << std::endl;
+	else {
+		std::cout << "last pos of number " << number << " is: " << pos << std::endl;
+	}
 
 	return 0;
 }
