@@ -8,6 +8,9 @@ class Sales_data
     /*friend Sales_data add(const Sales_data&, const Sales_data&);*/
     friend std::ostream &print(std::ostream&, const Sales_data&);
     friend std::istream &read(std::istream&, Sales_data&);
+	friend std::ostream &operator<<(std::ostream & os, const Sales_data & data);
+	friend std::istream &operator>>(std::istream & is, Sales_data & data);
+	friend Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs);
 public:
     // ¹¹Ôìº¯Êı
     //Sales_data() = default;
@@ -61,4 +64,7 @@ inline double Sales_data::avg_price() const {
 Sales_data add(const Sales_data&, const Sales_data&);
 std::ostream &print(std::ostream&, const Sales_data&);
 std::istream &read(std::istream&, Sales_data&);
+std::ostream &operator<<(std::ostream & os, const Sales_data & data);
+std::istream &operator>>(std::istream & is, Sales_data & data);
+Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs);
 #endif // !SALES_DATA_H

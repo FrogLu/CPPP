@@ -24,6 +24,16 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
     sum.combine(rhs);
     return sum;
 }
-//Sales_data::Sales_data(std::istream &is) {
-//    read(is, *this);
-//}
+
+std::ostream &operator<<(std::ostream& os, const Sales_data &data) {
+	return print(os, data);
+}
+
+std::istream & operator>>(std::istream & is, Sales_data & data)
+{
+	return read(is, data);
+}
+
+Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs) {
+	return add(lhs, rhs);
+}
