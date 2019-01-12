@@ -19,12 +19,14 @@ int main()
 	{
 		cout << *iter << " ";
 	}
-	std::cout << std::endl;
+	std::cout<<std::endl;
 	std::cout << "Descending: " << std::endl;
-	for (auto riter = ivec.crbegin(); riter != ivec.crend(); riter++)
+	auto riter = ivec.cend();
+	while (--riter != ivec.cbegin())
 	{
-		cout << *riter << " ";
+		std::cout << *riter << " ";
 	}
+	std::cout << *riter << std::endl;
 
 	return 0;
 }
