@@ -13,10 +13,17 @@ int main()
 	assert(fout2.good());
 	fin.tie(&cout);
 	std::istream_iterator<int> isiter(fin), eof;
-	std::ostream_iterator<int> ositer1(fout1, " "), ositer2(fout2, "\n");
-	while (isiter != eof) {
-		(*isiter) % 2 ? ositer1 = *isiter : ositer2 = *isiter;
-		++isiter;
+	std::vector<int> ivec(isiter, eof);
+	std::cout << "Ascending: " << std::endl;
+	for (auto iter = ivec.cbegin(); iter != ivec.cend(); iter++)
+	{
+		cout << *iter << " ";
+	}
+	std::cout << std::endl;
+	std::cout << "Descending: " << std::endl;
+	for (auto riter = ivec.crbegin(); riter != ivec.crend(); riter++)
+	{
+		cout << *riter << " ";
 	}
 
 	return 0;
