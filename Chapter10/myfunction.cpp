@@ -85,9 +85,7 @@ void printstr(const string &s) {
 	std::cout << s << " ";
 }
 
-//std::vector<int>::iterator findInt(const std::string&s,std::vector<int> ivec) {
-//	auto func = bind(check_size, _1, _2);
-//	for (auto i : ivec) {
-//		
-//	}
-//}
+void elimDups_list(std::list<string> &words) {
+	words.sort();
+	words.unique();
+}

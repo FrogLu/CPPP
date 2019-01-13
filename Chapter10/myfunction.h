@@ -21,6 +21,8 @@ bool check_size(const std::string & s, std::string::size_type sz);
 
 void printstr(const string & s);
 
+void elimDups_list(std::list<string>& words);
+
 #endif // _MYFUNCTION_H_
 
 

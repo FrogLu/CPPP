@@ -5,24 +5,23 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/InputInt");
+	std::ifstream fin("./data/InputStr");
 	assert(fin.good());
 	fin.tie(&cout);
-	std::istream_iterator<int> isiter(fin), eof;
-	std::ostream_iterator<int> ositer(cout, " ");
-	std::list<int> ilst;
-	std::vector<int> ivec(isiter,eof);
-	std::cout << "vector member: " << std::endl;
-	for (auto val : ivec) {
-		ositer = val;
+	std::istream_iterator<std::string> isiter(fin), eof;
+	std::ostream_iterator<std::string> ositer(cout, " ");
+	std::list<std::string> slst(isiter,eof);
+	std::cout << "Origin: " << std::endl;
+	for (auto c : slst) {
+		std::cout << c << " ";
 	}
 	std::cout << std::endl;
-	ilst.assign(ivec.rend() - 7, ivec.rend() - 2);	// 顺序容器的左闭右开区间假定
-													// 所以后者是-2不是-3.
-	std::cout << "list member: " << std::endl;
-	for (auto val : ilst) {
-		ositer=val;
+	elimDups_list(slst);
+	std::cout << "After sorted unique: " << std::endl;
+	for (auto c : slst) {
+		std::cout << c << " ";
 	}
+	std::cout << std::endl;
 
 	return 0;
 }
