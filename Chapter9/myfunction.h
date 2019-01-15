@@ -12,4 +12,6 @@ std::vector<std::string::size_type>  findletter(std::string &str);
 bool findword(std::string& word);
 void elimDups(std::vector<std::string>& words);
 bool isShorter(const std::string & s1, const std::string & s2);
+void stackexpr(std::stack<char> &charStack, const std::string &expr);
+int stackoperation(const std::string&rval, const std::string&lval, const char &oper);
 #endif // !_MYFUNCTION_H_

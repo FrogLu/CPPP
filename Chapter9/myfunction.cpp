@@ -107,3 +107,60 @@ void elimDups(std::vector<std::string> &words) {
 bool isShorter(const std::string &s1, const std::string &s2) {
 	return s1.size() < s2.size();
 }
+
+void stackexpr(	std::stack<char> &charStack,const std::string &expr) {
+
+	bool flag = false;
+	bool flagexpr = false;
+	std::string rval;
+	std::string lval;
+	char oper;
+	for (auto c : expr) {
+		if (c == ')') {
+			flag = false;
+			while (!charStack.empty()) {
+				auto item = charStack.top();
+				if (item >= '0'&&item<='9') {
+					if (flagexpr == false) {
+						rval.insert(0, 1, item);
+					}
+					else {
+						lval.insert(0, 1, item);
+					}
+				}
+				else if(item!=' '&&item!='('){
+					oper = item;
+					flagexpr = true;
+				}
+				charStack.pop();
+			}
+		}
+		if (c == '('||flag==true) {
+			charStack.push(c);
+			flag = true;
+		}
+	}
+	std::cout << "rval: " << rval << std::endl;
+	std::cout << "lval: " << lval << std::endl;
+	std::cout << "oper: " << oper << std::endl;
+	std::cout << "result: " << stackoperation(rval, lval, oper) << std::endl;
+}
+
+int stackoperation(const std::string&rval, const std::string&lval, const char &oper) {
+	int rnum = stoi(rval);
+	int lnum = stoi(lval);
+	switch (oper)
+	{
+	case '+':return rnum + lnum;
+		break;
+	case '-':return rnum - lnum;
+		break; 
+	case '*':return rnum * lnum;
+		break; 
+	case '/':return rnum / lnum;
+		break;
+	default: throw invalid_argument("invalid operator");
+		break;
+	}
+	
+}

@@ -17,15 +17,9 @@ int main()
 		std::cout << str << " ";
 	}
 	std::cout << std::endl;
-	try {
-		for (auto str : svec) {
-			mydate date(str);
-			std::cout << date;
-		}
+	for (auto str : svec) {
+		std::stack<char> charstack;
+		stackexpr(charstack, str);
 	}
-	catch (std::invalid_argument e) {
-		std::cout << e.what() << std::endl;
-	}
-
 	return 0;
 }
