@@ -9,7 +9,7 @@ int main()
 	finstr.tie(&cout);
 	string str;
 	vector<string> svec;
-	mydate date;
+	//mydate date;
 	while (getline(finstr,str)) {
 		svec.push_back(str);
 	}
@@ -17,9 +17,15 @@ int main()
 		std::cout << str << " ";
 	}
 	std::cout << std::endl;
-	for (auto str : svec) {
-		date.stringtodate(str); 
-		cout << date;
+	try {
+		for (auto str : svec) {
+			mydate date(str);
+			std::cout << date;
+		}
 	}
+	catch (std::invalid_argument e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	return 0;
 }
