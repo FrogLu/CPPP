@@ -14,6 +14,7 @@ int main()
 	while (fin >> word) {
 		std::cout << word << " ";
 		if (exclude.find(word) == exclude.cend()) {
+			word = wordprocess(word);
 			++word_count[word];
 		}
 	}
