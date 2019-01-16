@@ -7,6 +7,16 @@
 #ifndef PCH_H
 #define PCH_H
 #include <iostream>
-// TODO: add headers that you want to pre-compile here
+#include <map>
+#include <set>
+#include <string>
+#include <fstream>
+#include <vector>
+#include <iterator>
+#include <cassert>
+
+using std::map; using std::set; using std::string; using std::size_t;
+using std::cin; using std::cout; using std::endl;
+using std::istream_iterator; using std::ostream_iterator;
 
 #endif //PCH_H
