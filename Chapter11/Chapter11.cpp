@@ -4,18 +4,31 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/Input/family");
+	std::ifstream fin("./data/Input/str");
 	assert(fin.good());
 	fin.tie(&cout);
-	std::map<std::string, std::vector<std::string>> familymap;
-	addfamily(fin, familymap);
-	for (auto f : familymap) {
-		std::cout << "Family: " << f.first << " member: ";
-		for (auto m : f.second) {
-			std::cout << m << " ";
+	std::vector<std::string> wordvec;
+	std::string word;
+	std::cout << "Origin: " << std::endl;
+	while (fin >> word) {
+		std::cout << word << " ";
+		bool flag = false;
+		for (auto str : wordvec) {
+			if (str == word) {
+				flag = true;
+				break;
+			}
 		}
-		std::cout << std::endl;
+		if (!flag) {
+			wordvec.push_back(word);
+		}
 	}
+	std::cout << std::endl;
+	std::cout << "word(unique): " << std::endl;
+	for (auto str : wordvec) {
+		std::cout << str << " ";
+	}
+	std::cout << std::endl;
 
 	return 0;
 }
