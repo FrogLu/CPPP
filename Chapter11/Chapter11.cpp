@@ -4,22 +4,16 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/Input/word");
+	std::ifstream fin("./data/Input/str");
 	assert(fin.good());
 	fin.tie(&cout);
-	std::map<std::string, std::list<int>> wmap;
-	unsigned count = 0;
-	std::string word;
-	while (fin >> word) {
-		++count;
-		wmap[word].push_back(count);
+	std::pair<std::string, int> sipair;
+	std::vector<std::pair<std::string, int>> pvec;
+	while (fin >> sipair.first >> sipair.second) {
+		pvec.push_back(sipair);
 	}
-	for (auto m : wmap) {
-		std::cout << "word: " << m.first << " line number: ";
-		for (auto i : m.second) {
-			std::cout << i << " ";
-		}
-		std::cout << std::endl;
+	for (auto p : pvec) {
+		std::cout << p.first << " " << p.second << std::endl;
 	}
 
 	return 0;
