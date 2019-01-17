@@ -14,9 +14,11 @@
 #include <vector>
 #include <iterator>
 #include <cassert>
+#include <sstream>
 
 using std::map; using std::set; using std::string; using std::size_t;
 using std::cin; using std::cout; using std::endl;
 using std::istream_iterator; using std::ostream_iterator;
+using std::multiset; using std::istringstream;
 
 #endif //PCH_H

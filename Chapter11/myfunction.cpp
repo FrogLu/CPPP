@@ -14,3 +14,16 @@ std::string wordprocess(const std::string &word) {
 	}
 	return procword;
 }
+
+void addfamily(std::istream&is, 
+	std::map<std::string, std::vector<std::string>>&family) {
+	std::string line;
+	while (getline(is, line)) {
+		std::istringstream istr(line);
+		std::string name, child;
+		istr >> name;
+		while (istr >> child) {
+			family[name].push_back(child);
+		}
+	}
+}	

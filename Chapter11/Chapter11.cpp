@@ -4,25 +4,17 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/Input/Str");
+	std::ifstream fin("./data/Input/family");
 	assert(fin.good());
 	fin.tie(&cout);
-	std::map<std::string, std::size_t> word_count;
-	std::set<std::string> exclude = { "bad","red","rrr" };
-	std::string word;
-	std::cout << "Origin: " << std::endl;
-	while (fin >> word) {
-		std::cout << word << " ";
-		if (exclude.find(word) == exclude.cend()) {
-			word = wordprocess(word);
-			++word_count[word];
+	std::map<std::string, std::vector<std::string>> familymap;
+	addfamily(fin, familymap);
+	for (auto f : familymap) {
+		std::cout << "Family: " << f.first << " member: ";
+		for (auto m : f.second) {
+			std::cout << m << " ";
 		}
-	}
-	std::cout << std::endl;
-	std::cout << "Count result: " << std::endl;
-	for (const auto &w : word_count) {
-		std::cout << w.first << " occurs " << w.second
-			<< ((w.second > 1) ? "times" : "time") << std::endl;
+		std::cout << std::endl;
 	}
 
 	return 0;
