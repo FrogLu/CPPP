@@ -12,17 +12,12 @@ int main()
 	std::cout << "Origin: " << std::endl;
 	while (fin >> word) {
 		std::cout << word << " ";
-		bool flag = false;
-		for (auto str : wordvec) {
-			if (str == word) {
-				flag = true;
-				break;
-			}
-		}
-		if (!flag) {
-			wordvec.push_back(word);
-		}
+		wordvec.push_back(word);
 	}
+	std::sort(wordvec.begin(), wordvec.end());	// sorted before unique can obtain
+												// O(nlogn) for worst situation.
+	auto iter = std::unique(wordvec.begin(), wordvec.end());
+	wordvec.erase(iter, wordvec.end());
 	std::cout << std::endl;
 	std::cout << "word(unique): " << std::endl;
 	for (auto str : wordvec) {
