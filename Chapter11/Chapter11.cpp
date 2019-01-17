@@ -4,26 +4,23 @@
 int main()
 {
 	/* fin starts */
-	std::ifstream fin("./data/Input/str");
+	std::ifstream fin("./data/Input/word");
 	assert(fin.good());
 	fin.tie(&cout);
-	std::vector<std::string> wordvec;
+	std::map<std::string, std::list<int>> wmap;
+	unsigned count = 0;
 	std::string word;
-	std::cout << "Origin: " << std::endl;
 	while (fin >> word) {
-		std::cout << word << " ";
-		wordvec.push_back(word);
+		++count;
+		wmap[word].push_back(count);
 	}
-	std::sort(wordvec.begin(), wordvec.end());	// sorted before unique can obtain
-												// O(nlogn) for worst situation.
-	auto iter = std::unique(wordvec.begin(), wordvec.end());
-	wordvec.erase(iter, wordvec.end());
-	std::cout << std::endl;
-	std::cout << "word(unique): " << std::endl;
-	for (auto str : wordvec) {
-		std::cout << str << " ";
+	for (auto m : wmap) {
+		std::cout << "word: " << m.first << " line number: ";
+		for (auto i : m.second) {
+			std::cout << i << " ";
+		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 
 	return 0;
 }
