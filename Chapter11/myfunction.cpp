@@ -16,14 +16,26 @@ std::string wordprocess(const std::string &word) {
 }
 
 void addfamily(std::istream&is, 
-	std::map<std::string, std::vector<std::string>>&family) {
+	std::map<std::string, std::vector<std::pair<std::string,std::string>>>&families) {
 	std::string line;
 	while (getline(is, line)) {
 		std::istringstream istr(line);
-		std::string name, child;
+		std::string name;
+		std::pair<std::string,std::string> child;
 		istr >> name;
-		while (istr >> child) {
-			family[name].push_back(child);
+		while (istr >> child.first>>child.second) {
+			families[name].push_back(child);
 		}
 	}
-}	
+}
+
+void pairprint(std::map<std::string, std::vector<std::pair<std::string, std::string>>>&families) {
+	for (auto f : families) {
+		std::cout << "family: " << f.first;
+		for (auto p : f.second) {
+			std::cout << " name: " << p.first
+				<< " birthday: " << p.second;
+		}
+		std::cout << std::endl;
+	}
+}
