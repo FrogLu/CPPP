@@ -39,3 +39,49 @@ void pairprint(std::map<std::string, std::vector<std::pair<std::string, std::str
 		std::cout << std::endl;
 	}
 }
+
+void word_transform(std::ifstream &map_file, std::ifstream &input) {
+	auto trans_map = buildMap(map_file);
+	std::string text;
+	while (getline(input, text)) {
+		std::istringstream stream(text);
+		std::string word;
+		bool firstword = true;	//control whether print whitespace
+		while (stream >> word) {
+			if (firstword) {
+				firstword = false;
+			}
+			else {
+				std::cout << " ";
+			}
+			std::cout << transform(word, trans_map);
+		}
+		std::cout << std::endl;
+	}
+}
+
+std::map<std::string, std::string> buildMap(std::ifstream &map_file) {
+	std::map<std::string, std::string> trans_map;
+	std::string key;
+	std::string mapped;
+	while (map_file >> key && getline(map_file, mapped)) {
+		if (mapped.size() > 1) {
+			trans_map[key] = mapped.substr(1);
+		}
+		else {
+			throw std::runtime_error("no rule for " + key);
+		}
+	}
+	return trans_map;
+}
+
+const std::string & transform(const std::string &s,
+	const std::map<std::string, std::string> &m) {
+	auto map_it = m.find(s);
+	if (map_it != m.cend()) {
+		return map_it->second;
+	}
+	else {
+		return s;
+	}
+}
