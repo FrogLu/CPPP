@@ -60,8 +60,8 @@ void word_transform(std::ifstream &map_file, std::ifstream &input) {
 	}
 }
 
-std::map<std::string, std::string> buildMap(std::ifstream &map_file) {
-	std::map<std::string, std::string> trans_map;
+ssumultimap buildMap(std::ifstream &map_file) {
+	ssumultimap trans_map;
 	std::string key;
 	std::string mapped;
 	while (map_file >> key && getline(map_file, mapped)) {
@@ -76,7 +76,7 @@ std::map<std::string, std::string> buildMap(std::ifstream &map_file) {
 }
 
 const std::string & transform(const std::string &s,
-	const std::map<std::string, std::string> &m) {
+	const ssumultimap &m) {
 	auto map_it = m.find(s);
 	if (map_it != m.cend()) {
 		return map_it->second;

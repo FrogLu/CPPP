@@ -2,6 +2,8 @@
 #ifndef _MYFUNCTION_H_
 #define _MYFUNCTION_H_
 
+using ssumultimap = std::unordered_map<std::string, std::string>;
+
 std::string wordprocess(const std::string & word);
 
 void addfamily(std::istream&is,
@@ -11,9 +13,9 @@ void pairprint(std::map<std::string, std::vector<std::pair<std::string, std::str
 
 void word_transform(std::ifstream & map_file, std::ifstream & input);
 
-std::map<std::string, std::string> buildMap(std::ifstream & map_file);
+ssumultimap buildMap(std::ifstream & map_file);
 
-const std::string & transform(const std::string & s, const std::map<std::string, std::string>& m);
+const std::string & transform(const std::string & s, const ssumultimap& m);
 
 #endif // !_MYFUNCTION_H_
 

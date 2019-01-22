@@ -17,10 +17,12 @@
 #include <sstream>
 #include <algorithm>
 #include <list>
+#include <unordered_map>
 
 using std::map; using std::set; using std::string; using std::size_t;
 using std::cin; using std::cout; using std::endl;
 using std::istream_iterator; using std::ostream_iterator;
 using std::multiset; using std::istringstream; using std::unique;
 using std::list; using std::pair; using std::runtime_error;
+using std::unordered_map;
 #endif //PCH_H
