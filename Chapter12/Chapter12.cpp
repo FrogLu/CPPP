@@ -1,6 +1,12 @@
 #include "pch.h"
+#include "myfunction.h"
+#include "StrBlob.h"
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	const StrBlob b1{ "Hello","FrogLu" };
+	
+	std::cout << b1.front() << " " << b1.back() << std::endl;
+
+	return 0;
 }
