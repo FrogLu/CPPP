@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "myfunction.h"
 
-std::vector<int>* Foo() {
-	auto* p = new std::vector<int>;
+shared_ptr<vector<int>> Foo() {
+	shared_ptr<vector<int>> p = std::make_shared<vector<int>>();
 	return p;
 }
 
-std::vector<int>* InputFoo(std::istream& is,std::vector<int>* pivec) {
+shared_ptr<vector<int>> InputFoo(std::istream& is, shared_ptr<vector<int>> pivec) {
 	int val;
 	while (is >> val) {
 		(*pivec).push_back(val);
@@ -14,10 +14,10 @@ std::vector<int>* InputFoo(std::istream& is,std::vector<int>* pivec) {
 	return pivec;
 }
 
-void OutputFoo(std::ostream& os, std::vector<int> *pivec) {
+void OutputFoo(std::ostream& os, shared_ptr<vector<int>> pivec) {
 	for (auto i : (*pivec)) {
 		os << i << " ";
 	}
 	os << std::endl;
-	delete pivec;
+	/*delete pivec;*/
 }
