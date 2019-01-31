@@ -8,7 +8,11 @@ int main()
 	assert(fin.good());
 	std::ofstream fout("./data/output/int");
 	assert(fout.good());
-	OutputFoo(fout,InputFoo(fin, Foo()));
+	auto* pivec = Foo();
+	InputFoo(fin, pivec);
+	OutputFoo(fout, pivec);
+	delete pivec;
+	pivec = nullptr;
 
 	return 0;
 }
