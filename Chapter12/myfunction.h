@@ -2,10 +2,15 @@
 #ifndef _MYFUNCTION_H_
 #define _MYFUNCTION_H_
 
-std::vector<int>* Foo();
+struct destination {
+    destination()=default;
 
-void InputFoo(std::istream& is, std::vector<int>* pivec);
-
-void OutputFoo(std::ostream& os, std::vector<int>* pivec);
-
+};
+struct connection {
+    connection() = default;
+};
+connection connect(destination*);
+void disconnect(connection);
+void end_connection(connection* p);
+void f(destination& d);
 #endif // !_MYFUNCTION_H_
