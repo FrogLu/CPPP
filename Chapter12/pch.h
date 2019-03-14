@@ -13,7 +13,7 @@
 
 using std::cout; using std::ifstream; using std::ofstream;
 using std::vector; using std::string; using std::initializer_list;
-using std::shared_ptr; using std::nothrow;
+using std::shared_ptr; using std::nothrow; using std::unique_ptr;
 using std::out_of_range;
 
 #endif //PCH_H
