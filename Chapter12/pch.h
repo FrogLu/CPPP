@@ -10,6 +10,7 @@
 #include <fstream>
 #include <cassert>
 #include <new>
+#include <cassert>
 
 using std::cout; using std::ifstream; using std::ofstream;
 using std::vector; using std::string; using std::initializer_list;

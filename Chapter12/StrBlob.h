@@ -40,7 +40,10 @@ void StrBlob::do_back()  const {
     check(0, "back on empty StrBlob");
 }
 
+bool eq(StrBlobPtr lhs, StrBlobPtr rhs);    //forward declaration
+
 class StrBlobPtr {
+    friend bool eq(StrBlobPtr lhs, StrBlobPtr rhs); // & can't be used.
 public:
     StrBlobPtr() :curr(0) {}
     StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
@@ -62,6 +65,19 @@ inline
 StrBlobPtr StrBlob::end() {
     auto ret = StrBlobPtr(*this, data->size());
     return ret;
+}
+
+// operator for StrBlobPtr
+inline
+bool eq(StrBlobPtr lhs, StrBlobPtr rhs) {   // inline is needed if defined in .h, not needed in .cpp
+    auto l = lhs.wptr.lock(), r = rhs.wptr.lock();
+    if (l == r) {
+        return (!r || lhs.curr == rhs.curr);    // there are two situations. both null or just same,
+                                                //  but return value is different.
+    }
+    else {
+        return false;
+    }
 }
 
 #endif // !_STRBLOB_H_
