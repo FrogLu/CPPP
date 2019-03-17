@@ -4,19 +4,9 @@
 
 int main()
 {
-    std::ifstream fin("./data/input/str");
-    assert(fin.good());
-    fin.tie(&std::cout);
-    std::string str;
-    StrBlob SBdemo;
-    while (getline(fin, str)) {
-        SBdemo.push_back(str);
+    StrBlob cSB = { "hello","world" };
+    for (auto it = cSB.begin(); !eq(it, cSB.end()); it.incr()) {
+        std::cout << it.deref() << std::endl;
     }
-    auto SBptr = SBdemo.begin();
-    while (!eq(SBptr,SBdemo.end())) {
-        std::cout << SBptr.deref();
-        SBptr.incr();
-    }
-
     return 0;
 }

@@ -7,6 +7,7 @@ class StrBlobPtr;
 class StrBlob
 {
     friend class StrBlobPtr;    // friend is necessary for StrBlobPtr's constructor to access a.data
+    friend class constStrBlobPtr;
 public:
     typedef std::vector<std::string>::size_type size_type;
     StrBlob();
@@ -23,6 +24,8 @@ public:
     // StrBlobPtr function
     StrBlobPtr begin(); // can't be defined until StrBlobPtr is!!!!!!!!!!!!!
     StrBlobPtr end();
+    StrBlobPtr begin()const; // can't be defined until StrBlobPtr is!!!!!!!!!!!!!
+    StrBlobPtr end()const;
 private:
     void do_front() const;
     void do_back()  const;
@@ -40,13 +43,15 @@ void StrBlob::do_back()  const {
     check(0, "back on empty StrBlob");
 }
 
-bool eq(StrBlobPtr lhs, StrBlobPtr rhs);    //forward declaration
+//  class StrBlobPtr part
+bool eq(const StrBlobPtr& lhs, const StrBlobPtr& rhs);    //  forward declaration
 
 class StrBlobPtr {
-    friend bool eq(StrBlobPtr lhs, StrBlobPtr rhs); // & can't be used.
+    friend bool eq(const StrBlobPtr& lhs, const StrBlobPtr& rhs);
 public:
     StrBlobPtr() :curr(0) {}
     StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
+    StrBlobPtr(const StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     std::string& deref() const;
     StrBlobPtr& incr();
 private:
@@ -62,14 +67,25 @@ StrBlobPtr StrBlob::begin() {   // begin() & end() will be used frequently so in
 }
 
 inline
+StrBlobPtr StrBlob::begin() const{
+    return StrBlobPtr(*this);
+}
+
+inline
 StrBlobPtr StrBlob::end() {
+    auto ret = StrBlobPtr(*this, data->size());
+    return ret;
+}
+
+inline
+StrBlobPtr StrBlob::end() const{
     auto ret = StrBlobPtr(*this, data->size());
     return ret;
 }
 
 // operator for StrBlobPtr
 inline
-bool eq(StrBlobPtr lhs, StrBlobPtr rhs) {   // inline is needed if defined in .h, not needed in .cpp
+bool eq(const StrBlobPtr& lhs, const StrBlobPtr& rhs) {   // inline is needed if defined in .h, not needed in .cpp
     auto l = lhs.wptr.lock(), r = rhs.wptr.lock();
     if (l == r) {
         return (!r || lhs.curr == rhs.curr);    // there are two situations. both null or just same,
@@ -79,5 +95,6 @@ bool eq(StrBlobPtr lhs, StrBlobPtr rhs) {   // inline is needed if defined in .h
         return false;
     }
 }
+
 
 #endif // !_STRBLOB_H_
