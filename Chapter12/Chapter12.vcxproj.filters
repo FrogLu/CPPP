@@ -41,5 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="TextQuery.h">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="TextQuery.cpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
