@@ -7,7 +7,6 @@ class StrBlobPtr;
 class StrBlob
 {
     friend class StrBlobPtr;    // friend is necessary for StrBlobPtr's constructor to access a.data
-    friend class constStrBlobPtr;
 public:
     typedef std::vector<std::string>::size_type size_type;
     StrBlob();

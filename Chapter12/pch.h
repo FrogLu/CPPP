@@ -21,5 +21,6 @@ using std::shared_ptr; using std::nothrow; using std::unique_ptr; using std::wea
 using std::out_of_range;
 using std::allocator; using std::uninitialized_copy; using std::uninitialized_copy_n;
 using std::map; using std::set; using std::istringstream;
+using std::make_shared;
 
 #endif // !PCH_H
