@@ -14,5 +14,8 @@ void disconnect(connection);
 void end_connection(connection* p);
 void f(destination& d);
 
-//void myrunQueries(std::ifstream& infile);
+void myrunQueries(std::ifstream& infile);
+void InitText(std::ifstream& infile, std::vector<std::string>& line, std::map<std::string, std::set<size_t>>& rowMap);
+std::map<std::string, std::set<size_t>>::iterator query(std::map<std::string, std::set<size_t>>& rowMap, const std::string& str, bool& flag);
+void print(std::ostream& out, const std::map<std::string, std::set<size_t>>::iterator& iter, const std::vector<std::string>& line, bool& flag);
 #endif // !_MYFUNCTION_H_

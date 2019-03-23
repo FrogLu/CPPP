@@ -9,7 +9,7 @@ int main()
 {
     std::ifstream fin("./data/input/paper");
     assert(fin.good());
-    runQueries(fin);
+    myrunQueries(fin);
 
     return 0;
 }

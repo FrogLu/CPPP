@@ -32,8 +32,6 @@ TextQuery::TextQuery(std::ifstream& infile) {
     }
 }
 
-
-
 class QueryResult {
     
     friend std::ostream& print(std::ostream& out, const QueryResult result);
