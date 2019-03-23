@@ -2,14 +2,16 @@
 #ifndef _TEXTQUERY_H_
 #define _TEXTQUERY_H_
 
+#include "StrBlob.h"
+
 void runQueries(std::ifstream& infile);
 class QueryResult;
 class TextQuery {
     friend class QueryResult;
 public:
-    using SVST=std::vector<std::string>::size_type;
+    using SVST=StrBlob::size_type;
     //typedef std::vector<std::string>::size_type SVST;
-    typedef std::shared_ptr<std::vector<std::string> > VSTR;
+    typedef StrBlob  VSTR;
     typedef std::map<std::string, std::shared_ptr<std::set<SVST> > > MAP;
     TextQuery() = default;
     TextQuery(const VSTR& svec, const MAP& rowcount) :text(svec), rowMap(rowcount) {};
@@ -25,8 +27,8 @@ TextQuery::TextQuery(std::ifstream& infile):text(new std::vector<std::string>) {
     
     while (getline(infile, linestr)) {
         
-        text->push_back(linestr);
-        SVST count = text->size() - 1;
+        text.push_back(linestr);
+        SVST count = text.size() - 1;
         std::istringstream line(linestr);
         std::string word;
         while (line >> word) {
@@ -45,7 +47,7 @@ class QueryResult {
     friend std::ostream& print(std::ostream& out, const QueryResult& result);
 public:
     typedef std::shared_ptr<std::set<TextQuery::SVST> > SP;
-    typedef std::shared_ptr<std::vector<std::string>> SVS;
+    typedef StrBlobPtr SVS;
     QueryResult() = default;
     QueryResult(SP sp, SVS curr,const std::string sg) :sptr(sp), spline(curr),sought(sg) {};
 private:
@@ -76,7 +78,7 @@ std::ostream& print(std::ostream& out, const QueryResult& result)
         << make_plural(result.sptr->size(), "time", "s") << std::endl;
     for (auto num : *result.sptr) {
         out << "\t(line " << num + 1 << ") "
-            << *(result.spline->cbegin() + num) << std::endl;
+            << result.spline.deref(num) << std::endl;
     }
     return out;
 }

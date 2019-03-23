@@ -11,6 +11,7 @@ public:
     typedef std::vector<std::string>::size_type size_type;
     StrBlob();
     StrBlob(std::initializer_list<std::string> il);
+    StrBlob(std::vector<std::string>* p);
     size_type size()const { return data->size(); }
     bool empty()const { return data->empty(); }
     void push_back(const std::string& t) { data->push_back(t); }
@@ -32,6 +33,27 @@ private:
     void check(size_type i, const std::string& msg) const;
 };
 
+inline
+StrBlob::StrBlob() 
+    :data(std::make_shared<std::vector<std::string>>())
+{
+    // default is empty.
+
+}
+
+inline
+StrBlob::StrBlob(std::initializer_list<std::string> il)
+    :data(std::make_shared<std::vector<std::string>>(il))
+{
+    // default is empty.
+}
+
+inline StrBlob::StrBlob(std::vector<std::string>* p)
+    : data(p)
+{
+
+}
+
 inline 
 void StrBlob::do_front() const {
     check(0, "front on empty StrBlob");
@@ -52,7 +74,9 @@ public:
     StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     StrBlobPtr(const StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     std::string& deref() const;
+    std::string& deref(int off) const;
     StrBlobPtr& incr();
+    StrBlobPtr& add(size_t num);
 private:
     std::shared_ptr<std::vector<std::string>>
         check(std::size_t i , const std::string& msg)   const;

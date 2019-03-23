@@ -1,18 +1,6 @@
 #include "pch.h"
 #include "StrBlob.h"
 
-StrBlob::StrBlob():data(std::make_shared<std::vector<std::string>>())
-{
-	// default is empty.
-	
-}
-
-StrBlob::StrBlob(std::initializer_list<std::string> il)
-	:data(std::make_shared<std::vector<std::string>>(il))
-{
-	// default is empty.
-}
-
 void StrBlob::check(size_type i, const std::string& msg) const
 {
 	if ((data->size()) <= i) {
@@ -56,10 +44,23 @@ std::string& StrBlobPtr::deref() const
     return (*p)[curr];
 }
 
+std::string& StrBlobPtr::deref(int off) const
+{
+    auto p = check(curr + off, "dereference past end");
+    return (*p)[curr + off];
+}
+
 StrBlobPtr& StrBlobPtr::incr()
 {
     check(curr, "increment past end of StrBlobPtr");
     ++curr;
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::add(size_t num)
+{
+    check(curr + num, "add past end of StrBlobPtr");
+    curr + num;
     return *this;
 }
 
