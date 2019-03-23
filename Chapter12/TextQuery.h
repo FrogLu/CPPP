@@ -50,6 +50,11 @@ public:
     typedef StrBlobPtr SVS;
     QueryResult() = default;
     QueryResult(SP sp, SVS curr,const std::string sg) :sptr(sp), spline(curr),sought(sg) {};
+    std::set<TextQuery::SVST>::iterator begin();
+    const std::set<TextQuery::SVST>::iterator begin()const;
+    std::set<TextQuery::SVST>::iterator end();
+    const std::set<TextQuery::SVST>::iterator end()const;
+    StrBlobPtr get_spline() { return spline; }
 private:
     SP sptr;
     SVS spline;
