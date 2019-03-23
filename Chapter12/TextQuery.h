@@ -7,8 +7,10 @@ class QueryResult;
 class TextQuery {
     friend class QueryResult;
 public:
-    typedef std::vector<std::string> VSTR;
-    typedef std::map<std::string, std::set<int>> MAP;   //code in here 3/21
+    using SVST=std::vector<std::string>::size_type;
+    //typedef std::vector<std::string>::size_type SVST;
+    typedef std::shared_ptr<std::vector<std::string> > VSTR;
+    typedef std::map<std::string, std::shared_ptr<std::set<SVST> > > MAP;
     TextQuery() = default;
     TextQuery(const VSTR& svec, const MAP& rowcount) :text(svec), rowMap(rowcount) {};
     TextQuery(std::ifstream& infile);
@@ -18,32 +20,38 @@ private:
     MAP rowMap;
 };
 inline
-TextQuery::TextQuery(std::ifstream& infile) {
+TextQuery::TextQuery(std::ifstream& infile):text(new std::vector<std::string>) {
     std::string linestr;
-    int count = 0;
+    
     while (getline(infile, linestr)) {
-        ++count;
-        text.push_back(linestr);
+        
+        text->push_back(linestr);
+        SVST count = text->size() - 1;
         std::istringstream line(linestr);
         std::string word;
         while (line >> word) {
-            rowMap[word].insert(count);
+            //rowMap[word].insert(count);
+            auto& lines = rowMap[word];
+            if (!lines) {
+                lines.reset(new std::set<SVST>);
+            }
+            lines->insert(count);
         }
     }
 }
 
 class QueryResult {
     
-    friend std::ostream& print(std::ostream& out, const QueryResult result);
+    friend std::ostream& print(std::ostream& out, const QueryResult& result);
 public:
-    typedef std::shared_ptr<TextQuery::MAP::iterator> SP;
+    typedef std::shared_ptr<std::set<TextQuery::SVST> > SP;
     typedef std::shared_ptr<std::vector<std::string>> SVS;
     QueryResult() = default;
-    QueryResult(SP sp, SVS curr,bool bf) :sptr(sp), spline(curr),flag(bf) {};
+    QueryResult(SP sp, SVS curr,const std::string sg) :sptr(sp), spline(curr),sought(sg) {};
 private:
-    std::shared_ptr<TextQuery::MAP::iterator> sptr;
-    std::shared_ptr<std::vector<std::string>> spline;
-    bool flag=true;
+    SP sptr;
+    SVS spline;
+    std::string sought;
 };
 
 // without inline, it will pop LNK2005 and LNK1169, multi define symbol, don't know why
@@ -62,34 +70,35 @@ void runQueries(std::ifstream& infile)
 }
 
 inline
-std::ostream& print(std::ostream& out, const QueryResult result)
+std::ostream& print(std::ostream& out, const QueryResult& result)
 {
-    if (result.flag == true) {
-        for (auto c : (*result.sptr)->second) {
-            out << c << " " << (*result.spline)[c-1] << std::endl;
-        }
-    }
-    else {
-        out << "Sorry,Can't find the word in paper." << std::endl;
+    out << result.sought << " occurs " << result.sptr->size() << " "
+        << make_plural(result.sptr->size(), "time", "s") << std::endl;
+    for (auto num : *result.sptr) {
+        out << "\t(line " << num + 1 << ") "
+            << *(result.spline->cbegin() + num) << std::endl;
     }
     return out;
 }
 
 inline
-QueryResult TextQuery::query(const std::string& str)
+QueryResult TextQuery::query(const std::string& sought)
 {
-    bool flag = true;
-    auto iter = rowMap.find(str);
+    static std::shared_ptr<std::set<SVST> > nodata;
+    auto iter = rowMap.find(sought);
     if (iter == rowMap.cend()) {
-        flag = false;
+        return QueryResult(nodata,text,sought);
     }
-    // if not use make_shared it will trigge exception in proxy and delete, but don't know why!!!
-    //std::shared_ptr<MAP::iterator> spiter(&iter);
-    std::shared_ptr<MAP::iterator> spiter = make_shared<MAP::iterator>(iter);   
-    //std::shared_ptr<VSTR> spline(&text);                                      
-    std::shared_ptr<VSTR> spline = make_shared<VSTR>(text);
-    QueryResult ret(spiter, spline,flag);
-    return ret;
+    else {
+        return QueryResult(iter->second, text, sought);
+    }
+    //// if not use make_shared it will trigge exception in proxy and delete, but don't know why!!!
+    ////std::shared_ptr<MAP::iterator> spiter(&iter);
+    //std::shared_ptr<MAP::iterator> spiter = make_shared<MAP::iterator>(iter);   
+    ////std::shared_ptr<VSTR> spline(&text);                                      
+    //std::shared_ptr<VSTR> spline = make_shared<VSTR>(text);
+    //QueryResult ret(spiter, spline,flag);
+    //return ret;
 }
 
 #endif // !_TEXTQUERY_H_

@@ -18,4 +18,5 @@ void myrunQueries(std::ifstream& infile);
 void InitText(std::ifstream& infile, std::vector<std::string>& line, std::map<std::string, std::set<size_t>>& rowMap);
 std::map<std::string, std::set<size_t>>::iterator query(std::map<std::string, std::set<size_t>>& rowMap, const std::string& str, bool& flag);
 void print(std::ostream& out, const std::map<std::string, std::set<size_t>>::iterator& iter, const std::vector<std::string>& line, bool& flag);
+const std::string make_plural(std::string::size_type count, const string& words,const string& suffix);
 #endif // !_MYFUNCTION_H_
