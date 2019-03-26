@@ -17,9 +17,11 @@ public:
     TextQuery(const VSTR& svec, const MAP& rowcount) :text(svec), rowMap(rowcount) {};
     TextQuery(std::ifstream& infile);
     QueryResult query(const std::string& str);
+    void display_map(); // for debugging
 private:
     VSTR text;
     MAP rowMap;
+    static std::string cleanup_str(const std::string& word);
 };
 inline
 TextQuery::TextQuery(std::ifstream& infile):text(new std::vector<std::string>) {
@@ -107,5 +109,6 @@ QueryResult TextQuery::query(const std::string& sought)
     //QueryResult ret(spiter, spline,flag);
     //return ret;
 }
+
 
 #endif // !_TEXTQUERY_H_
