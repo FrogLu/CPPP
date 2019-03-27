@@ -10,6 +10,10 @@ public:
         ps=new std::string(*ptr.ps);
         i = ptr.i;
     }
+    HasPtr& operator=(const HasPtr& ptr) {
+        ps = new std::string(*ptr.ps);
+        i = ptr.i;
+    }
 private:
     std::string* ps;
     int i;
