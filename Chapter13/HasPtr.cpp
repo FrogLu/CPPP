@@ -7,8 +7,12 @@ HasPtr::HasPtr(const HasPtr& ptr)
     i = ptr.i;
 }
 
-HasPtr& HasPtr::operator=(const HasPtr& ptr)
+HasPtr& HasPtr::operator=(const HasPtr& rhs)
 {
-    ps = new std::string(*ptr.ps);
-    i = ptr.i;
+    auto newptr = new std::string(*rhs.ps);
+    delete ps;  //  destory origin string
+    ps = newptr;    // point to a new string
+    i = rhs.i;
+    return *this;
+
 }
