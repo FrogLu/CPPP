@@ -18,9 +18,15 @@
     <ClCompile Include="Chapter13.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HasPtr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HasPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
