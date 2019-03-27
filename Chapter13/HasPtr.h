@@ -6,8 +6,8 @@ class HasPtr {
 public:
     HasPtr(const std::string& s = std::string()) :
         ps(new std::string(s)), i(0) {}
-    HasPtr(const HasPtr& ptr) :ps(new std::string()){
-        (*ps) = (*(ptr.ps));
+    HasPtr(const HasPtr& ptr){
+        ps=new std::string(*ptr.ps);
         i = ptr.i;
     }
 private:
