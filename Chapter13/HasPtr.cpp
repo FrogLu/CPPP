@@ -18,3 +18,9 @@ HasPtr& HasPtr::operator=(const HasPtr& rhs)
 
     return *this;
 }
+
+HasPtr::~HasPtr()
+{
+    std::cout << "~HasPtr()" << std::endl;
+    delete ps;
+}

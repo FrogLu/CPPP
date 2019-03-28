@@ -10,7 +10,7 @@ public:
     }
     HasPtr(const HasPtr& ptr);
     HasPtr& operator=(const HasPtr& ptr);
-    ~HasPtr() { std::cout << "~HasPtr()"<<std::endl; };
+    ~HasPtr();
 private:
     std::string* ps;
     int i;
