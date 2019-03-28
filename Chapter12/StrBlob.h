@@ -74,7 +74,7 @@ public:
     StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     StrBlobPtr(const StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     std::string& deref() const;
-    std::string& deref(int off) const;
+    std::string& deref(size_t off) const;
     StrBlobPtr& incr();
     StrBlobPtr& add(size_t num);
 private:

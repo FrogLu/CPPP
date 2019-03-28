@@ -44,7 +44,7 @@ std::string& StrBlobPtr::deref() const
     return (*p)[curr];
 }
 
-std::string& StrBlobPtr::deref(int off) const
+std::string& StrBlobPtr::deref(size_t off) const
 {
     auto p = check(curr + off, "dereference past end");
     return (*p)[curr + off];
@@ -60,7 +60,7 @@ StrBlobPtr& StrBlobPtr::incr()
 StrBlobPtr& StrBlobPtr::add(size_t num)
 {
     check(curr + num, "add past end of StrBlobPtr");
-    curr + num;
+    curr += num;
     return *this;
 }
 
