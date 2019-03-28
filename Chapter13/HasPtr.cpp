@@ -13,6 +13,6 @@ HasPtr& HasPtr::operator=(const HasPtr& rhs)
     delete ps;  //  destory origin string
     ps = newptr;    // point to a new string
     i = rhs.i;
-    return *this;
 
+    return *this;
 }
