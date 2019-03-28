@@ -1,17 +1,11 @@
 #include "pch.h"
 #include "HasPtr.h"
-
-HasPtr f(HasPtr hp) {
-    HasPtr ret = hp;
-    
-    return ret;
-}
+#include "numbered.h"
 
 int main()
 {
-    HasPtr hp("some values");
-    f(hp);
-    HasPtr q(hp);
+    numbered a, b = a, c = b;
+    f(a); f(b); f(c);
 
     return 0;
 }

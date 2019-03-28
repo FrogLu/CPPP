@@ -153,9 +153,11 @@
   <ItemGroup>
     <ClCompile Include="Chapter13.cpp" />
     <ClCompile Include="HasPtr.cpp" />
+    <ClCompile Include="numbered.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HasPtr.h" />
+    <ClInclude Include="numbered.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
