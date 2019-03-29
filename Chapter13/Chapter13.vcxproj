@@ -153,10 +153,12 @@
   <ItemGroup>
     <ClCompile Include="Chapter13.cpp" />
     <ClCompile Include="HasPtr.cpp" />
+    <ClCompile Include="NoDtor.cpp" />
     <ClCompile Include="numbered.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HasPtr.h" />
+    <ClInclude Include="NoDtor.h" />
     <ClInclude Include="numbered.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

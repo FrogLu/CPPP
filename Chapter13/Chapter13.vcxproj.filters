@@ -24,6 +24,9 @@
     <ClCompile Include="numbered.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NoDtor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="numbered.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoDtor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
