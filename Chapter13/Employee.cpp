@@ -22,7 +22,9 @@ Employee::Employee(const Employee& ep)
 Employee&
 Employee::operator=(const Employee& rhs)
 {
-    num = count++;
+    //num = count++;    //  without this, num still will ++, 
+                        //  this function will call Employee(const Employee& ep)
+    name = rhs.name;
 
     return *this;
 }
