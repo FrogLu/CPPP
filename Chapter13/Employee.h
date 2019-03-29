@@ -7,6 +7,8 @@ class Employee
 public:
     Employee();
     Employee(std::string str);
+    Employee(const Employee& ep);
+    Employee& operator=(const Employee& rhs);
     ~Employee();
 private:
     std::string name;
