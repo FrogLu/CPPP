@@ -157,6 +157,7 @@
     <ClCompile Include="NoDtor.cpp" />
     <ClCompile Include="numbered.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Employee.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="numbered.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="test.h" />
+    <ClInclude Include="TreeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
