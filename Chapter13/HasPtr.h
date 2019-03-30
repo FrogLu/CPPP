@@ -13,6 +13,7 @@ public:
     ~HasPtr();
 private:
     std::string* ps;
+    //std::shared_ptr<std::string> ps;
     int i;
 };
 

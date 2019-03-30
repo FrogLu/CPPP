@@ -7,8 +7,8 @@
 
 int main()
 {
-    Employee ep1, ep2("FrogLu");
-    Employee ep3 = ep2;
+    HasPtr hp1("hello"), hp2(hp1);
+    HasPtr hp3 = hp2;
 
     return 0;
 }
