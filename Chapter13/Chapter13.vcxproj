@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinStrTree.cpp" />
     <ClCompile Include="Chapter13.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="HasPtr.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinStrTree.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="HasPtr.h" />
     <ClInclude Include="NoDtor.h" />
