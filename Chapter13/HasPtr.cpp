@@ -22,6 +22,18 @@ HasPtr& HasPtr::operator=(const HasPtr& rhs)
     return *this;
 }
 
+HasPtr& HasPtr::operator=(const std::string& rhs)
+{
+    *ps = rhs;
+
+    return *this;
+}
+
+std::string& HasPtr::operator*()
+{
+    return *ps;
+}
+
 HasPtr::~HasPtr()
 {
     std::cout << "~HasPtr()" << std::endl;
