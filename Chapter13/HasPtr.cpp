@@ -1,14 +1,6 @@
 #include "pch.h"
 #include "HasPtr.h"
 
-HasPtr::HasPtr(const HasPtr& ptr)
-{
-    //ps = std::make_shared<std::string>(*ptr.ps);
-    ps = new std::string(*ptr.ps);
-    i = ptr.i;
-    std::cout << "HasPtr(const HasPtr& ptr) called" << std::endl;
-}
-
 HasPtr& HasPtr::operator=(const HasPtr& rhs)
 {
     //auto newptr = std::make_shared<std::string>(*rhs.ps);
@@ -36,6 +28,10 @@ std::string& HasPtr::operator*()
 
 HasPtr::~HasPtr()
 {
+    if (-- * use == 0) {
+        delete ps;
+        delete use;
+    }
     std::cout << "~HasPtr()" << std::endl;
     //delete ps;
 }
