@@ -3,6 +3,7 @@
 
 TreeNode::~TreeNode()
 {
-    left = nullptr;
-    right = nullptr;
+    if (count) {
+        ReleaseTree();
+    }
 }

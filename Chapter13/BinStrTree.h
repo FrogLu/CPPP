@@ -5,8 +5,9 @@ public:
     BinStrTree();
     BinStrTree(const BinStrTree& bst) :
         root(bst.root) {
-        bst.~BinStrTree();
+        root->CopyTree();
     }
+    
     ~BinStrTree();
 private:
     TreeNode* root;

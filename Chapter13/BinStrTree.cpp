@@ -11,5 +11,7 @@ BinStrTree::BinStrTree()
 
 BinStrTree::~BinStrTree()
 {
-    root = nullptr;
+    if (!root->ReleaseTree()) {
+        delete root;
+    }
 }
