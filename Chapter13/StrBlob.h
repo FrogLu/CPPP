@@ -56,15 +56,15 @@ inline StrBlob::StrBlob(std::vector<std::string>* p)
 
 }
 
-inline StrBlob::StrBlob(const StrBlob& sb)
+inline StrBlob::StrBlob(const StrBlob& sb) :
+    data(std::make_shared<std::vector<std::string>>(*sb.data))
 {
-    data = sb.data;
+    return;
 }
 
 inline StrBlob& StrBlob::operator=(const StrBlob& rhs)
 {
-    auto newsp = rhs.data;
-    data = newsp;
+    data = make_shared<std::vector<std::string>>(*rhs.data);
     
     return *this;
 }
