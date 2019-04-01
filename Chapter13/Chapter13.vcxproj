@@ -157,6 +157,7 @@
     <ClCompile Include="HasPtr.cpp" />
     <ClCompile Include="NoDtor.cpp" />
     <ClCompile Include="numbered.cpp" />
+    <ClCompile Include="StrBlob.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
@@ -167,6 +168,7 @@
     <ClInclude Include="NoDtor.h" />
     <ClInclude Include="numbered.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="StrBlob.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="TreeNode.h" />
   </ItemGroup>
