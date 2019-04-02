@@ -13,6 +13,12 @@ std::string& HasPtr::operator*()
     return *ps;
 }
 
+std::string HasPtr::get()
+{
+
+    return *ps;
+}
+
 HasPtr::~HasPtr()
 {
     if (-- * use == 0) {
@@ -22,3 +28,4 @@ HasPtr::~HasPtr()
     std::cout << "~HasPtr()" << std::endl;
     //delete ps;
 }
+

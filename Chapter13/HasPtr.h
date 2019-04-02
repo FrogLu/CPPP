@@ -2,7 +2,10 @@
 #ifndef _HASPTR_H_
 #define _HASPTR_H_
 
+// swap is non-member function, so don't need forward declaration.
+//void swap(HasPtr& lhs, HasPtr& rhs);
 class HasPtr {
+    friend void swap(HasPtr& lhs, HasPtr& rhs);
 public:
     HasPtr(const std::string& s = std::string()) :
         ps(new std::string(s)), i(0),use(new std::size_t(1)) {
@@ -16,6 +19,7 @@ public:
     HasPtr& operator=(const HasPtr& rhs);
     HasPtr& operator=(const std::string& rhs);
     std::string& operator*();
+    std::string get();
     ~HasPtr();
 private:
     std::string* ps;
@@ -41,6 +45,15 @@ HasPtr& HasPtr::operator=(const HasPtr& rhs)
     std::cout << "operator=(const HasPtr& rhs)" << std::endl;
 
     return *this;
+}
+
+inline
+void swap(HasPtr& lhs, HasPtr& rhs)
+{
+    std::cout << "swap() is called" << std::endl;
+    using std::swap;
+    swap(lhs.ps, rhs.ps);
+    swap(lhs.i, rhs.i);
 }
 
 #endif // !_HASPTR_H_
