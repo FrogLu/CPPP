@@ -154,7 +154,9 @@
     <ClCompile Include="BinStrTree.cpp" />
     <ClCompile Include="Chapter13.cpp" />
     <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Folder.cpp" />
     <ClCompile Include="HasPtr.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="NoDtor.cpp" />
     <ClCompile Include="numbered.cpp" />
     <ClCompile Include="StrBlob.cpp" />
@@ -164,7 +166,9 @@
   <ItemGroup>
     <ClInclude Include="BinStrTree.h" />
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="Folder.h" />
     <ClInclude Include="HasPtr.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="NoDtor.h" />
     <ClInclude Include="numbered.h" />
     <ClInclude Include="pch.h" />
