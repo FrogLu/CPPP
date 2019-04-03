@@ -10,12 +10,7 @@ HasPtr& HasPtr::operator=(const std::string& rhs)
 
 bool HasPtr::operator<(const HasPtr& rhs)
 {
-    if ((*(this->ps)) < (*(rhs.ps))) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return *ps < *rhs.ps;
 }
 
 std::string& HasPtr::operator*()
