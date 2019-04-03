@@ -8,6 +8,16 @@ HasPtr& HasPtr::operator=(const std::string& rhs)
     return *this;
 }
 
+bool HasPtr::operator<(const HasPtr& rhs)
+{
+    if ((*(this->ps)) < (*(rhs.ps))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 std::string& HasPtr::operator*()
 {
     return *ps;

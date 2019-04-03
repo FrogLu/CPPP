@@ -18,6 +18,7 @@ public:
     }
     HasPtr& operator=(const HasPtr& rhs);
     HasPtr& operator=(const std::string& rhs);
+    bool operator<(const HasPtr& rhs);
     std::string& operator*();
     std::string get();
     ~HasPtr();
