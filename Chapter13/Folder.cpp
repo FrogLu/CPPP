@@ -48,14 +48,14 @@ void Folder::print()
 void Folder::addMessages(const Folder& folder)
 {
     for (auto msg : folder.msgs) {
-        msg->save(*this);
+        msg->folders.insert(this);
     }
 }
 
 void Folder::removeMessages()
 {
-    for (auto msg : msgs) {
-        msg->folders.erase(this);
+    while (!msgs.empty()) {
+        (*msgs.begin())->remove(*this);
     }
 }
 
