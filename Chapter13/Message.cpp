@@ -54,6 +54,16 @@ void Message::swap(Message& lhs, Message& rhs)
     return;
 }
 
+void Message::addFldr(Folder* f)
+{
+    folders.insert(f);
+}
+
+void Message::remFldr(Folder* f)
+{
+    folders.erase(f);
+}
+
 Message::~Message()
 {
     remove_from_Folders();

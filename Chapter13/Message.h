@@ -16,6 +16,8 @@ public:
     void save(Folder& f);
     void remove(Folder& f);
     void swap(Message& lhs, Message& rhs);
+    void addFldr(Folder* f);
+    void remFldr(Folder* f);
     //  destructor
     ~Message();
 private:
