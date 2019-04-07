@@ -48,6 +48,9 @@
     <ClCompile Include="Folder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StrVec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Folder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StrVec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
