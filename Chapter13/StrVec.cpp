@@ -13,6 +13,43 @@ void StrVec::push_back(const std::string& str) {
     alloc.construct(first_free++, str);
 }
 
+void StrVec::reserve(std::size_t n)
+{
+    if (n > size()) {
+        auto newdata = alloc.allocate(n);
+
+        auto dest = newdata;
+        auto elem = elements;
+        for (std::size_t i = 0; i != size(); ++i) {
+            alloc.construct(dest++, std::move(*elem++));
+        }
+        free();
+        elements = newdata;
+        first_free = dest;
+        cap = elements + n;
+    }
+}
+
+void StrVec::resize(std::size_t n)
+{
+    chk_n_alloc();
+    if (n > size()) {
+        auto temp_first_free = first_free;
+        while (n > capacity()) {
+            reallocate();
+        }
+        for (std::size_t i = 0; i != (n-size()); ++i) {
+            alloc.construct(first_free++, std::string());
+        }
+    }
+    else if (n < size()) {
+        auto p = first_free;
+        for (std::size_t i=0; i != (size()-n);++i) {
+            alloc.destroy(--p);
+        }
+    }
+}
+
 StrVec::~StrVec()
 {
     free();

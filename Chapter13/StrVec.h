@@ -14,6 +14,8 @@ public:
     void push_back(const std::string&);
     std::size_t size() const { return first_free - elements; }
     std::size_t capacity() const { return cap - elements; }
+    void reserve(std::size_t n);
+    void resize(std::size_t n);
     std::string* begin() const { return elements; }
     std::string* end() const { return first_free; }
     //  destructor
