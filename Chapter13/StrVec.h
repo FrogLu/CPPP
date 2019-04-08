@@ -9,6 +9,7 @@ public:
     StrVec() :
         elements(nullptr), first_free(nullptr), cap(nullptr) {};
     StrVec(const StrVec&);
+    StrVec(std::initializer_list<std::string> ilistr);
     StrVec& operator=(const StrVec&);
     //  user funciton
     void push_back(const std::string&);
@@ -37,6 +38,14 @@ private:
 inline 
 StrVec::StrVec(const StrVec& str) {
     auto newdata = alloc_n_copy(str.begin(), str.end());
+    elements = newdata.first;
+    first_free = cap = newdata.second;
+}
+
+inline 
+StrVec::StrVec(std::initializer_list<std::string> ilistr)
+{
+    auto newdata = alloc_n_copy(ilistr.begin(), ilistr.end());
     elements = newdata.first;
     first_free = cap = newdata.second;
 }
