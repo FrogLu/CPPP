@@ -1,11 +1,7 @@
 #include "pch.h"
 #include "StrVec.h"
 
-
-
-StrVec::StrVec()
-{
-}
+std::allocator<std::string> StrVec::alloc;
 
 void StrVec::push_back(const std::string& str) {
     chk_n_alloc();

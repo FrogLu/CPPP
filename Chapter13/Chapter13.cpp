@@ -7,41 +7,15 @@
 #include "StrBlob.h"
 #include "Message.h"
 #include "Folder.h"
+#include "myfunction.h"
+#include "StrVec.h"
+#include "TextQuery.h"
 
 int main()
 {
-    Message msg1("hello"), msg2("world");
-    Folder inbox("inbox"), archive("archive");
-    inbox.print();
-    archive.print();
-
-    msg1.save(inbox);
-    inbox.print();
-    archive.print();
-
-    archive = inbox;
-    inbox.print();
-    archive.print();
-
-    msg2.save(archive);
-    inbox.print();
-    archive.print();
-
-    msg1.remove(archive);
-    inbox.print();
-    archive.print();
-
-    msg1.remove(inbox);
-    inbox.print();
-    archive.print();
-
-    msg2 = msg1;
-    inbox.print();
-    archive.print();
-
-    msg2.save(inbox);
-    inbox.print();
-    archive.print();
+    std::ifstream fin("./data/input/paper");
+    assert(fin.good());
+    runQueries(fin);
 
     return 0;
 }

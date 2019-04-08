@@ -51,6 +51,9 @@
     <ClCompile Include="StrVec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextQuery.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -87,6 +90,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StrVec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextQuery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,9 +8,14 @@
 #include <vector>
 #include <set>
 #include <algorithm>
+#include <map>
+#include <sstream>
+#include <fstream>
+#include <cassert>
 
 using std::string; using std::shared_ptr; using std::make_shared;
 using std::vector; using std::set; using std::sort;
-using std::uninitialized_copy;
+using std::uninitialized_copy; using std::map; using std::istringstream;
+using std::allocator;using std::getline;
 
 #endif // !_PCH_H_

@@ -4,7 +4,9 @@
 
 class StrVec
 {
+
 public:
+    typedef std::vector<std::string>::size_type size_type;
     //  constructor
     StrVec() :
         elements(nullptr), first_free(nullptr), cap(nullptr) {};
