@@ -16,6 +16,7 @@ public:
     std::size_t capacity() const { return cap - elements; }
     void reserve(std::size_t n);
     void resize(std::size_t n);
+    void resize(std::size_t n, const std::string& str);
     std::string* begin() const { return elements; }
     std::string* end() const { return first_free; }
     //  destructor
@@ -27,6 +28,7 @@ private:
         alloc_n_copy(const std::string*, const std::string*);
     void free();
     void reallocate();
+    void reallocate(std::size_t newcapacity);
     std::string* elements;
     std::string* first_free;
     std::string* cap;
