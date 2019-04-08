@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _TREENODE_H_
+#define _TREENODE_H_
+
 class TreeNode
 {
 public:
@@ -42,7 +45,7 @@ TreeNode& TreeNode::operator=(const TreeNode& rhs) {
     rhs.~TreeNode();
 }
 
-inline 
+inline
 void TreeNode::CopyTree(void)
 {
     if (left) {
@@ -69,3 +72,5 @@ inline int TreeNode::ReleaseTree(void)
     count--;
     return count;
 }
+
+#endif // !_TREENODE_H_

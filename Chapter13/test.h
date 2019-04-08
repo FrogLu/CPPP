@@ -1,9 +1,12 @@
 #pragma once
+#ifndef _TEST_H_
+#define _TEST_H_
+
 class test
 {
 public:
     test() = default;
-    test(int val) { 
+    test(int val) {
         // without this constructor, synthesizes copy-Assignment operator won't work well.
         // complier will throw error message:
         // 1) C2440 'initializing: cannot convert from 'int' to 'test'
@@ -18,3 +21,4 @@ private:
     //const int i;
 };
 
+#endif // !_TEST_H_

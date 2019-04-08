@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _NUMBERED_H_
+#define _NUMBERED_H_
+
 //class numbered;
 //void f(numbered s);
 class numbered
@@ -14,7 +17,7 @@ public:
 private:
     int mysn;
     static int count;
-    
+
 };
 
 //int numbered::count = 0;
@@ -22,3 +25,5 @@ private:
 inline void f(const numbered& s) {
     std::cout << s.mysn << std::endl;
 }
+
+#endif // !_NUMBERED_H_

@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _BINSTRTREE_H_
+#define _BINSTRTREE_H_
+
 class BinStrTree
 {
 public:
@@ -7,9 +10,11 @@ public:
         root(bst.root) {
         root->CopyTree();
     }
-    
+
     ~BinStrTree();
 private:
     TreeNode* root;
 };
+
+#endif // !_BINSTRTREE_H_
 
