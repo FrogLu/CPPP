@@ -61,9 +61,11 @@ StrVec::alloc_n_copy(const std::string* begin, const std::string* end)
 void StrVec::free()
 {
     if (elements) {
-        for (auto p = first_free; p != elements;/* void */) {
-            alloc.destroy(--p);
-        }
+        //for (auto p = first_free; p != elements;/* void */) {
+        //    alloc.destroy(--p);
+        //}
+        //auto p = first_free;
+        for_each(elements, first_free, [](const std::string& str) {alloc.destroy(&str); });
         alloc.deallocate(elements, cap - elements);
     }
 }
