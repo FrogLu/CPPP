@@ -10,12 +10,13 @@
 #include "myfunction.h"
 #include "StrVec.h"
 #include "TextQuery.h"
+#include "String.h"
 
 int main()
 {
-    std::ifstream fin("./data/input/paper");
-    assert(fin.good());
-    runQueries(fin);
+    char ch[] = { 'h','e','l','l','o','\0' };
+    String mystr(ch);
+    mystr.resize(10);
 
     return 0;
 }
