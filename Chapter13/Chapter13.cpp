@@ -16,7 +16,13 @@ int main()
 {
     char ch[] = { 'h','e','l','l','o','\0' };
     String mystr(ch);
-    mystr.resize(3);
+    std::vector<String> Svec;
+    const std::size_t end = 10;
+    for (std::size_t count = 0; count != end; ++count) {
+        std::cout << "loop " << count << " : " << std::endl;
+        Svec.push_back(mystr);
+    }
+
 
     return 0;
 }
