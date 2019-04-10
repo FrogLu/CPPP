@@ -48,7 +48,7 @@ String::String(const String& str) {
     elements = newdata.first;
     first_free = cap = newdata.second;
 
-    
+    std::cout << "String::String(const String& str) called" << std::endl;
 }
 inline String& String::operator=(const String& rhs)
 {
@@ -56,6 +56,9 @@ inline String& String::operator=(const String& rhs)
     free();
     elements = data.first;
     first_free = cap = data.second;
+
+    std::cout << "String::operator=(const String& rhs) called" << std::endl;
+
     return *this;
 }
 
