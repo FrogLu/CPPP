@@ -2,16 +2,19 @@
 #ifndef _STRING_H_
 #define _STRING_H_
 
+//std::ostream& operator<<(std::ostream& out, const String& s);
 class String
 {
+    friend std::ostream& operator<<(std::ostream& out,const String& s);
 public:
     //  constructor
     String() :
         elements(nullptr), first_free(nullptr), cap(nullptr) {};
-    String(char* cp);
+    String(const char* cp);
     String(const String& str);
     String& operator=(const String& rhs);
     //  user function
+    
     void push_back(const char& c);
     std::size_t size() { return first_free-elements; };
     std::size_t capacity() { return cap-elements; };
@@ -36,7 +39,7 @@ private:
     char* cap;
 };
 
-inline String::String(char* cp):
+inline String::String(const char* cp):
      elements(alloc.allocate(strlen(cp))),first_free(elements+std::strlen(cp)), cap(elements + std::strlen(cp))
 {
     std::uninitialized_copy(cp, cp+strlen(cp), elements);
@@ -60,6 +63,14 @@ inline String& String::operator=(const String& rhs)
     std::cout << "String::operator=(const String& rhs) called" << std::endl;
 
     return *this;
+}
+
+inline
+std::ostream& operator<<(std::ostream& out,const String& s) {
+    for (auto p = s.elements; p != s.first_free; ++p) {
+        out << *p;
+    }
+    return out;
 }
 
 inline 
