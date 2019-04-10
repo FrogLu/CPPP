@@ -16,7 +16,7 @@ int main()
 {
     char ch[] = { 'h','e','l','l','o','\0' };
     String mystr(ch);
-    mystr.resize(10);
+    mystr.resize(3);
 
     return 0;
 }
