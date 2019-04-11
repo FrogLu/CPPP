@@ -81,11 +81,14 @@ void StrVec::reallocate(std::size_t newcapacity)
 {
     auto newdata = alloc.allocate(newcapacity);
 
-    auto dest = newdata;
-    auto elem = elements;
-    for (std::size_t i = 0; i != size(); ++i) {
-        alloc.construct(dest++, std::move(*elem++));
-    }
+    auto dest = std::uninitialized_copy(std::make_move_iterator(begin()),
+                                        std::make_move_iterator(end()),
+                                        newdata);
+    //auto elem = elements;
+    //for (std::size_t i = 0; i != size(); ++i) {
+    //    alloc.construct(dest++, std::move(*elem++));
+    //}
+
     free();
     elements = newdata;
     first_free = dest;

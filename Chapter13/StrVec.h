@@ -48,7 +48,8 @@ StrVec::StrVec(const StrVec& str)
     first_free = cap = newdata.second;
 }
 
-inline StrVec::StrVec(StrVec&& s) noexcept
+inline 
+StrVec::StrVec(StrVec&& s) noexcept
     :elements(s.elements),first_free(s.first_free),cap(s.cap)
 {
     s.elements = s.first_free = s.cap = nullptr;
@@ -72,7 +73,8 @@ StrVec& StrVec::operator=(const StrVec& rhs)
     return *this;
 }
 
-inline StrVec& StrVec::operator=(StrVec&& rhs) noexcept
+inline 
+StrVec& StrVec::operator=(StrVec&& rhs) noexcept
 {
     if (this != &rhs) {
         free();
