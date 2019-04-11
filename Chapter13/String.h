@@ -12,9 +12,10 @@ public:
         elements(nullptr), first_free(nullptr), cap(nullptr) {};
     String(const char* cp);
     String(const String& str);
+    String(String&& str) noexcept;
     String& operator=(const String& rhs);
+    String& operator=(String&& rhs);
     //  user function
-    
     void push_back(const char& c);
     std::size_t size() { return first_free-elements; };
     std::size_t capacity() { return cap-elements; };
@@ -54,7 +55,15 @@ String::String(const String& str) {
 
     std::cout << "String::String(const String& str) called" << std::endl;
 }
-inline String& String::operator=(const String& rhs)
+inline 
+String::String(String&& str) noexcept
+    :elements(str.elements),first_free(str.first_free),cap(str.cap)
+{
+    str.elements = str.first_free = str.cap = nullptr;
+}
+
+inline 
+String& String::operator=(const String& rhs)
 {
     auto data = alloc_n_copy(rhs.begin(), rhs.end());
     free();
@@ -62,6 +71,20 @@ inline String& String::operator=(const String& rhs)
     first_free = cap = data.second;
 
     std::cout << "String::operator=(const String& rhs) called" << std::endl;
+
+    return *this;
+}
+
+inline 
+String& String::operator=(String&& rhs)
+{
+    if (this != &rhs) {
+        free();
+        elements = rhs.elements;
+        first_free = rhs.first_free;
+        cap = rhs.cap;
+        rhs.elements = rhs.first_free = rhs.cap = nullptr;
+    }
 
     return *this;
 }
