@@ -60,6 +60,8 @@ String::String(String&& str) noexcept
     :elements(str.elements),first_free(str.first_free),cap(str.cap)
 {
     str.elements = str.first_free = str.cap = nullptr;
+
+    std::cout << "String::String(String&& str) noexcept called" << std::endl;
 }
 
 inline 
@@ -85,6 +87,8 @@ String& String::operator=(String&& rhs) noexcept
         cap = rhs.cap;
         rhs.elements = rhs.first_free = rhs.cap = nullptr;
     }
+
+    std::cout << "String& String::operator=(String&& rhs) noexcept called" << std::endl;
 
     return *this;
 }
