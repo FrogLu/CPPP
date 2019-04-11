@@ -9,8 +9,8 @@ Message::Message(const Message& msg):
     add_to_Folders(msg);
 }
 
-Message::Message(Message&& msg) //  when <set> use move assignment operator, 
-                                //  may cause except, so don't use noexcept.
+Message::Message(Message&& msg) noexcept    //  when <set> use move assignment operator, 
+                                            //  may cause except, so don't use noexcept.
 {
     move_Folders(msg);
 }
@@ -25,7 +25,7 @@ Message& Message::operator=(const Message& rhs)
     return *this;
 }
 
-Message& Message::operator=(Message&& rhs)
+Message& Message::operator=(Message&& rhs) noexcept
 {
     if (this != &rhs) {
         remove_from_Folders();

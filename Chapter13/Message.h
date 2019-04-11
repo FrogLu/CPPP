@@ -11,9 +11,9 @@ public:
     explicit Message(const std::string& str = "") :
         contents(str) {}
     Message(const Message& msg);
-    Message(Message&& msg);
+    Message(Message&& msg) noexcept;
     Message& operator=(const Message& rhs);
-    Message& operator=(Message&& rhs);
+    Message& operator=(Message&& rhs) noexcept;
     //  user function
     void save(Folder& f);
     void remove(Folder& f);

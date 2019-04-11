@@ -14,7 +14,7 @@ public:
     String(const String& str);
     String(String&& str) noexcept;
     String& operator=(const String& rhs);
-    String& operator=(String&& rhs);
+    String& operator=(String&& rhs) noexcept;
     //  user function
     void push_back(const char& c);
     std::size_t size() { return first_free-elements; };
@@ -76,7 +76,7 @@ String& String::operator=(const String& rhs)
 }
 
 inline 
-String& String::operator=(String&& rhs)
+String& String::operator=(String&& rhs) noexcept
 {
     if (this != &rhs) {
         free();
