@@ -14,18 +14,8 @@
 
 int main()
 {
-    String s1("One"), s2("Two");
-    std::vector<String> vs;
-    vs.push_back(s1);
-    std::cout << std::endl;
-    vs.push_back(std::move(s2));
-    std::cout << std::endl;
-    vs.push_back(String("Three"));
-    std::cout << std::endl;
-    vs.push_back("Four");
-    std::cout << std::endl;
-    std::for_each(vs.begin(), vs.end(), [](const String & s) {std::cout << s << " "; });
-    std::cout << std::endl;
+    StrVec v1, v2;
+    v1 = std::move(v2);
 
 
     return 0;

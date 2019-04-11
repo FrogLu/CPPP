@@ -10,14 +10,17 @@ public:
     //  constructor
     StrVec() :
         elements(nullptr), first_free(nullptr), cap(nullptr) {};
-    StrVec(const StrVec&);
     StrVec(std::initializer_list<std::string> ilistr);
+    StrVec(const StrVec&);
+    StrVec(StrVec&&) noexcept;  //  paramenter1 can't be const, 
+                                //  because we may change its value members in function body.
     StrVec& operator=(const StrVec&);
+    StrVec& operator=(StrVec&&) noexcept;
     //  user funciton
     void push_back(const std::string&);
     std::size_t size() const { return first_free - elements; }
     std::size_t capacity() const { return cap - elements; }
-    void reserve(std::size_t n);
+    void reserve(std::size_t n); 
     void resize(std::size_t n);
     void resize(std::size_t n, const std::string& str);
     std::string* begin() const { return elements; }
@@ -38,10 +41,17 @@ private:
 };
 
 inline 
-StrVec::StrVec(const StrVec& str) {
+StrVec::StrVec(const StrVec& str) 
+{
     auto newdata = alloc_n_copy(str.begin(), str.end());
     elements = newdata.first;
     first_free = cap = newdata.second;
+}
+
+inline StrVec::StrVec(StrVec&& s) noexcept
+    :elements(s.elements),first_free(s.first_free),cap(s.cap)
+{
+    s.elements = s.first_free = s.cap = nullptr;
 }
 
 inline 
@@ -59,6 +69,19 @@ StrVec& StrVec::operator=(const StrVec& rhs)
     free();
     elements = data.first;
     first_free = cap = data.second;
+    return *this;
+}
+
+inline StrVec& StrVec::operator=(StrVec&& rhs) noexcept
+{
+    if (this != &rhs) {
+        free();
+        elements = rhs.elements;
+        first_free = rhs.first_free;
+        cap = rhs.cap;
+        rhs.elements = rhs.first_free = rhs.cap = nullptr;
+    }
+
     return *this;
 }
 

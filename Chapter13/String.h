@@ -39,7 +39,8 @@ private:
     char* cap;
 };
 
-inline String::String(const char* cp):
+inline 
+String::String(const char* cp):
      elements(alloc.allocate(strlen(cp))),first_free(elements+std::strlen(cp)), cap(elements + std::strlen(cp))
 {
     std::uninitialized_copy(cp, cp+strlen(cp), elements);
@@ -88,5 +89,6 @@ void String::chk_n_alloc()
         reallocate();
     }
 }
+
 #endif // !_STRING_H_
 
