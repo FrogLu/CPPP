@@ -20,7 +20,8 @@ public:
         ps(ptr.ps), i(ptr.i),use(ptr.use) {
         ptr.ps = 0;
     };
-    HasPtr& operator=(HasPtr rhs);
+    HasPtr& operator=(const HasPtr& rhs);
+    HasPtr& operator=(HasPtr&& rhs) noexcept;
     HasPtr& operator=(const std::string& rhs);
     bool operator<(const HasPtr& rhs);
     std::string& operator*();
@@ -33,11 +34,27 @@ private:
 };
 
 inline
-HasPtr& HasPtr::operator=(HasPtr rhs)
+HasPtr& HasPtr::operator=(const HasPtr& rhs)
 {
-    swap(*this, rhs);
+    auto newptr = new std::string(*rhs.ps);
+    delete ps;  //  destory origin string
+    ps = newptr;    // point to a new string
+    i = rhs.i;
+    return *this;
 
-    std::cout << "operator=(const HasPtr& rhs)" << std::endl;
+}
+
+inline 
+HasPtr& HasPtr::operator=(HasPtr&& rhs) noexcept
+{
+    if (this != &rhs) {
+        delete ps;
+        ps = rhs.ps;
+        rhs.ps = nullptr;
+        rhs.i = 0;
+    }
+
+    std::cout << "HasPtr& HasPtr::operator=(HasPtr&& rhs) noexcept called" << std::endl;
 
     return *this;
 }
