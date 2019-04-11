@@ -14,9 +14,11 @@
 
 int main()
 {
-    HasPtr hp, hp2;
-    hp = hp2;
-    hp = std::move(hp2);
+    Folder folder1, folder2;
+    Message msg1("hello"), msg2("world");
+    msg1.save(folder1);
+    msg2.save(folder2);
+    msg1 = std::move(msg2);
 
 
     return 0;

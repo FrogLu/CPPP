@@ -9,12 +9,29 @@ Message::Message(const Message& msg):
     add_to_Folders(msg);
 }
 
+Message::Message(Message&& msg) //  when <set> use move assignment operator, 
+                                //  may cause except, so don't use noexcept.
+{
+    move_Folders(msg);
+}
+
 Message& Message::operator=(const Message& rhs)
 {
     remove_from_Folders();
     contents = rhs.contents;
     folders = rhs.folders;
     add_to_Folders(rhs);
+    
+    return *this;
+}
+
+Message& Message::operator=(Message&& rhs)
+{
+    if (this != &rhs) {
+        remove_from_Folders();
+        contents = std::move(rhs.contents);
+        move_Folders(rhs);
+    }
     
     return *this;
 }
@@ -81,4 +98,14 @@ void Message::remove_from_Folders()
     for (auto f : folders) {
         f->remMsg(*this);
     }
+}
+
+void Message::move_Folders(Message& msg)
+{
+    folders = std::move(msg.folders);
+    for (auto f : folders) {
+        f->remMsg(msg);
+        f->addMsg(*this);
+    }
+    msg.folders.clear();
 }

@@ -11,7 +11,9 @@ public:
     explicit Message(const std::string& str = "") :
         contents(str) {}
     Message(const Message& msg);
+    Message(Message&& msg);
     Message& operator=(const Message& rhs);
+    Message& operator=(Message&& rhs);
     //  user function
     void save(Folder& f);
     void remove(Folder& f);
@@ -27,6 +29,7 @@ private:
     //  function
     void add_to_Folders(const Message&);
     void remove_from_Folders();
+    void move_Folders(Message& msg);
 };
 
 #endif // !_MESSAGE_H_
