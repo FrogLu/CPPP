@@ -15,7 +15,7 @@
 int main()
 {
     HasPtr hp1, hp2;
-    hp1 = std::move(hp2);   // C4522: 'HasPtr': multiple assignment operators specified
+    hp1 = std::move(hp2);
 
 
     return 0;
