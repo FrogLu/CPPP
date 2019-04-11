@@ -14,18 +14,9 @@
 
 int main()
 {
-    String s1("One"), s2("Two");
-    std::vector<String> vs;
-    vs.push_back(s1);
-    std::cout << std::endl;
-    vs.push_back(std::move(s2));
-    std::cout << std::endl;
-    vs.push_back(String("Three"));
-    std::cout << std::endl;
-    vs.push_back("Four");
-    std::cout << std::endl;
-    std::for_each(vs.begin(), vs.end(), [](const String & s) {std::cout << s << " "; });
-    std::cout << std::endl;
+    HasPtr hp1, hp2;
+    hp1 = std::move(hp2);   // C4522: 'HasPtr': multiple assignment operators specified
+
 
     return 0;
 }

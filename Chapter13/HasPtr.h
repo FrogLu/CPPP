@@ -21,7 +21,16 @@ public:
         ptr.ps = 0;
     };
     HasPtr& operator=(const HasPtr& rhs);
-    HasPtr& operator=(HasPtr&& rhs) noexcept;
+    HasPtr& operator=(HasPtr&& rhs) noexcept;   
+    HasPtr& operator=(HasPtr rhs)   // C4522: 'HasPtr': multiple assignment operators specified
+                                    //  This is copy and swap operator
+    {
+        swap(*this, rhs);
+
+        std::cout << "operator=(const HasPtr& rhs)" << std::endl;
+
+        return *this;
+    }
     HasPtr& operator=(const std::string& rhs);
     bool operator<(const HasPtr& rhs);
     std::string& operator*();
