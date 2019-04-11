@@ -14,8 +14,9 @@
 
 int main()
 {
-    StrVec v1, v2;
-    v1 = std::move(v2);
+    HasPtr hp, hp2;
+    hp = hp2;
+    hp = std::move(hp2);
 
 
     return 0;
