@@ -14,9 +14,10 @@
 
 int main()
 {
-    HasPtr hp1, hp2;
-    hp1 = std::move(hp2);
-
+    StrVec Svec;
+    string s = "some string or another";
+    Svec.push_back(s);
+    Svec.push_back("done");
 
     return 0;
 }

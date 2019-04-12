@@ -14,10 +14,11 @@ public:
     StrVec(const StrVec&);
     StrVec(StrVec&&) noexcept;  //  paramenter1 can't be const, 
                                 //  because we may change its value members in function body.
-    StrVec& operator=(const StrVec&);
-    StrVec& operator=(StrVec&&) noexcept;
+    StrVec& operator=(const StrVec&) &;
+    StrVec& operator=(StrVec&&) noexcept ;
     //  user funciton
     void push_back(const std::string&);
+    void push_back(std::string&&);
     std::size_t size() const { return first_free - elements; }
     std::size_t capacity() const { return cap - elements; }
     void reserve(std::size_t n); 
@@ -64,7 +65,7 @@ StrVec::StrVec(std::initializer_list<std::string> ilistr)
 }
 
 inline 
-StrVec& StrVec::operator=(const StrVec& rhs)
+StrVec& StrVec::operator=(const StrVec& rhs) &
 {
     auto data = alloc_n_copy(rhs.begin(), rhs.end());
     free();

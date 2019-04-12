@@ -3,10 +3,18 @@
 
 std::allocator<std::string> StrVec::alloc;
 
-void StrVec::push_back(const std::string& str) {
+void StrVec::push_back(const std::string& str) 
+{
     chk_n_alloc();
 
     alloc.construct(first_free++, str);
+}
+
+void StrVec::push_back(std::string&& str)
+{
+    chk_n_alloc();
+
+    alloc.construct(first_free++, std::move(str));
 }
 
 void StrVec::reserve(std::size_t n)
