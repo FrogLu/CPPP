@@ -14,10 +14,10 @@
 
 int main()
 {
-    StrVec Svec;
-    string s = "some string or another";
-    Svec.push_back(s);
-    Svec.push_back("done");
+    StrBlob sb1;
+    string s = "world";
+    sb1.push_back("hello");
+    sb1.push_back(s);
 
     return 0;
 }
