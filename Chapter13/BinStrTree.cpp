@@ -1,5 +1,5 @@
-#include"pch.h"
-#include"TreeNode.h"
+#include "pch.h"
+#include "TreeNode.h"
 #include "BinStrTree.h"
 
 
