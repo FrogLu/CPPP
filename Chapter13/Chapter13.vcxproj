@@ -155,6 +155,7 @@
     <ClCompile Include="Chapter13.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Folder.cpp" />
+    <ClCompile Include="Foo.cpp" />
     <ClCompile Include="HasPtr.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="NoDtor.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="BinStrTree.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Folder.h" />
+    <ClInclude Include="Foo.h" />
     <ClInclude Include="HasPtr.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="myfunction.h" />

@@ -11,13 +11,12 @@
 #include "StrVec.h"
 #include "TextQuery.h"
 #include "String.h"
+#include "Foo.h"
 
 int main()
 {
-    StrBlob sb1;
-    string s = "world";
-    sb1.push_back("hello");
-    sb1.push_back(s);
+    Foo f;
+    f.sorted();
 
     return 0;
 }
