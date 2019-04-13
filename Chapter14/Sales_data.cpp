@@ -31,6 +31,13 @@ Sales_data& Sales_data::operator=(const Sales_data& rhs)
     return *this;
 }
 
+Sales_data& Sales_data::operator=(const std::string& isbn)
+{
+    bookNo = isbn;
+
+    return *this;
+}
+
 Sales_data& Sales_data::operator+=(const Sales_data& rhs)
 {
     *this = (*this) + rhs;
