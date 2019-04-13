@@ -20,7 +20,6 @@ public:
     // user function
     std::string isbn() const { return this->bookNo; }
     Sales_data& operator=(const Sales_data& rhs);
-    Sales_data& operator=(std::initializer_list<std::string> il);
     Sales_data& operator+=(const Sales_data& rhs);
     Sales_data& operator-=(const Sales_data& rhs);
 private:

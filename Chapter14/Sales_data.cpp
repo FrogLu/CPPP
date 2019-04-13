@@ -33,7 +33,7 @@ Sales_data& Sales_data::operator=(const Sales_data& rhs)
 
 Sales_data& Sales_data::operator+=(const Sales_data& rhs)
 {
-    *this = *this + rhs;
+    *this = (*this) + rhs;
 
     return *this;
 }
@@ -55,9 +55,9 @@ Sales_data& Sales_data::operator-=(const Sales_data& rhs) {
 
 Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs) 
 {
-    Sales_data sum;
-    sum.units_sold = lhs.units_sold + rhs.units_sold;
-    sum.revenue = lhs.revenue + rhs.revenue;
+    Sales_data sum = lhs;
+    sum.units_sold += rhs.units_sold;
+    sum.revenue +=  rhs.revenue;
 
     return sum;
 }
