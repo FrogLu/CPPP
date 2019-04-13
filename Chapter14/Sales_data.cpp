@@ -23,7 +23,15 @@ std::istream & operator>>(std::istream & is, Sales_data & item)
     return is;
 }
 
-Sales_data Sales_data::operator+=(const Sales_data& rhs)
+Sales_data& Sales_data::operator=(const Sales_data& rhs)
+{
+    units_sold = rhs.units_sold;
+    revenue = rhs.revenue;
+
+    return *this;
+}
+
+Sales_data& Sales_data::operator+=(const Sales_data& rhs)
 {
     units_sold += rhs.units_sold;
     revenue += rhs.revenue;
@@ -31,7 +39,7 @@ Sales_data Sales_data::operator+=(const Sales_data& rhs)
     return *this;
 }
 
-Sales_data Sales_data::operator-=(const Sales_data& rhs) {
+Sales_data& Sales_data::operator-=(const Sales_data& rhs) {
     try {
         if (units_sold < rhs.units_sold || revenue < rhs.revenue) {
             throw std::range_error("Error: the result of units sold price is less than zero.");

@@ -8,8 +8,10 @@
 #include <exception>
 #include <algorithm>
 #include <memory>
+#include <initializer_list>
 
 using std::istream; using std::ostream; using std::string; using std::vector;
 using std::range_error; using std::for_each; using std::make_shared;
+using std::initializer_list;
 
 #endif // !_PCH_H_
