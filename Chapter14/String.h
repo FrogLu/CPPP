@@ -98,6 +98,7 @@ std::ostream& operator<<(std::ostream& out,const String& s) {
     for (auto p = s.elements; p != s.first_free; ++p) {
         out << *p;
     }
+
     return out;
 }
 

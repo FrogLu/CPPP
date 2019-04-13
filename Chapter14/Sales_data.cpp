@@ -11,10 +11,10 @@ std::ostream &operator<<(std::ostream& os, const Sales_data &item) {
 
 std::istream & operator>>(std::istream & is, Sales_data & item)
 {
-    double price = 0.0;
-    is >> item.bookNo >> item.units_sold >> item.saleprice;
-    if (is) {
-        item.revenue = item.saleprice * item.units_sold;
+    double price;
+    is >> item.bookNo >> item.units_sold >> price;
+    if (is.good()) {
+        item.revenue = item.units_sold * price;
     }
     else {
         item = Sales_data();
