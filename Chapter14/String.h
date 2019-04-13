@@ -9,6 +9,9 @@ class String
     friend bool operator==(const String& lhs, const String& rhs);
     friend bool operator!=(const String& lhs, const String& rhs);
     friend bool operator<(const String& lhs, const String& rhs);
+    friend bool operator<=(const String& lhs, const String& rhs);
+    friend bool operator>(const String& lhs, const String& rhs);
+    friend bool operator>=(const String& lhs, const String& rhs);
 public:
     //  constructor
     String() :
@@ -117,12 +120,22 @@ inline bool operator!=(const String& lhs, const String& rhs)
 
 inline bool operator<(const String& lhs, const String& rhs)
 {
-    if (strcmp(lhs.elements, rhs.elements) < 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return strcmp(lhs.elements, rhs.elements) < 0;
+}
+
+inline bool operator<=(const String& lhs, const String& rhs)
+{
+    return !(rhs < lhs);
+}
+
+inline bool operator>(const String& lhs, const String& rhs)
+{
+    return rhs < lhs;
+}
+
+inline bool operator>=(const String& lhs, const String& rhs)
+{
+    return !(lhs < rhs);
 }
 
 inline 
