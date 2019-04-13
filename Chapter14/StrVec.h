@@ -6,6 +6,7 @@ class StrVec
 {
     friend bool operator==(const StrVec& lhs, const StrVec& rhs);
     friend bool operator!=(const StrVec& lhs, const StrVec& rhs);
+    friend bool operator<(const StrVec& lhs, const StrVec& rhs);
 public:
     typedef std::vector<std::string>::size_type size_type;
     //  constructor

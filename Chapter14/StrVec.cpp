@@ -117,10 +117,27 @@ bool operator==(const StrVec& lhs, const StrVec& rhs)
         }
     }
     
-    return true;
+    return true;    // for both are null, then it won't enter for loop.
 }
 
 bool operator!=(const StrVec& lhs, const StrVec& rhs)
 {
     return !(lhs == rhs);
+}
+
+bool operator<(const StrVec& lhs, const StrVec& rhs)
+{
+    if (lhs.size() != rhs.size()) {
+        return lhs.size() < rhs.size();
+    }
+
+    for (auto iter1 = lhs.begin(), iter2 = rhs.begin();
+        iter1 != lhs.end() && iter2 != rhs.end();
+        ++iter1, ++iter2) {
+        if (*iter1 != *iter2) {
+            return (*iter1) < (*iter2);
+        }
+    }
+
+    return false;    // for both are null, then it won't enter for loop.
 }

@@ -9,6 +9,7 @@ class StrBlob
     friend class StrBlobPtr;    // friend is necessary for StrBlobPtr's constructor to access a.data
     friend bool operator==(const StrBlob& lhs, const StrBlob& rhs);
     friend bool operator!=(const StrBlob& lhs, const StrBlob& rhs);
+    friend bool operator<(const StrBlob& lhs, const StrBlob& rhs);
 public:
     typedef std::vector<std::string>::size_type size_type;
     StrBlob();
@@ -48,6 +49,27 @@ bool operator==(const StrBlob& lhs, const StrBlob& rhs)
 inline bool operator!=(const StrBlob& lhs, const StrBlob& rhs)
 {
     return !(lhs == rhs);
+}
+
+inline bool operator<(const StrBlob& lhs, const StrBlob& rhs)
+{
+    if (lhs.data != rhs.data) {
+        return lhs.data < rhs.data;
+    }
+    if (lhs.data->size() != rhs.data->size()) {
+        return lhs.data->size() < rhs.data->size();
+    }
+    else {
+        for (auto iter1 = lhs.data->begin(), iter2 = rhs.data->begin();
+            iter1 != lhs.data->end();
+            ++iter1, ++iter2) {
+            if ((*iter1) != (*iter2)) {
+                return (*iter1) < (*iter2);
+            }
+        }
+    }
+
+    return false;    // for both are null, then it won't enter for loop.
 }
 
 inline
@@ -102,6 +124,7 @@ class StrBlobPtr {
     friend bool eq(const StrBlobPtr& lhs, const StrBlobPtr& rhs);
     friend bool operator==(const StrBlobPtr& lhs, const StrBlobPtr& rhs);
     friend bool operator!=(const StrBlobPtr& lhs, const StrBlobPtr& rhs);
+    friend bool operator<(const StrBlobPtr& lhs, const StrBlobPtr& rhs);
 public:
     //  constructor
     StrBlobPtr() :curr(0) {}
@@ -169,6 +192,18 @@ inline bool operator==(const StrBlobPtr& lhs, const StrBlobPtr& rhs)
 inline bool operator!=(const StrBlobPtr& lhs, const StrBlobPtr& rhs)
 {
     return !(lhs == rhs);
+}
+
+inline bool operator<(const StrBlobPtr& lhs, const StrBlobPtr& rhs)
+{
+    auto l = lhs.wptr.lock(), r = rhs.wptr.lock();
+    if (l == r) {
+        return (lhs.curr < rhs.curr);    // there are two situations. both null or just same,
+                                                //  but return value is different.
+    }
+    else {
+        return l < r;
+    }
 }
 
 
