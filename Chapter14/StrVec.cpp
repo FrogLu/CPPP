@@ -105,7 +105,19 @@ void StrVec::reallocate(std::size_t newcapacity)
 
 bool operator==(const StrVec& lhs, const StrVec& rhs)
 {
-    return lhs.elements==rhs.elements;
+    if (lhs.size() != rhs.size()) {
+        return false;
+    }
+
+    for (auto iter1 = lhs.begin(), iter2 = rhs.begin();
+        iter1 != lhs.end() && iter2 != rhs.end();
+        ++iter1, ++iter2) {
+        if (*iter1 != *iter2) {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 bool operator!=(const StrVec& lhs, const StrVec& rhs)

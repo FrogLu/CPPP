@@ -106,7 +106,7 @@ std::ostream& operator<<(std::ostream& out,const String& s) {
 
 inline bool operator==(const String& lhs, const String& rhs)
 {
-    return lhs.elements == rhs.elements;
+    return strcmp(lhs.elements,rhs.elements);
 }
 
 inline bool operator!=(const String& lhs, const String& rhs)
