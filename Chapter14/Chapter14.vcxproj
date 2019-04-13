@@ -127,7 +127,9 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sales_data.h" />
+    <ClInclude Include="StrBlob.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="StrVec.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -135,7 +137,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sales_data.cpp" />
+    <ClCompile Include="StrBlob.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="StrVec.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

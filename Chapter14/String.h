@@ -6,6 +6,8 @@
 class String
 {
     friend std::ostream& operator<<(std::ostream& out,const String& s);
+    friend bool operator==(const String& lhs, const String& rhs);
+    friend bool operator!=(const String& lhs, const String& rhs);
 public:
     //  constructor
     String() :
@@ -100,6 +102,16 @@ std::ostream& operator<<(std::ostream& out,const String& s) {
     }
 
     return out;
+}
+
+inline bool operator==(const String& lhs, const String& rhs)
+{
+    return lhs.elements == rhs.elements;
+}
+
+inline bool operator!=(const String& lhs, const String& rhs)
+{
+    return !(lhs == rhs);
 }
 
 inline 
