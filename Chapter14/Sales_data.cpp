@@ -13,7 +13,12 @@ std::istream & operator>>(std::istream & is, Sales_data & item)
 {
     double price = 0.0;
     is >> item.bookNo >> item.units_sold >> item.saleprice;
-    item.revenue = item.saleprice * item.units_sold;
+    if (is) {
+        item.revenue = item.saleprice * item.units_sold;
+    }
+    else {
+        item = Sales_data();
+    }
 
     return is;
 }
