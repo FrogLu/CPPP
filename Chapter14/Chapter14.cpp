@@ -2,17 +2,15 @@
 #include "String.h"
 #include "Sales_data.h"
 #include "StrBlob.h"
+#include "StrVec.h"
 
 int main() {
-    Sales_data sd1("hello",1,2.0), sd2("world",3,4.0);
-    std::cout << "sd1: " << sd1 << std::endl;
-    std::cout << "sd2: " << sd2 << std::endl;
-    sd1 += sd2;
-    std::cout << "sd1: " << sd1 << std::endl;
-    std::cout << "sd2: " << sd2 << std::endl;
-    sd1 = sd2;
-    std::cout << "sd1: " << sd1 << std::endl;
-    std::cout << "sd2: " << sd2 << std::endl;
+    StrVec svec({ "hello","world","Froglu" });
+    const StrVec cvec = svec;
+    std::cout << "svec: " << svec[0] << std::endl;
+    svec[0] = "zero";
+    std::cout << "svec: " << svec[0] << std::endl;
+    std::cout << "cvec: " << cvec[0] << std::endl;
 
     return 0;
 }

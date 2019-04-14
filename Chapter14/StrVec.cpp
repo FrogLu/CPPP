@@ -13,6 +13,40 @@ StrVec& StrVec::operator=(std::initializer_list<std::string> il)
     return *this;
 }
 
+std::string& StrVec::operator[](std::size_t n)
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= (first_free - elements)) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception& arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return elements[n];
+}
+
+const std::string& StrVec::operator[](std::size_t n) const
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= (first_free - elements)) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return elements[n];
+}
+
 void StrVec::push_back(const std::string& str)
 {
     chk_n_alloc();
