@@ -38,6 +38,7 @@ const std::string& StrBlob::back() const
 	return data->back();	// return type is std::string,data is not a const.
 }
 
+
 std::string& StrBlobPtr::deref() const
 {
     auto p = check(curr, "dereference past end");

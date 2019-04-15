@@ -15,12 +15,15 @@ class StrBlob
     friend bool operator>=(const StrBlob& lhs, const StrBlob& rhs);
 public:
     typedef std::vector<std::string>::size_type size_type;
+    //  constructor
     StrBlob();
     StrBlob(std::initializer_list<std::string> il);
     StrBlob(std::vector<std::string>* p);
     StrBlob(const StrBlob& sb);
     StrBlob& operator=(const StrBlob& rhs);
-
+    //  user function
+    std::string& operator[](const std::size_t n);
+    std::string& operator[](const std::size_t n) const;
     size_type size()const { return data->size(); }
     bool empty()const { return data->empty(); }
     void push_back(const std::string& t) { data->push_back(t); }
@@ -106,6 +109,40 @@ inline StrBlob& StrBlob::operator=(const StrBlob& rhs)
     data = make_shared<std::vector<std::string>>(*rhs.data);
     
     return *this;
+}
+
+inline std::string& StrBlob::operator[](const std::size_t n)
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= data->size()) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return (*data)[n];
+}
+
+inline std::string& StrBlob::operator[](const std::size_t n) const
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= data->size()) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return (*data)[n];
 }
 
 

@@ -23,8 +23,8 @@ public:
     StrVec& operator=(StrVec&&) noexcept ;
     //  user funciton
     StrVec& operator=(std::initializer_list<std::string> il);
-    std::string& operator[](std::size_t n);
-    const std::string& operator[](std::size_t n) const;
+    std::string& operator[](const std::size_t n);
+    const std::string& operator[](const std::size_t n) const;
     void push_back(const std::string&);
     void push_back(std::string&&);
     std::size_t size() const { return first_free - elements; }

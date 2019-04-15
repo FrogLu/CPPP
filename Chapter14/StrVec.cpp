@@ -13,7 +13,7 @@ StrVec& StrVec::operator=(std::initializer_list<std::string> il)
     return *this;
 }
 
-std::string& StrVec::operator[](std::size_t n)
+std::string& StrVec::operator[](const std::size_t n)
 {
     const std::range_error arroob("StrVec out of bounds");
     try
@@ -30,7 +30,7 @@ std::string& StrVec::operator[](std::size_t n)
     return elements[n];
 }
 
-const std::string& StrVec::operator[](std::size_t n) const
+const std::string& StrVec::operator[](const std::size_t n) const
 {
     const std::range_error arroob("StrVec out of bounds");
     try
