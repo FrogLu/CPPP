@@ -73,6 +73,38 @@ const std::string& StrBlobPtr::operator[](const std::size_t n) const
     return (*wptr.lock())[n];
 }
 
+StrBlobPtr& StrBlobPtr::operator++()
+{
+    check(curr, "increment past end of StrBlobPtr");
+    ++curr;
+
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::operator++(int)
+{
+    StrBlobPtr ret = *this;
+    ++* this;
+
+    return ret;
+}
+
+StrBlobPtr& StrBlobPtr::operator--()
+{
+    --curr;
+    check(curr, "decrement past begin of StrBlobPtr");
+
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::operator--(int)
+{
+    StrBlobPtr ret = *this;
+    --* this;
+    
+    return ret;
+}
+
 std::string& StrBlobPtr::deref() const
 {
     auto p = check(curr, "dereference past end");

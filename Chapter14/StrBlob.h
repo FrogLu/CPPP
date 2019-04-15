@@ -177,6 +177,10 @@ public:
     // user function
     std::string& operator[](const std::size_t n);
     const std::string& operator[](const std::size_t n)const;
+    StrBlobPtr& operator++();       //  prefix
+    StrBlobPtr& operator++(int);    //  postfix
+    StrBlobPtr& operator--();       //  prefix
+    StrBlobPtr& operator--(int);    //  postfix
     std::string& deref() const;
     std::string& deref(size_t off) const;
     StrBlobPtr& incr();
