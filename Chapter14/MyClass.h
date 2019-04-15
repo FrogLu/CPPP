@@ -16,4 +16,33 @@ std::size_t MyIfElse::operator()(const std::size_t condition, const std::size_t&
     return condition ? first : last;
 }
 
+class PrintString {
+public:
+    PrintString(std::ostream& out = std::cout, const char c = ' ') :
+        os(out), sep(c) {}
+    void operator()(const std::string& str) const;
+private:
+    std::ostream& os;
+    char sep;
+};
+
+inline
+void PrintString::operator()(const std::string& str) const {
+    os << str << sep;
+}
+
+class ReadString {
+public:
+    ReadString(std::istream& in = std::cin) :
+        is(in) {};
+    std::string operator()(std::istream& in);
+private:
+    std::istream& is;
+    std::string str;
+};
+
+inline
+std::string ReadString::operator()(std::istream& in) {
+    return std::getline(in, str) ? str : std::string();
+}
 #endif // !_MYCLASS_H_
