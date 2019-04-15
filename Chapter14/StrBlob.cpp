@@ -105,6 +105,22 @@ StrBlobPtr& StrBlobPtr::operator--(int)
     return ret;
 }
 
+StrBlobPtr StrBlobPtr::operator+(const std::size_t num)
+{
+    check(curr + num, "addition past end of StrBlobPtr");
+    curr += num;
+
+    return *this;
+}
+
+StrBlobPtr StrBlobPtr::operator-(const std::size_t num)
+{
+    check(curr - num, "Subtraction past end of StrBlobPtr");
+    curr -= num;
+
+    return *this;
+}
+
 std::string& StrBlobPtr::deref() const
 {
     auto p = check(curr, "dereference past end");
