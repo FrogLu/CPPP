@@ -59,4 +59,18 @@ inline
 bool  MyEquation::operator()(std::size_t& n) {
     return n == ref;
 }
+
+class CheckSize {
+public:
+    CheckSize(std::string::size_type init = 0) :
+        threshold(init) {}
+    bool operator()(const std::string& str);
+private:
+    std::string::size_type threshold;
+};
+
+inline
+bool CheckSize::operator()(const std::string& str) {
+    return str.size() == threshold;
+}
 #endif // !_MYCLASS_H_

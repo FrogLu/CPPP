@@ -6,16 +6,23 @@
 #include "MyClass.h"
 
 int main() {
-    std::vector<std::size_t> stvec({ 1,2,3,4,5,1,2,3,4,5 });
-    MyEquation eq(3);
-    const std::size_t newValue = 15;
-    auto print = [](std::size_t value) {std::cout << value<<" "; };
-
-    std::for_each(stvec.begin(), stvec.end(),print);
+    std::ifstream fin("./data/Input/paper");
+    assert(fin.good());
+    fin.tie(&std::cout);
+    std::istream_iterator<std::string> isiter(fin), eof;
+    std::vector<std::string> svec(isiter,eof);
+    std::vector<std::size_t> countVec;
+    for (auto& s : svec) {
+        std::cout << s << " ";
+    }
     std::cout << std::endl;
-    std::replace_if(stvec.begin(), stvec.end(), eq,newValue);
-    std::for_each(stvec.begin(), stvec.end(),print);
-    std::cout << std::endl;
+    for (std::string::size_type threshold = 1; threshold != 11; ++threshold) {
+        CheckSize cs(threshold);
+        auto count = std::count_if(svec.cbegin(), svec.cend(), cs);
+        std::cout << "count of word's length " << threshold << " in paper: " << count << std::endl;
+        countVec.push_back(count);
+    }
+    
 
     return 0;
 }
