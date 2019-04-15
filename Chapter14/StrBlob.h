@@ -183,6 +183,8 @@ public:
     StrBlobPtr& operator--(int);    //  postfix
     StrBlobPtr operator+(const std::size_t num);
     StrBlobPtr operator-(const std::size_t num);
+    std::string& operator*()const;
+    std::string* operator->()const;
     std::string& deref() const;
     std::string& deref(size_t off) const;
     StrBlobPtr& incr();
