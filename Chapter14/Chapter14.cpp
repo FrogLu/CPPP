@@ -6,18 +6,16 @@
 #include "MyClass.h"
 
 int main() {
-    std::vector<std::string> svec;
-    ReadString str(std::cin);
-    PrintString printStr(std::cout);
-    while (true) {
-        std::string line = str();
-        if (!line.empty()) {
-            svec.push_back(line);
-        }
-        else {
-            break;
-        }
-    }
+    std::vector<std::size_t> stvec({ 1,2,3,4,5,1,2,3,4,5 });
+    MyEquation eq(3);
+    const std::size_t newValue = 15;
+    auto print = [](std::size_t value) {std::cout << value<<" "; };
+
+    std::for_each(stvec.begin(), stvec.end(),print);
+    std::cout << std::endl;
+    std::replace_if(stvec.begin(), stvec.end(), eq,newValue);
+    std::for_each(stvec.begin(), stvec.end(),print);
+    std::cout << std::endl;
 
     return 0;
 }

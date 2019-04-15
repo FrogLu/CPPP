@@ -45,4 +45,18 @@ inline
 std::string ReadString::operator()(/*void*/) {
     return std::getline(is, str) ? str : std::string();
 }
+
+class MyEquation {
+public:
+    MyEquation(std::size_t i = 0) :
+        ref(i) {}
+    bool operator()(std::size_t& n);
+private:
+    std::size_t ref;
+};
+
+inline
+bool  MyEquation::operator()(std::size_t& n) {
+    return n == ref;
+}
 #endif // !_MYCLASS_H_
