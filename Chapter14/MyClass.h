@@ -35,14 +35,14 @@ class ReadString {
 public:
     ReadString(std::istream& in = std::cin) :
         is(in) {};
-    std::string operator()(std::istream& in);
+    std::string operator()(/*void*/);
 private:
     std::istream& is;
     std::string str;
 };
 
 inline
-std::string ReadString::operator()(std::istream& in) {
-    return std::getline(in, str) ? str : std::string();
+std::string ReadString::operator()(/*void*/) {
+    return std::getline(is, str) ? str : std::string();
 }
 #endif // !_MYCLASS_H_

@@ -7,9 +7,17 @@
 
 int main() {
     std::vector<std::string> svec;
-    ReadString str;
+    ReadString str(std::cin);
     PrintString printStr(std::cout);
-    printStr(str(std::cin));
+    while (true) {
+        std::string line = str();
+        if (!line.empty()) {
+            svec.push_back(line);
+        }
+        else {
+            break;
+        }
+    }
 
     return 0;
 }
