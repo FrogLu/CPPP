@@ -39,6 +39,40 @@ const std::string& StrBlob::back() const
 }
 
 
+std::string& StrBlobPtr::operator[](const std::size_t n)
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= curr) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return (*wptr.lock())[n];
+}
+
+const std::string& StrBlobPtr::operator[](const std::size_t n) const
+{
+    const std::range_error arroob("StrVec out of bounds");
+    try
+    {
+        if (n >= curr) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return (*wptr.lock())[n];
+}
+
 std::string& StrBlobPtr::deref() const
 {
     auto p = check(curr, "dereference past end");

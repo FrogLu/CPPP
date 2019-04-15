@@ -23,6 +23,7 @@ public:
     String& operator=(String&& rhs) noexcept;
     //  user function
     char& operator[](const std::size_t n);
+    const char& operator[](const std::size_t n)const;
     void push_back(const char& c);
     std::size_t size() { return first_free-elements; };
     std::size_t capacity() { return cap-elements; };

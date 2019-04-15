@@ -47,6 +47,23 @@ char& String::operator[](const std::size_t n)
     return elements[n];
 }
 
+const char& String::operator[](const std::size_t n) const
+{
+    const std::range_error arroob("String out of bounds");
+    try
+    {
+        if (n >= (first_free - elements)) {
+            throw arroob;
+        }
+    }
+    catch (const std::exception & arroob)
+    {
+        std::cout << arroob.what() << std::endl;
+    }
+
+    return elements[n];
+}
+
 void String::push_back(const char& c) {
     chk_n_alloc();
     alloc.construct(first_free++, c);

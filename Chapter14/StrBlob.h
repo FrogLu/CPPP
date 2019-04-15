@@ -23,7 +23,7 @@ public:
     StrBlob& operator=(const StrBlob& rhs);
     //  user function
     std::string& operator[](const std::size_t n);
-    std::string& operator[](const std::size_t n) const;
+    const std::string& operator[](const std::size_t n) const;
     size_type size()const { return data->size(); }
     bool empty()const { return data->empty(); }
     void push_back(const std::string& t) { data->push_back(t); }
@@ -111,7 +111,8 @@ inline StrBlob& StrBlob::operator=(const StrBlob& rhs)
     return *this;
 }
 
-inline std::string& StrBlob::operator[](const std::size_t n)
+inline 
+std::string& StrBlob::operator[](const std::size_t n)
 {
     const std::range_error arroob("StrVec out of bounds");
     try
@@ -128,7 +129,8 @@ inline std::string& StrBlob::operator[](const std::size_t n)
     return (*data)[n];
 }
 
-inline std::string& StrBlob::operator[](const std::size_t n) const
+inline 
+const std::string& StrBlob::operator[](const std::size_t n) const
 {
     const std::range_error arroob("StrVec out of bounds");
     try
@@ -173,6 +175,8 @@ public:
     StrBlobPtr(StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     StrBlobPtr(const StrBlob& a, size_t sz = 0) :wptr(a.data), curr(sz) {}
     // user function
+    std::string& operator[](const std::size_t n);
+    const std::string& operator[](const std::size_t n)const;
     std::string& deref() const;
     std::string& deref(size_t off) const;
     StrBlobPtr& incr();
