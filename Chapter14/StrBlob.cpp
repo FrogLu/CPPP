@@ -107,18 +107,19 @@ StrBlobPtr& StrBlobPtr::operator--(int)
 
 StrBlobPtr StrBlobPtr::operator+(const std::size_t num)
 {
-    check(curr + num, "addition past end of StrBlobPtr");
-    curr += num;
-
-    return *this;
+    auto ret = *this;
+    ret.curr += num;
+    //  can't return *this, the return value wouldn't impact *this(object).
+    //  so ret.curr doesn't need check(), and can't call ret.check() in this function.
+    return ret;     
 }
 
 StrBlobPtr StrBlobPtr::operator-(const std::size_t num)
 {
-    check(curr - num, "Subtraction past end of StrBlobPtr");
-    curr -= num;
+    auto ret = *this;
+    ret.curr += num;
 
-    return *this;
+    return ret;
 }
 
 std::string& StrBlobPtr::deref() const
