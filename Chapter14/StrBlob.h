@@ -284,4 +284,14 @@ inline bool operator>=(const StrBlobPtr& lhs, const StrBlobPtr& rhs)
 }
 
 
+//  Practice14.32
+class StrBlobPtrPtr {
+public:
+    std::string* operator->() const {
+        return ptr->operator->();
+    }
+private:
+    StrBlobPtr* ptr;
+};
+
 #endif // !_STRBLOB_H_
