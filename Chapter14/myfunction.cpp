@@ -60,3 +60,4 @@ void biggies(std::vector<std::string>& words,
         << " of length " << sz << " or longer" << std::endl;
     std::for_each(wc, words.end(), PrintString(std::cout, ' '));
 }
+
