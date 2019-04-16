@@ -17,8 +17,8 @@ int main() {
         std::cout << "Please Enter the modulated number: ";
         std::size_t mod;
         std::cin >> mod;
-        if (std::find_if(stvec.cbegin(), stvec.cend(),
-            std::bind(std::modulus<std::size_t>(), std::placeholders::_1, mod)) == stvec.cend()) {
+        if (std::count_if(stvec.cbegin(), stvec.cend(),
+            std::bind(std::modulus<std::size_t>(), std::placeholders::_1, mod)) == 0) {
             std::cout << "Number: " << mod << "works" << std::endl;
             break;
         }
