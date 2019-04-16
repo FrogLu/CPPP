@@ -4,6 +4,7 @@
 #include "StrBlob.h"
 #include "StrVec.h"
 #include "MyClass.h"
+#include "myfunction.h"
 
 int main() {
     std::ifstream fin("./data/Input/paper");
@@ -30,8 +31,9 @@ int main() {
     StrNotShorterThan sNotShorterThan(10);
     std::cout << "count of word's length " << begin << "-" << end - 1 << " in paper: ";
     std::cout << std::count_if(svec.cbegin(),svec.cend(),slenBetween) << std::endl;
-    std::cout << "length more than: " << end << " in paper: ";
-    std::cout<< std::count_if(svec.cbegin(),svec.cend(),sNotShorterThan) << std::endl;
+    //std::cout << "length more than: " << end << " in paper: ";
+    //std::cout<< std::count_if(svec.cbegin(),svec.cend(),sNotShorterThan) << std::endl;
+    biggies(svec, 10);
 
     return 0;
 }

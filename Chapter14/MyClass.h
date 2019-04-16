@@ -95,6 +95,7 @@ public:
     StrNotShorterThan(const std::size_t len = 0) :
         minLen(len) {}
     bool operator()(const std::string& str);
+    bool operator()(const std::string& lhs, const std::string& rhs);
 private:
     std::size_t minLen;
 };
@@ -102,5 +103,10 @@ private:
 inline
 bool StrNotShorterThan::operator()(const std::string& str) {
     return minLen <= str.length();
+}
+
+inline
+bool StrNotShorterThan::operator()(const std::string& lhs, const std::string& rhs) {
+    return lhs.length() < rhs.length();
 }
 #endif // !_MYCLASS_H_
