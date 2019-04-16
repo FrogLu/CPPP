@@ -8,7 +8,7 @@
 
 int main() {
     std::ifstream fint("./data/Input/int");
-    std::ifstream fstr("./data/Input/str");
+    std::ifstream fstr("./data/Input/paper");
     assert(fint.good());
     assert(fstr.good());
     fint.tie(&std::cout);
@@ -18,9 +18,12 @@ int main() {
     std::vector<std::size_t> stvec(IsStIter, StEeof);
     std::vector<std::string> svec(IsStrIter, StrEof);
     //  Practice14.42
-    //std::sort(stvec.cbegin(), stvec.cend(), std::greater<std::size_t>());
     auto a = std::count_if(stvec.cbegin(), stvec.cend(), 
-        std::greater<std::size_t>()/*greater() have two arguments, so it doesn't work.*/);
+        std::bind(std::greater<std::size_t>(), std::placeholders::_1,1024));
+    auto b = std::find_if(svec.cbegin(), svec.cend(),
+        std::bind(std::not_equal_to<std::string>(), std::placeholders::_1, std::string("pooh")));
+    auto c = std::transform(stvec.begin(), stvec.end(), stvec.begin(),
+        std::bind(std::multiplies<std::size_t>(), std::placeholders::_1, 2));
 
     return 0;
 }
