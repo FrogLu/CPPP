@@ -7,33 +7,20 @@
 #include "myfunction.h"
 
 int main() {
-    std::ifstream fin("./data/Input/paper");
-    assert(fin.good());
-    fin.tie(&std::cout);
-    std::istream_iterator<std::string> isiter(fin), eof;
-    std::vector<std::string> svec(isiter,eof);
-    std::vector<std::size_t> countVec;
-    for (auto& s : svec) {
-        std::cout << s << " ";
-    }
-    std::cout << std::endl;
-    //std::size_t count = 0;
-    const std::size_t begin = 1, end = 10;
-    //for (std::string::size_type threshold = begin; threshold != end; ++threshold) {
-    //    CheckSize cs(threshold);
-    //    count += std::count_if(svec.cbegin(), svec.cend(), cs);
-    //    countVec.push_back(count);
-    //}
-    //std::cout << "count of word's length " << begin << "-" << end - 1 << " in paper: ";
-    //std::cout << count << std::endl;
-    //std::cout << "length more than: " << end << " in paper: " << svec.size() - count << std::endl;
-    StrLenBetween slenBetween(1, 9);
-    StrNotShorterThan sNotShorterThan(10);
-    std::cout << "count of word's length " << begin << "-" << end - 1 << " in paper: ";
-    std::cout << std::count_if(svec.cbegin(),svec.cend(),slenBetween) << std::endl;
-    //std::cout << "length more than: " << end << " in paper: ";
-    //std::cout<< std::count_if(svec.cbegin(),svec.cend(),sNotShorterThan) << std::endl;
-    biggies(svec, 10);
+    std::ifstream fint("./data/Input/int");
+    std::ifstream fstr("./data/Input/str");
+    assert(fint.good());
+    assert(fstr.good());
+    fint.tie(&std::cout);
+    fstr.tie(&std::cout);
+    std::istream_iterator<std::size_t> IsStIter(fint), StEeof;
+    std::istream_iterator<std::string> IsStrIter(fstr), StrEof;
+    std::vector<std::size_t> stvec(IsStIter, StEeof);
+    std::vector<std::string> svec(IsStrIter, StrEof);
+    //  Practice14.42
+    //std::sort(stvec.cbegin(), stvec.cend(), std::greater<std::size_t>());
+    auto a = std::count_if(stvec.cbegin(), stvec.cend(), 
+        std::greater<std::size_t>()/*greater() have two arguments, so it doesn't work.*/);
 
     return 0;
 }
