@@ -73,4 +73,34 @@ inline
 bool CheckSize::operator()(const std::string& str) {
     return str.size() == threshold;
 }
+
+//  Practice14.39 RefAns
+class StrLenBetween {
+public:
+    StrLenBetween(const std::size_t minLen=0,const std::size_t maxLen=0):
+        minLen(minLen),maxLen(maxLen){}
+    bool operator()(const std::string& str);
+private:
+    std::size_t minLen;
+    std::size_t maxLen;
+};
+
+inline
+bool StrLenBetween::operator()(const std::string& str) {
+    return (minLen <= str.length()) && (str.length() <= maxLen);
+}
+
+class StrNotShorterThan {
+public:
+    StrNotShorterThan(const std::size_t len = 0) :
+        minLen(len) {}
+    bool operator()(const std::string& str);
+private:
+    std::size_t minLen;
+};
+
+inline
+bool StrNotShorterThan::operator()(const std::string& str) {
+    return minLen <= str.length();
+}
 #endif // !_MYCLASS_H_
