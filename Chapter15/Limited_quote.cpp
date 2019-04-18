@@ -10,3 +10,8 @@ double Limited_quote::net_price(std::size_t cnt) const
         return (max_qty * (1 - discount) * price) + ((cnt - max_qty) * price);
     }
 }
+
+std::ostream& Limited_quote::debug(std::ostream& os) const
+{
+    return Quote::debug(os) << " max_qty: " << max_qty << " discount: " << discount;
+}

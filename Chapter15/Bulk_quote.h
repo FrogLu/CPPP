@@ -10,7 +10,8 @@ public:
     Bulk_quote() = default;
     Bulk_quote(const std::string& book, double p, std::size_t qty, double disc) :
         Quote(book, p), min_qty(qty), discount(disc) {}
-    double net_price(std::size_t) const override;
+    virtual double net_price(std::size_t) const override;
+    virtual std::ostream& debug(std::ostream& os) const override;
     virtual ~Bulk_quote() = default;
 private:
     std::size_t min_qty = 0;

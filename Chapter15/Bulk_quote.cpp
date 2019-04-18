@@ -10,3 +10,8 @@ double Bulk_quote::net_price(std::size_t cnt) const
         return cnt * price;
     }
 }
+
+std::ostream& Bulk_quote::debug(std::ostream& os) const
+{
+    return Quote::debug(os) << " min_qty: " << min_qty << " discount: " << discount;
+}

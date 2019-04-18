@@ -8,6 +8,7 @@ public:
     Limited_quote(const std::string& bookNo, double p, std::size_t qty, double disc) :
         Quote(bookNo, p), max_qty(qty), discount(disc) {}
     virtual double net_price(std::size_t cnt) const override;
+    virtual std::ostream& debug(std::ostream& os) const override;
     virtual ~Limited_quote() = default;
 private:
     std::size_t max_qty = 0;

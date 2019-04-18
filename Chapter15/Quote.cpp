@@ -2,6 +2,11 @@
 #include "Quote.h"
 
 
+std::ostream& Quote::debug(std::ostream& os) const
+{
+    return os << "bookNo: " << bookNo << " # " << "price: " << price;
+}
+
 Quote::~Quote()
 {
 }
