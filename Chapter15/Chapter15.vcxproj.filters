@@ -24,6 +24,9 @@
     <ClInclude Include="Bulk_quote.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Limited_quote.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chapter15.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bulk_quote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Limited_quote.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
