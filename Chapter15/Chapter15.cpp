@@ -16,8 +16,8 @@ int main() {
     //p = &d2;    //  E0269   conversion to inaccessible base class "Base" is not allowed
     //p = &d3;    //  E0269   conversion to inaccessible base class "Base" is not allowed
     p = &dd1;
-    p = &dd2;   //  E0269
-    p = &dd3;   //  E0269
+    //p = &dd2;   //  E0269
+    //p = &dd3;   //  E0269
 
     return 0;
 }
