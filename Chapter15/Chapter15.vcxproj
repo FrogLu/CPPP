@@ -128,6 +128,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Bulk_quote.h" />
     <ClInclude Include="Disc_quote.h" />
+    <ClInclude Include="Figure.h" />
     <ClInclude Include="Limited_quote.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Quote.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="Bulk_quote.cpp" />
     <ClCompile Include="Chapter15.cpp" />
     <ClCompile Include="Disc_quote.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Limited_quote.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
