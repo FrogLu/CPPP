@@ -8,13 +8,20 @@
 #define PCH_H
 
 #include <iostream>
+using std::cout; using std::cerr; using std::endl;
+
 #include <fstream>
+using std::ifstream; using std::ofstream;
+
 #include <sstream>
+
 #include <string>
+using std::string;
+
 #include <vector>
-using std::vector; using std::string;
-using std::ifstream; using std::ofstream; using std::endl;
-using std::runtime_error; using std::cout; using std::cerr;
-// TODO: add headers that you want to pre-compile here
+using std::vector;
+
+#include <stdexcept>
+using std::runtime_error;
 
 #endif //PCH_H

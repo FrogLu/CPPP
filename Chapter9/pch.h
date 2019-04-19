@@ -6,25 +6,38 @@
 
 #ifndef PCH_H
 #define PCH_H
+
 #include <vector>
+using std::vector;
+
 #include <list>
+
 #include <array>
+
 #include <deque>
+
 #include <forward_list>
+
 #include <iostream>
+using std::cout; using std::cerr; using std::ostream; using std::istream;
+
 #include <fstream>
 #include <string>
-#include <vector>
+using std::string;
+
 #include <stack>
+using std::stack;
+
 #include <algorithm>
-#include <numeric>
-#include <cassert>
-#include <stack>
-using std::string; using std::vector;
 using std::sort; using std::unique;
-using std::cout; using std::cerr; using std::ostream; using std::istream;
-using std::invalid_argument; using std::stack;
-//using std::vector;
-// TODO: add headers that you want to pre-compile here
+
+#include <numeric>
+
+#include <cassert>
+
+#include <stack>
+
+#include <stdexcept>
+using std::invalid_argument;
 
 #endif //PCH_H

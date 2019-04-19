@@ -6,23 +6,46 @@
 
 #ifndef PCH_H
 #define PCH_H
-#include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <iterator>
-#include <cassert>
-#include <sstream>
-#include <algorithm>
-#include <list>
-#include <unordered_map>
 
-using std::map; using std::set; using std::string; using std::size_t;
+using std::size_t;
+
+#include <iostream>
 using std::cin; using std::cout; using std::endl;
+
+#include <map>
+using std::map;
+
+#include <set>
+using std::set; using std::multiset;
+
+#include <string>
+using std::string;
+
+#include <fstream>
+
+#include <vector>
+
+#include <iterator>
 using std::istream_iterator; using std::ostream_iterator;
-using std::multiset; using std::istringstream; using std::unique;
-using std::list; using std::pair; using std::runtime_error;
+
+#include <cassert>
+
+#include <sstream>
+using std::istringstream;
+
+#include <algorithm>
+using std::unique;
+
+#include <list>
+using std::list;
+
+#include <unordered_map>
 using std::unordered_map;
+
+#include <utility>
+using std::pair;
+
+#include <stdexcept>
+using std::runtime_error;
+
 #endif //PCH_H
