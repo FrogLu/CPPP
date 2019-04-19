@@ -30,6 +30,9 @@
     <ClInclude Include="Disc_quote.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chapter15.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Disc_quote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

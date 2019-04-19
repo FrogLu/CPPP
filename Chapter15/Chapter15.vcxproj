@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="Bulk_quote.h" />
     <ClInclude Include="Disc_quote.h" />
     <ClInclude Include="Limited_quote.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Quote.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="Bulk_quote.cpp" />
     <ClCompile Include="Chapter15.cpp" />
     <ClCompile Include="Disc_quote.cpp" />
