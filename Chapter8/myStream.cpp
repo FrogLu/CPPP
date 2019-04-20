@@ -20,7 +20,7 @@ std::istream& myprint(std::istream& is) {
 	return is;
 }
 
-bool process(std::ifstream& ifs,std::vector<string>& vstr) {
+bool process(std::ifstream& ifs,std::vector<std::string>& vstr) {
 	std::string str;
 	if (!ifs.is_open()) {
 		return false;

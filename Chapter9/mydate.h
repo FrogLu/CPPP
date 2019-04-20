@@ -25,7 +25,7 @@ const string month_abbr[] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","S
 // max day number pre month
 const std::vector<int> days = { -1,31,28,31,30,31,30,31,31,30,31,30,31 }; // -1 as a sentinel to fix days[0]
 
-inline int get_month(string &datestr, int &end_of_month) {
+inline int get_month(std::string &datestr, int &end_of_month) {
 	int outer, inner;
 	for (outer = 0; outer < 12; outer++) {
 		for (inner = 0; inner < month_abbr[outer].size(); inner++) {
@@ -71,7 +71,7 @@ inline int get_day(std::string &datestr, int month, int&pos) {
 	return day;
 }
 
-inline int get_year(string &datestr, int &pos) {
+inline int get_year(std::string &datestr, int &pos) {
 	size_t q;
 	int year = stoi(datestr.substr(pos), &q);
 	if (pos + q < datestr.size()) {
@@ -80,7 +80,7 @@ inline int get_year(string &datestr, int &pos) {
 	return year;
 }
 
-inline mydate::mydate(string &datestr) {
+inline mydate::mydate(std::string &datestr) {
 	int pos;
 	size_t q;
 
@@ -108,7 +108,7 @@ inline mydate::mydate(string &datestr) {
 		}
 		day = get_day(datestr, month, pos);
 		if (datestr[pos++] != '/') {
-			throw invalid_argument("invalid spacer!");
+			throw std::invalid_argument("invalid spacer!");
 		}
 		year = get_year(datestr, pos);
 	}

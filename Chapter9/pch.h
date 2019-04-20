@@ -22,6 +22,7 @@ using std::vector;
 using std::cout; using std::cerr; using std::ostream; using std::istream;
 
 #include <fstream>
+
 #include <string>
 using std::string;
 

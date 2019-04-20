@@ -27,7 +27,7 @@ inline
 TextQuery::TextQuery(std::ifstream& infile):text(new std::vector<std::string>) {
     std::string linestr;
     
-    while (getline(infile, linestr)) {
+    while (std::getline(infile, linestr)) {
         
         text.push_back(linestr);
         SVST count = text.size() - 1;

@@ -3,8 +3,8 @@
 
 #include "pch.h"
 #include "myStream.h"
-string infile = "input" ;
-const string outfile =  "output" ;
+std::string infile = "input" ;
+const std::string outfile =  "output" ;
 int main()
 {
 	// istream

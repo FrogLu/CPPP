@@ -24,8 +24,8 @@ bool stringgeq5(std::string& str) {
 void biggies(std::vector<std::string> &words,
 	std::vector<std::string>::size_type sz) {
 	elimDups(words);
-	stable_sort(words.begin(), words.end(),
-		bind(isShorter,_1,_2));
+    std::stable_sort(words.begin(), words.end(),
+        std::bind(isShorter,_1,_2));
 	auto wc = std::stable_partition(words.begin(), words.end(),
 		std::bind(check_size,_1,sz));
 	auto count = wc - words.begin();
@@ -39,8 +39,8 @@ void biggies(std::vector<std::string> &words,
 
 const std::string make_plural(
 	std::string::size_type count,
-	const string &words, 
-	const string &suffix) {
+	const std::string &words,
+	const std::string &suffix) {
 	try
 	{
 		if (count <= 0) {
@@ -50,13 +50,13 @@ const std::string make_plural(
 	}
 	catch (const std::range_error& rerr)
 	{
-		cout << rerr.what() << endl
-		<< "Try Again? Enter y or n" << endl;
+        std::cout << rerr.what() << std::endl
+		<< "Try Again? Enter y or n" << std::endl;
 		char c;
 		std::cin >> c;
 		if (c == 'y') {
 			int num;
-			std::cout << "Please Enter the new number: " << endl;
+			std::cout << "Please Enter the new number: " << std::endl;
 			std::cin >> num;
 			return make_plural(num, words, suffix);
 		}

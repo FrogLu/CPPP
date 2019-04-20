@@ -1,7 +1,7 @@
 #pragma once
 #ifndef _MYFUNCTION_H_
 #define _MYFUNCTION_H_
-using std::vector; using std::string;
+
 std::vector<int> get_next(const std::string& P);
 int replace_string_KMP(std::string &s, const std::string &p1,
 						const std::string p2);

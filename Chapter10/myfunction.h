@@ -14,14 +14,14 @@ void biggies(std::vector<std::string> &words,
 
 bool stringgeq5(std::string & str);
 
-const std::string make_plural(std::string::size_type count, const string &words,
-	const string &suffix);
+const std::string make_plural(std::string::size_type count, const std::string &words,
+	const std::string &suffix);
 
 bool check_size(const std::string & s, std::string::size_type sz);
 
 void printstr(const string & s);
 
-void elimDups_list(std::list<string>& words);
+void elimDups_list(std::list<std::string>& words);
 
 #endif // _MYFUNCTION_H_
 
