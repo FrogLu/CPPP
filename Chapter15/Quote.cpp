@@ -9,6 +9,7 @@ std::ostream& Quote::debug(std::ostream& os) const
 
 Quote::~Quote()
 {
+    std::cout << "Quote::~Quote()" << std::endl;
 }
 
 //  non-member function

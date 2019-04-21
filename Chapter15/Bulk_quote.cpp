@@ -15,3 +15,8 @@ std::ostream& Bulk_quote::debug(std::ostream& os) const
 {
     return Quote::debug(os) << " min_qty: " << min_qty << " discount: " << discount;
 }
+
+Bulk_quote::~Bulk_quote()
+{
+    std::cout << "Bulk_quote::~Bulk_quote()" << std::endl;
+}
