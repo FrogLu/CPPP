@@ -4,4 +4,5 @@
 
 Disc_quote::~Disc_quote()
 {
+    std::cout << "Disc_quote::~Disc_quote()" << std::endl;
 }
