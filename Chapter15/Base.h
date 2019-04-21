@@ -1,44 +1,42 @@
 #pragma once
+#ifndef _BASE_H_
+#define _BASE_H_
+
 class Base
 {
-    void memfcn(Base& b) { b = *this; }
 public:
-    Base() = default;
-    ~Base();
+    virtual int fcn() {
+        std::cout << "Base::fcn()" << std::endl;
+        return 1;
+    }
+};
+
+class D1:public Base
+{
 public:
-    void pub_mem() {};
-protected:
-    int prot_mem=0;
-private:
-    char priv_mem='0';
+    int fcn(/*int*/) {
+        std::cout << "D1::fcn(int)" << std::endl;
+        return 2;
+    }
+    virtual void f2() {
+        std::cout << "D1::f2()" << std::endl;
+    }
 };
 
-struct Pub_Derv :public Base {
-    void memfcn(Base& b) { b = *this; }
-    int f() { return prot_mem; }
+class D2 :public D1
+{
+public:
+    int fcn(int) {
+        std::cout << "D2::fcn(int)" << std::endl;
+        return 3;
+    }
+    int fcn() {
+        std::cout << "D2::fcn()" << std::endl;
+        return 4;
+    }
+    void f2() {
+        std::cout << "D2::f2()" << std::endl;
+    }
 };
 
-struct Prot_Derv :protected Base {
-    void memfcn(Base& b) { b = *this; }
-    int f1() const { return prot_mem; }
-};
-
-struct Priv_Derv :private Base {
-    void memfcn(Base& b) { b = *this; }
-    int f2() const { return prot_mem; }
-};
-
-struct Derived_from_Public :public Pub_Derv {
-    void memfcn(Base& b) { b = *this; }
-    int use_base() { return prot_mem; }
-};
-
-struct Derived_from_Protected :public Prot_Derv {
-    void memfcn(Base& b) { b = *this; }
-};
-
-struct Derived_from_Private :public Priv_Derv {
-    //void memfcn(Base& b) { b = *this; }
-    //  C2247   'Base' not accessible because 'Priv_Derv' uses 'private' to inherit from 'Base'
-    //  C2243   'type cast': conversion from 'Derived_from_Private *' to 'const Base &' exists, but is inaccessible
-};
+#endif // !_BASE_H_

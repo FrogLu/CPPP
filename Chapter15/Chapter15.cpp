@@ -6,18 +6,17 @@
 #include "Base.h"
 
 int main() {
-    Pub_Derv d1;
-    Priv_Derv d2;
-    Prot_Derv d3;
-    Derived_from_Public dd1;
-    Derived_from_Private dd2;
-    Derived_from_Protected dd3;
-    Base* p = &d1;
-    //p = &d2;    //  E0269   conversion to inaccessible base class "Base" is not allowed
-    //p = &d3;    //  E0269   conversion to inaccessible base class "Base" is not allowed
-    p = &dd1;
-    //p = &dd2;   //  E0269
-    //p = &dd3;   //  E0269
+    Base bobj; D1 d1obj; D2 d2obj;
+
+    Base* bp1 = &bobj, * bp2 = &d1obj, * bp3 = &d2obj;
+    bp1->fcn();
+    bp2->fcn();
+    bp3->fcn();
+
+    D1* d1p = &d1obj; D2* d2p = &d2obj;
+    //bp2->f2();
+    d1p->f2();
+    d2p->f2();
 
     return 0;
 }
