@@ -7,8 +7,6 @@
 #ifndef PCH_H
 #define PCH_H
 
-using std::size_t;
-
 #include <iostream>
 using std::cin; using std::cout; using std::endl;
 

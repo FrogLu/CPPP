@@ -2,7 +2,6 @@
 #ifndef _PCH_H_
 #define _PCH_H_
 
-using std::size_t;
 
 #include <iostream>
 using std::istream; using std::ostream;
