@@ -6,14 +6,14 @@
 #include "Base.h"
 
 int main() {
-    std::vector<Quote> basket;
-    basket.push_back(Bulk_quote("0-201-54848-8", 50, 10, .25));
-    basket.push_back(Bulk_quote("1-201-54848-8", 40, 10, .25));
+    std::vector<std::shared_ptr<Quote>> basket;
+    basket.push_back(std::make_shared<Bulk_quote>("0-201-54848-8", 50, 10, .25));
+    basket.push_back(std::make_shared<Bulk_quote>("1-201-54848-8", 40, 10, .25));
     double count = 0.0;
     for (auto& b : basket) {
-        count += b.net_price(15);
+        count += b->net_price(15);
     }
-    std::cout << "Books' net_price total is : " << count << std::endl;  //  count is 1350
+    std::cout << "Books' net_price total is : " << count << std::endl;  //  count is 1012.5
 
     return 0;
 }
