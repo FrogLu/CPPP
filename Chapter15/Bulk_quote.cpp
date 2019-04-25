@@ -10,8 +10,6 @@ double Bulk_quote::net_price(std::size_t cnt) const
     else {
         return cnt * price;
     }
-
-    
 }
 
 std::ostream& Bulk_quote::debug(std::ostream& os) const
