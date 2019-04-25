@@ -7,7 +7,7 @@ class Disc_quote :
     public Quote
 {
 public:
-    Disc_quote() = default;   //  comment this constructor, and I declarate another constructor,
+    Disc_quote() = default;   //  comment this constructor, and I declare another constructor,
                               //  then this constructor won't be created by compiler, throw E1790
     Disc_quote(const std::string& book, double price,
         std::size_t qty, double disc) :
@@ -16,7 +16,7 @@ public:
     Disc_quote(Disc_quote&&)noexcept;
     Disc_quote& operator=(const Disc_quote&);
     Disc_quote& operator=(Disc_quote&&)noexcept;
-    double net_price(std::size_t)const override = 0;    //  it(be a pure virtual) 
+    double net_price(std::size_t)const override = 0;    //  it (a pure virtual) 
                                                         //  cause Disc_quote is an abstract class type
     virtual ~Disc_quote();
 protected:
