@@ -6,8 +6,10 @@
 #include "Base.h"
 
 int main() {
-    Bulk_quote blqt1("FrogLu",12.5,6,0.2), blqt2(blqt1), blqt3;
-    blqt3 = blqt2;
+    std::vector<std::shared_ptr<Quote>> basket;
+    basket.push_back(std::make_shared<Quote>("0-201-82470-1", 50));
+    basket.push_back(std::make_shared<Bulk_quote>("0-201-54848-8", 50, 10, .25));
+    std::cout << basket.back()->net_price(15) << std::endl;
 
     return 0;
 }

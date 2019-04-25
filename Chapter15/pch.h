@@ -9,4 +9,10 @@ using std::ostream;
 #include<string>
 using std::string;
 
+#include<vector>
+using std::vector;
+
+#include<memory>
+using std::shared_ptr; using std::make_shared;
+
 #endif // !_PCH_H_

@@ -13,7 +13,10 @@ public:
     Quote& operator=(const Quote&);
     Quote& operator=(Quote&&)noexcept;
     std::string isbn() const { return bookNo; }
-    virtual double net_price(std::size_t n)const { return n * price; }
+    virtual double net_price(std::size_t n)const {
+        return n * price; 
+        std::cout << "Quote::net_price called" << std::endl; 
+    }
     virtual std::ostream& debug(std::ostream& os) const;
     virtual ~Quote();
 private:
