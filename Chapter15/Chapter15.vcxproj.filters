@@ -36,6 +36,9 @@
     <ClInclude Include="Figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Basket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chapter15.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Figure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Basket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

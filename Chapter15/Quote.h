@@ -12,6 +12,14 @@ public:
     Quote(Quote&&)noexcept;
     Quote& operator=(const Quote&);
     Quote& operator=(Quote&&)noexcept;
+    //  Simulating Virtual Copy Chapter15.8.1
+    virtual Quote* clone() const & {
+        return new Quote(*this);
+    }
+    virtual Quote* clone() && {
+        return new Quote(std::move(*this));
+    }
+    //  End of Simulating Virtual Copy
     std::string isbn() const { return bookNo; }
     virtual double net_price(std::size_t n)const {
         return n * price; 

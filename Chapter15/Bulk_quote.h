@@ -14,6 +14,14 @@ public:
     Bulk_quote(Bulk_quote&&)noexcept;
     Bulk_quote& operator=(const Bulk_quote&);
     Bulk_quote& operator=(Bulk_quote&&)noexcept;
+    //  Simulating Virtual Copy Chapter15.8.1
+    virtual Bulk_quote* clone() const & {
+        return new Bulk_quote(*this);
+    }
+    virtual Bulk_quote* clone() && {
+        return new Bulk_quote(std::move(*this));
+    }
+    //  End of Simulating Virtual Copy
     using Disc_quote::Disc_quote;
     virtual double net_price(std::size_t) const override;
     virtual std::ostream& debug(std::ostream& os) const override;
