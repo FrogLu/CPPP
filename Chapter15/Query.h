@@ -81,9 +81,7 @@ class NotQuery :public Query_base {
         std::cout << "NotQuery::rep() called" << std::endl;
         return "~(" + query.rep() + ")";
     }
-    QueryResult eval(const TextQuery&)const override {
-        return QueryResult();
-    }
+    QueryResult eval(const TextQuery& text)const override;
     Query query;
 };
 
@@ -119,9 +117,7 @@ class AndQuery :public BinaryQuery {
         std::cout << "AndQuery(const Query& left, const Query& right) called" << std::endl;
     }
 
-    QueryResult eval(const TextQuery&)const override {
-        return QueryResult();
-    }
+    QueryResult eval(const TextQuery&)const override;
 };
 
 inline
@@ -137,9 +133,7 @@ class OrQuery :public BinaryQuery {
         /*void*/
         std::cout << "OrQuery(const Query& left, const Query& right) called" << std::endl;
     }
-    QueryResult eval(const TextQuery&)const override {
-        return QueryResult();
-    }
+    QueryResult eval(const TextQuery&)const override;
 };
 
 inline

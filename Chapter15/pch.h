@@ -27,5 +27,10 @@ using std::stringstream;
 #include<fstream>
 using std::ifstream;
 
+#include<algorithm>
+using std::set_intersection;
+
+#include<iterator>
+using std::inserter;
 
 #endif // !_PCH_H_
