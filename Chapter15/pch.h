@@ -7,7 +7,7 @@ using std::cin; using std::cout; using std::endl;
 using std::ostream;
 
 #include<string>
-using std::string;
+using std::string; using std::getline;
 
 #include<vector>
 using std::vector;
@@ -17,4 +17,15 @@ using std::shared_ptr; using std::make_shared;
 
 #include<set>
 using std::multiset;
+
+#include<map>
+using std::map;
+
+#include<sstream>
+using std::stringstream;
+
+#include<fstream>
+using std::ifstream;
+
+
 #endif // !_PCH_H_

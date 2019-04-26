@@ -131,8 +131,12 @@
     <ClInclude Include="Disc_quote.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Limited_quote.h" />
+    <ClInclude Include="myfunction.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Query.h" />
     <ClInclude Include="Quote.h" />
+    <ClInclude Include="StrBlob.h" />
+    <ClInclude Include="TextQuery.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp" />
@@ -142,10 +146,14 @@
     <ClCompile Include="Disc_quote.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Limited_quote.cpp" />
+    <ClCompile Include="myfunction.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Query.cpp" />
     <ClCompile Include="Quote.cpp" />
+    <ClCompile Include="StrBlob.cpp" />
+    <ClCompile Include="TextQuery.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

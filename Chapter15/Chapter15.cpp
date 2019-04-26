@@ -5,6 +5,9 @@
 #include "Disc_quote.h"
 #include "Base.h"
 #include "Basket.h"
+#include "myfunction.h"
+#include "StrBlob.h"
+#include "TextQuery.h"
 
 int main() {
     Basket basket;
