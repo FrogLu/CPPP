@@ -8,14 +8,14 @@
 #include "myfunction.h"
 #include "StrBlob.h"
 #include "TextQuery.h"
+#include "Query.h"
 
 int main() {
-    Basket basket;
-    basket.add_item(Bulk_quote("0-201-54848-8", 50, 10, .25));
-    basket.add_item(Bulk_quote("0-201-54848-8", 50, 10, .25));
-    basket.add_item(Bulk_quote("1-201-54848-8", 40, 10, .25));
-    double count = 0.0;
-    basket.total_receipt(std::cout); //  count is 1012.5
+    //  (a)
+    Query q = Query("fiery") & Query("bird") | Query("wind");
+    std::cout << std::endl << std::endl;
+    //  (b)
+    std::cout << q << std::endl;
 
     return 0;
 }

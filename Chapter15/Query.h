@@ -27,14 +27,17 @@ public:
         return q->eval(t);
     }
     std::string rep() const {
+        std::cout << "Query::rep() called" << std::endl;
         return q->rep();
     }
 private:
-    Query(std::shared_ptr<Query_base> query) :q(query) {}
+    Query(std::shared_ptr<Query_base> query) :q(query) {
+        std::cout << "Query(std::shared_ptr<Query_base> query) called" << std::endl;
+    }
     std::shared_ptr<Query_base> q;
 };
 
-
+inline
 std::ostream&
 operator<<(std::ostream& os, const Query& query)
 {
@@ -44,11 +47,14 @@ operator<<(std::ostream& os, const Query& query)
 
 class WordQuery :public Query_base {
     friend class Query;
-    WordQuery(const std::string& s) :query_word(s) {}
+    WordQuery(const std::string& s) :query_word(s) {
+        std::cout << "WordQuery(const std::string& s) called" << std::endl;
+    }
     QueryResult eval(const TextQuery& t)const override {
         return t.query(query_word);
     }
     std::string rep()const override {
+        std::cout << "WordQuery::rep() called" << std::endl;
         return query_word;
     }
     std::string query_word;
@@ -61,17 +67,23 @@ class WordQuery :public Query_base {
 inline
 Query::Query(const std::string& s) :q(new WordQuery(s)) {
     /*void*/
+    std::cout << "Public:Query(const std::string& s) called" << std::endl;
 }
 
 
 class NotQuery :public Query_base {
     friend Query operator~(const Query&);
-    NotQuery(const Query& q):query(q){}
+    NotQuery(const Query& q):query(q){
+        std::cout << "NotQuery(const Query& q) called" << std::endl;
+    }
 
     std::string rep() const override {
+        std::cout << "NotQuery::rep() called" << std::endl;
         return "~(" + query.rep() + ")";
     }
-    QueryResult eval(const TextQuery&)const override ;
+    QueryResult eval(const TextQuery&)const override {
+        return QueryResult();
+    }
     Query query;
 };
 
@@ -85,9 +97,13 @@ Query operator~(const Query& operand) {
 class BinaryQuery :public Query_base {
 protected:
     BinaryQuery(const Query&l,const Query&r,std::string s):
-        lhs(l),rhs(r),opSym(s){/*void*/}
+        lhs(l), rhs(r), opSym(s) {
+        /*void*/
+        std::cout << "BinaryQuery(const Query&l,const Query&r,std::string s) called" << std::endl;
+    }
 
     std::string rep() const override{
+        std::cout << "BinaryQuery::rep() called" << std::endl;
         return "(" + lhs.rep() + " " + opSym + " " + rhs.rep() + ")";
     }
     Query lhs, rhs;
@@ -98,9 +114,14 @@ protected:
 class AndQuery :public BinaryQuery {
     friend Query operator&(const Query&, const Query&);
     AndQuery(const Query& left, const Query& right) :
-        BinaryQuery(left, right, "&") {/*void*/}
+        BinaryQuery(left, right, "&") {
+        /*void*/
+        std::cout << "AndQuery(const Query& left, const Query& right) called" << std::endl;
+    }
 
-    QueryResult eval(const TextQuery&)const;
+    QueryResult eval(const TextQuery&)const override {
+        return QueryResult();
+    }
 };
 
 inline
@@ -112,8 +133,13 @@ Query operator&(const Query& lhs, const Query& rhs) {
 class OrQuery :public BinaryQuery {
     friend Query operator|(const Query&, const Query&);
     OrQuery(const Query& left, const Query& right) :
-        BinaryQuery(left, right, "|") {/*void*/}
-    QueryResult eval(const TextQuery&)const;
+        BinaryQuery(left, right, "|") {
+        /*void*/
+        std::cout << "OrQuery(const Query& left, const Query& right) called" << std::endl;
+    }
+    QueryResult eval(const TextQuery&)const override {
+        return QueryResult();
+    }
 };
 
 inline
