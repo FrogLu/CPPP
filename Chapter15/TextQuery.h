@@ -10,9 +10,9 @@ class QueryResult;
 class TextQuery {
     friend class QueryResult;
 public:
-    using line_no=StrBlob::size_type;
+    using line_no=std::vector<std::string>::size_type;
     //typedef std::vector<std::string>::size_type SVST;
-    typedef StrBlob  VSTR;
+    typedef std::shared_ptr<std::vector<std::string>>  VSTR;
     typedef std::map<std::string, std::shared_ptr<std::set<line_no> > > MAP;
     TextQuery() = default;
     TextQuery(const VSTR& svec, const MAP& rowcount) :file(svec), wm(rowcount) {};
@@ -31,8 +31,8 @@ TextQuery::TextQuery(std::ifstream& infile):file(new std::vector<std::string>) {
     
     while (std::getline(infile, linestr)) {
         
-        file.push_back(linestr);
-        line_no count = file.size() - 1;
+        file->push_back(linestr);
+        line_no count = file->size() - 1;
         std::istringstream line(linestr);
         std::string word;
         while (line >> word) {
@@ -51,14 +51,14 @@ class QueryResult {
     friend std::ostream& print(std::ostream& out, const QueryResult& result);
 public:
     typedef std::shared_ptr<std::set<TextQuery::line_no> > SP;
-    typedef StrBlobPtr SVS;
+    typedef std::shared_ptr<std::vector<std::string>> SVS;
     QueryResult() = default;
     QueryResult(SP sp, SVS curr,const std::string sg) :lines(sp), files(curr),sought(sg) {};
     std::set<TextQuery::line_no>::iterator begin();
     const std::set<TextQuery::line_no>::iterator begin()const;
     std::set<TextQuery::line_no>::iterator end();
     const std::set<TextQuery::line_no>::iterator end()const;
-    StrBlobPtr get_spline() { return files; }
+    SVS get_file() { return files; }
 private:
     SP lines;
     SVS files;
@@ -87,7 +87,7 @@ std::ostream& print(std::ostream& out, const QueryResult& result)
         << make_plural(result.lines->size(), "time", "s") << std::endl;
     for (auto num : *result.lines) {
         out << "\t(line " << num + 1 << ") "
-            << result.files.deref(num) << std::endl;
+            << (*result.files)[num] << std::endl;
     }
     return out;
 }
