@@ -12,10 +12,16 @@
 
 int main() {
     //  (a)
-    Query q = Query("fiery") & Query("bird") | Query("wind");
+    Query q = Query("Italy") & Query("China") | Query("China");
     std::cout << std::endl << std::endl;
     //  (b)
     std::cout << q << std::endl;
+    std::cout << std::endl << std::endl;
+    //  (c)
+    std::ifstream fin("./data/Input/paper");
+    assert(fin);
+    TextQuery t(fin);
+    q.eval(t);
 
     return 0;
 }

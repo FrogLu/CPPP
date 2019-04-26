@@ -18,6 +18,8 @@ QueryResult NotQuery::eval(const TextQuery& text) const
             ++beg;
         }
     }
+    std::cout << "NotQuery::eval(const TextQuery& text)" << std::endl;
+
     return QueryResult(ret_lines, result.get_file(), rep());
 }
 
@@ -29,6 +31,7 @@ QueryResult AndQuery::eval(const TextQuery& text) const
     std::set_intersection(left.begin(), left.end(),
         right.begin(), right.end(),
         std::inserter((*ret_lines), ret_lines->begin()));
+    std::cout << "AndQuery::eval(const TextQuery& text)" << std::endl;
     
     return QueryResult(ret_lines, left.get_file(), rep());
 }
@@ -39,6 +42,7 @@ QueryResult OrQuery::eval(const TextQuery& text) const
     
     auto ret_lines = std::make_shared<std::set<line_no>>(left.begin(), left.end());
     ret_lines->insert(right.begin(), right.end());
+    std::cout << "OrQuery::eval(const TextQuery& text)" << std::endl;
     
     return QueryResult(ret_lines, left.get_file(), rep());
 }

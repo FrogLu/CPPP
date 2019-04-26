@@ -24,6 +24,7 @@ class Query
 public:
     Query(const std::string& s);
     QueryResult eval(const TextQuery& t)const {
+        std::cout << "Query::eval(const TextQuery& t) called" << std::endl;
         return q->eval(t);
     }
     std::string rep() const {
@@ -51,6 +52,7 @@ class WordQuery :public Query_base {
         std::cout << "WordQuery(const std::string& s) called" << std::endl;
     }
     QueryResult eval(const TextQuery& t)const override {
+        std::cout << "WordQuery::eval(const TextQuery& t) called" << std::endl;
         return t.query(query_word);
     }
     std::string rep()const override {

@@ -33,4 +33,7 @@ using std::set_intersection;
 #include<iterator>
 using std::inserter;
 
+#include<cassert>
+/* assert; */
+
 #endif // !_PCH_H_
