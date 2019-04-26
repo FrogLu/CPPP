@@ -3,32 +3,32 @@
 #include "myfunction.h"
 #include "TextQuery.h"
 
-std::set<TextQuery::SVST>::iterator QueryResult::begin()
+std::set<TextQuery::line_no>::iterator QueryResult::begin()
 {
-    auto ret=sptr->begin();
+    auto ret=lines->begin();
     return ret;
 }
 
-const std::set<TextQuery::SVST>::iterator QueryResult::begin() const
+const std::set<TextQuery::line_no>::iterator QueryResult::begin() const
 {
-    auto ret = sptr->cbegin();
+    auto ret = lines->cbegin();
     return ret;
 }
 
-std::set<TextQuery::SVST>::iterator QueryResult::end()
+std::set<TextQuery::line_no>::iterator QueryResult::end()
 {
-    auto ret = sptr->end();
+    auto ret = lines->end();
     return ret;
 }
 
-const std::set<TextQuery::SVST>::iterator QueryResult::end() const
+const std::set<TextQuery::line_no>::iterator QueryResult::end() const
 {
-    auto ret = sptr->cend();
+    auto ret = lines->cend();
     return ret;
 }
 
 void TextQuery::display_map() {
-    auto iter = rowMap.cbegin(), iter_end = rowMap.cend();
+    auto iter = wm.cbegin(), iter_end = wm.cend();
 
     for (; iter != iter_end; ++iter) {
         std::cout << "word: " << iter->first << " {";

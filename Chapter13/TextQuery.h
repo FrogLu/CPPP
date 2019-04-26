@@ -10,35 +10,35 @@ class QueryResult;
 class TextQuery {
     friend class QueryResult;
 public:
-    using SVST=StrBlob::size_type;
+    using line_no=StrBlob::size_type;
     //typedef std::vector<std::string>::size_type SVST;
     typedef std::shared_ptr<StrVec>  VSTR;
-    typedef std::map<std::string, std::shared_ptr<std::set<SVST> > > MAP;
+    typedef std::map<std::string, std::shared_ptr<std::set<line_no> > > MAP;
     TextQuery() = default;
-    TextQuery(const VSTR& svec, const MAP& rowcount) :text(svec), rowMap(rowcount) {};
+    TextQuery(const VSTR& svec, const MAP& rowcount) :rename(svec), wm(rowcount) {};
     TextQuery(std::ifstream& infile);
     QueryResult query(const std::string& str);
     void display_map(); // for debugging
 private:
-    VSTR text;
-    MAP rowMap;
+    VSTR rename;
+    MAP wm;
     static std::string cleanup_str(const std::string& word);
 };
 inline
-TextQuery::TextQuery(std::ifstream& infile):text(new StrVec) {
+TextQuery::TextQuery(std::ifstream& infile):rename(new StrVec) {
     std::string linestr;
     
-    while (getline(infile, linestr)) {
+    while (std::getline(infile, linestr)) {
         
-        text->push_back(linestr);
-        SVST count = text->size() - 1;
+        rename->push_back(linestr);
+        line_no count = rename->size() - 1;
         std::istringstream line(linestr);
         std::string word;
         while (line >> word) {
             //rowMap[word].insert(count);
-            auto& lines = rowMap[word];
+            auto& lines = wm[word];
             if (!lines) {
-                lines.reset(new std::set<SVST>);
+                lines.reset(new std::set<line_no>);
             }
             lines->insert(count);
         }
@@ -49,18 +49,18 @@ class QueryResult {
     
     friend std::ostream& print(std::ostream& out, const QueryResult& result);
 public:
-    typedef std::shared_ptr<std::set<TextQuery::SVST> > SP;
+    typedef std::shared_ptr<std::set<TextQuery::line_no> > SP;
     typedef std::shared_ptr<StrVec> SVS;
     QueryResult() = default;
-    QueryResult(SP sp, SVS curr,const std::string sg) :sptr(sp), spline(curr),sought(sg) {};
-    std::set<TextQuery::SVST>::iterator begin();
-    const std::set<TextQuery::SVST>::iterator begin()const;
-    std::set<TextQuery::SVST>::iterator end();
-    const std::set<TextQuery::SVST>::iterator end()const;
-    SVS get_spline() { return spline; }
+    QueryResult(SP sp, SVS curr,const std::string sg) :lines(sp), file(curr),sought(sg) {};
+    std::set<TextQuery::line_no>::iterator begin();
+    const std::set<TextQuery::line_no>::iterator begin()const;
+    std::set<TextQuery::line_no>::iterator end();
+    const std::set<TextQuery::line_no>::iterator end()const;
+    SVS get_spline() { return file; }
 private:
-    SP sptr;
-    SVS spline;
+    SP lines;
+    SVS file;
     std::string sought;
 };
 
@@ -82,9 +82,9 @@ void runQueries(std::ifstream& infile)
 inline
 std::ostream& print(std::ostream& out, const QueryResult& result)
 {
-    out << result.sought << " occurs " << result.sptr->size() << " "
-        << make_plural(result.sptr->size(), "time", "s") << std::endl;
-    for (auto num : *result.sptr) {
+    out << result.sought << " occurs " << result.lines->size() << " "
+        << make_plural(result.lines->size(), "time", "s") << std::endl;
+    for (auto num : *result.lines) {
         out << "\t(line " << num + 1 << ") "
             //<< result.spline.deref(num) 
             << std::endl;
@@ -95,15 +95,15 @@ std::ostream& print(std::ostream& out, const QueryResult& result)
 inline
 QueryResult TextQuery::query(const std::string& sought)
 {
-    static std::shared_ptr<std::set<SVST> > nodata;
-    auto iter = rowMap.find(sought);
-    if (iter == rowMap.cend()) {
-        return QueryResult(nodata,text,sought);
+    static std::shared_ptr<std::set<line_no> > nodata;
+    auto iter = wm.find(sought);
+    if (iter == wm.cend()) {
+        return QueryResult(nodata,rename,sought);
     }
     else {
-        return QueryResult(iter->second, text, sought);
+        return QueryResult(iter->second, rename, sought);
     }
-    //// if not use make_shared it will trigge exception in proxy and delete, but don't know why!!!
+    //// if not use make_shared it will trigger exception in proxy and delete, but don't know why!!!
     ////std::shared_ptr<MAP::iterator> spiter(&iter);
     //std::shared_ptr<MAP::iterator> spiter = make_shared<MAP::iterator>(iter);   
     ////std::shared_ptr<VSTR> spline(&text);                                      
