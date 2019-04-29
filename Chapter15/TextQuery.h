@@ -5,7 +5,8 @@
 #include "StrBlob.h"
 #include "myfunction.h"
 
-void runQueries(std::ifstream& infile);
+void runQueries(std::ifstream&);
+bool get_word(std::string&);
 class QueryResult;
 class TextQuery {
     friend class QueryResult;
@@ -27,32 +28,51 @@ private:
 };
 inline
 TextQuery::TextQuery(std::ifstream& infile):file(new std::vector<std::string>) {
-    char ws[] = { '\t','\r','\v','\f','\n' };
-    char eos[] = { '?','.','!' };
-    std::set<char> whiteSpace(ws, ws + 5);
-    std::set<char> endOfSentence(eos, eos + 3);
-    std::string sentence;
-    char ch;
-    
-    while (infile.get(ch)) {
-        if (!whiteSpace.count(ch)) {
-            sentence += ch;
-        }
-        if(endOfSentence.count(ch)) {
-            file->push_back(sentence);
-            line_no count = file->size() - 1;
-            std::istringstream line(sentence);
-            std::string word;
-            while (line >> word) {
-                //rowMap[word].insert(count);
-                auto& lines = wm[word];
-                if (!lines) {
-                    lines.reset(new std::set<line_no>);
-                }
-                lines->insert(count);
+    ///* Practice15.42(b) search a sentence */
+    //char ws[] = { '\t','\r','\v','\f','\n' };
+    //char eos[] = { '?','.','!' };
+    //std::set<char> whiteSpace(ws, ws + 5);
+    //std::set<char> endOfSentence(eos, eos + 3);
+    //std::string sentence;
+    //char ch;
+    //
+    //while (infile.get(ch)) {
+    //    if (!whiteSpace.count(ch)) {
+    //        sentence += ch;
+    //    }
+    //    if(endOfSentence.count(ch)) {
+    //        file->push_back(sentence);
+    //        line_no count = file->size() - 1;
+    //        std::istringstream line(sentence);
+    //        std::string word;
+    //        while (line >> word) {
+    //            //rowMap[word].insert(count);
+    //            auto& lines = wm[word];
+    //            if (!lines) {
+    //                lines.reset(new std::set<line_no>);
+    //            }
+    //            lines->insert(count);
+    //        }
+    //    }
+    //    sentence.assign("");    //  clear sentence
+    //}
+    ///* Practice15.42(b) search a sentence */
+    std::string linestr;
+
+    while (std::getline(infile, linestr)) {
+
+        file->push_back(linestr);
+        line_no count = file->size() - 1;
+        std::istringstream line(linestr);
+        std::string word;
+        while (line >> word) {
+            //rowMap[word].insert(count);
+            auto& lines = wm[word];
+            if (!lines) {
+                lines.reset(new std::set<line_no>);
             }
+            lines->insert(count);
         }
-        sentence.assign("");    //  clear sentence
     }
 }
 
@@ -81,12 +101,22 @@ void runQueries(std::ifstream& infile)
 {
     TextQuery tq(infile);
     while (true) {
-        std::cout << "Enter word to look for, or q to quit: ";
         std::string str;
-        if (!(std::cin >> str) || str == "q") {
+        if (!get_word(str)) {
             break;
         }
         std::cout << tq.query(str) << std::endl;
+    }
+}
+
+inline 
+bool get_word(std::string& str) {
+    std::cout << "enter a word to search for, or q to quit, or h to history: ";
+    if (!(std::cin >> str) || str == "q") {
+        return false;
+    }
+    else {
+        return true;
     }
 }
 

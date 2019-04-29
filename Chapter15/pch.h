@@ -36,4 +36,7 @@ using std::inserter;
 #include<cassert>
 /* assert; */
 
+#include<array>
+using std::array;
+
 #endif // !_PCH_H_
