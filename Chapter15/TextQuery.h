@@ -27,22 +27,32 @@ private:
 };
 inline
 TextQuery::TextQuery(std::ifstream& infile):file(new std::vector<std::string>) {
-    std::string linestr;
+    char ws[] = { '\t','\r','\v','\f','\n' };
+    char eos[] = { '?','.','!' };
+    std::set<char> whiteSpace(ws, ws + 5);
+    std::set<char> endOfSentence(eos, eos + 3);
+    std::string sentence;
+    char ch;
     
-    while (std::getline(infile, linestr)) {
-        
-        file->push_back(linestr);
-        line_no count = file->size() - 1;
-        std::istringstream line(linestr);
-        std::string word;
-        while (line >> word) {
-            //rowMap[word].insert(count);
-            auto& lines = wm[word];
-            if (!lines) {
-                lines.reset(new std::set<line_no>);
-            }
-            lines->insert(count);
+    while (infile.get(ch)) {
+        if (!whiteSpace.count(ch)) {
+            sentence += ch;
         }
+        if(endOfSentence.count(ch)) {
+            file->push_back(sentence);
+            line_no count = file->size() - 1;
+            std::istringstream line(sentence);
+            std::string word;
+            while (line >> word) {
+                //rowMap[word].insert(count);
+                auto& lines = wm[word];
+                if (!lines) {
+                    lines.reset(new std::set<line_no>);
+                }
+                lines->insert(count);
+            }
+        }
+        sentence.assign("");    //  clear sentence
     }
 }
 
