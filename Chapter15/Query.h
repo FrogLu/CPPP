@@ -22,7 +22,11 @@ class Query
     friend Query operator&(const Query&,const Query&);
     friend std::ostream& operator<<(std::ostream&, const Query&);
 public:
+    Query() :q(nullptr), uc(1) {};
     Query(const std::string& s);
+    Query(const Query& query) :q(query.q),uc(query.uc) { ++uc; }
+    Query& operator=(const Query& rhs);
+    ~Query();
     QueryResult eval(const TextQuery& t)const {
         std::cout << "Query::eval(const TextQuery& t) called" << std::endl;
         return q->eval(t);
@@ -32,10 +36,13 @@ public:
         return q->rep();
     }
 private:
-    Query(std::shared_ptr<Query_base> query) :q(query) {
-        std::cout << "Query(std::shared_ptr<Query_base> query) called" << std::endl;
-    }
-    std::shared_ptr<Query_base> q;
+    Query_base* q;
+    std::size_t uc;
+    Query(Query_base* ptr) :q(ptr),uc(1) {  }
+    //Query(std::shared_ptr<Query_base> query) :q(query) {
+    //    std::cout << "Query(std::shared_ptr<Query_base> query) called" << std::endl;
+    //}
+    //std::shared_ptr<Query_base> q;
 };
 
 inline
@@ -90,7 +97,8 @@ class NotQuery :public Query_base {
 
 inline
 Query operator~(const Query& operand) {
-    return std::shared_ptr<Query_base>(new NotQuery(operand));
+    //return std::shared_ptr<Query_base>(new NotQuery(operand));
+    return new NotQuery(operand);
 }
 
 
@@ -124,7 +132,8 @@ class AndQuery :public BinaryQuery {
 
 inline
 Query operator&(const Query& lhs, const Query& rhs) {
-    return std::shared_ptr<Query_base>(new AndQuery(lhs, rhs));
+    //return std::shared_ptr<Query_base>(new AndQuery(lhs, rhs));
+    return new AndQuery(lhs, rhs);
 }
 
 
@@ -140,6 +149,8 @@ class OrQuery :public BinaryQuery {
 
 inline
 Query operator|(const Query& lhs, const Query& rhs) {
-    return std::shared_ptr<Query_base>(new OrQuery(lhs, rhs));
+    //return std::shared_ptr<Query_base>(new OrQuery(lhs, rhs));
+    return new OrQuery(lhs, rhs);
 }
+
 #endif // !_QUERY_H_
