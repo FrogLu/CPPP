@@ -21,7 +21,7 @@ int main() {
     std::ifstream fin("./data/Input/paper");
     assert(fin);
     TextQuery t(fin);
-    q.eval(t);
+    std::cout<<q.eval(t);
 
     return 0;
 }

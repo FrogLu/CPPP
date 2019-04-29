@@ -48,7 +48,7 @@ TextQuery::TextQuery(std::ifstream& infile):file(new std::vector<std::string>) {
 
 class QueryResult {
     
-    friend std::ostream& print(std::ostream& out, const QueryResult& result);
+    friend std::ostream& operator<<(std::ostream& out, const QueryResult& result);
 public:
     typedef std::shared_ptr<std::set<TextQuery::line_no> > SP;
     typedef std::shared_ptr<std::vector<std::string>> SVS;
@@ -76,12 +76,12 @@ void runQueries(std::ifstream& infile)
         if (!(std::cin >> str) || str == "q") {
             break;
         }
-        print(std::cout, tq.query(str)) << std::endl;
+        std::cout << tq.query(str) << std::endl;
     }
 }
 
 inline
-std::ostream& print(std::ostream& out, const QueryResult& result)
+std::ostream& operator<<(std::ostream& out, const QueryResult& result)
 {
     out << result.sought << " occurs " << result.lines->size() << " "
         << make_plural(result.lines->size(), "time", "s") << std::endl;
