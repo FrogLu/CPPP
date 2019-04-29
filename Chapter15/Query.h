@@ -22,9 +22,9 @@ class Query
     friend Query operator&(const Query&,const Query&);
     friend std::ostream& operator<<(std::ostream&, const Query&);
 public:
-    Query() :q(nullptr), uc(1) {};
+    Query() :q(nullptr), uc(nullptr) {};
     Query(const std::string& s);
-    Query(const Query& query) :q(query.q),uc(query.uc) { ++uc; }
+    Query(const Query& query) :q(query.q),uc(query.uc) { ++*uc; }
     Query& operator=(const Query& rhs);
     ~Query();
     QueryResult eval(const TextQuery& t)const {
@@ -37,13 +37,37 @@ public:
     }
 private:
     Query_base* q;
-    std::size_t uc;
-    Query(Query_base* ptr) :q(ptr),uc(1) {  }
+    int* uc;
+    Query(Query_base* ptr) :q(ptr),uc(new int(1)) {  }
     //Query(std::shared_ptr<Query_base> query) :q(query) {
     //    std::cout << "Query(std::shared_ptr<Query_base> query) called" << std::endl;
     //}
     //std::shared_ptr<Query_base> q;
 };
+
+inline
+Query& Query::operator=(const Query& rhs)
+{
+    ++* rhs.uc;
+    if (-- * uc == 0)
+    {
+        delete q;
+        delete uc;
+    }
+    q = rhs.q;
+    uc = rhs.uc;
+
+    return *this;
+}
+
+inline
+Query::~Query()
+{
+    if (-- * uc == 0) {
+        delete q;
+        delete uc;
+    }
+}
 
 inline
 std::ostream&
@@ -74,7 +98,7 @@ class WordQuery :public Query_base {
 //  because this constructor use WordQuery to init itself.
 //  So must after class Query defined.
 inline
-Query::Query(const std::string& s) :q(new WordQuery(s)) {
+Query::Query(const std::string& s) :q(new WordQuery(s)), uc(new int(1)) {
     /*void*/
     std::cout << "Public:Query(const std::string& s) called" << std::endl;
 }

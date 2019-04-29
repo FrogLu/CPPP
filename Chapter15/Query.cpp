@@ -47,22 +47,3 @@ QueryResult OrQuery::eval(const TextQuery& text) const
     return QueryResult(ret_lines, left.get_file(), rep());
 }
 
-Query& Query::operator=(const Query& rhs)
-{
-    Query temp;
-    temp.q = rhs.q;
-    temp.uc = rhs.uc;
-
-    q = temp.q;
-    uc = temp.uc;
-
-    return *this;
-}
-
-Query::~Query()
-{
-    if (uc == 0) {
-        delete q;
-    }
-}
-
