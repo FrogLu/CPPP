@@ -77,8 +77,8 @@ TextQuery::TextQuery(std::ifstream& infile):file(new std::vector<std::string>) {
 }
 
 class QueryResult {
-    
-    friend std::ostream& operator<<(std::ostream& out, const QueryResult& result);
+    std::ostream& print(std::ostream&, const QueryResult&, int, int);
+    friend std::ostream& operator<<(std::ostream&, const QueryResult&);
 public:
     typedef std::shared_ptr<std::set<TextQuery::line_no> > SP;
     typedef std::shared_ptr<std::vector<std::string>> SVS;
