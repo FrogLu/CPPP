@@ -36,4 +36,15 @@ void print(const Titer& begin, const Titer& end) {
         std::cout << *iter++ << std::endl;
     }
 }
+
+
+template<typename T, std::size_t N>
+constexpr T* mybegin(const T (&array)[N]) noexcept{
+    return &array;
+}
+
+template<typename T,std::size_t N>
+constexpr T* myend(const T (&array)[N]) noexcept{
+    return &array + N * sizeof(T);
+}
 #endif // _MYTEMPLATE_H_
