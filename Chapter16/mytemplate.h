@@ -27,4 +27,13 @@ Titer myfind(const Titer& begin, const Titer& end, const Tvalue& value) {
     }
     return end;
 }
+
+
+template<typename Titer>
+void print(const Titer& begin, const Titer& end) {
+    Titer iter = begin;
+    while (iter != end) {
+        std::cout << *iter++ << std::endl;
+    }
+}
 #endif // _MYTEMPLATE_H_
