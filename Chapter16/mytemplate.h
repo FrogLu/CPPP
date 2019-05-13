@@ -26,11 +26,11 @@ Titer myfind(const Titer& begin, const Titer& end, const Tvalue& value) {
 }
 
 
-template<typename Titer>
-void print(const Titer& begin, const Titer& end) {
-    Titer iter = begin;
-    while (iter != end) {
-        std::cout << *iter++ << std::endl;
+//  Just for arr
+template<typename T,size_t N>
+void print(const T (&arr)[N]) {
+    for (auto iter = std::begin(arr); iter != std::end(arr); iter++) {
+        std::cout << *iter << " ";
     }
 }
 
