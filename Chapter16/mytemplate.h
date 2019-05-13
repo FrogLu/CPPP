@@ -37,11 +37,11 @@ void print(const T (&arr)[N]) {
 
 template<typename T, std::size_t N>
 constexpr T* mybegin(T (&array)[N]) noexcept{
-    return array;
+    return &array[0];   //  array is a left-reference to point to a T type array with N members.
 }
 
 template<typename T,std::size_t N>
 constexpr T* myend(T (&array)[N]) noexcept{
-    return array + N;
+    return &array[0] + N;
 }
 #endif // _MYTEMPLATE_H_
