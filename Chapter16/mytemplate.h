@@ -19,13 +19,10 @@ int compare(const T& v1, const T& v2) {
 
 template<typename Titer,typename Tvalue>
 Titer myfind(const Titer& begin, const Titer& end, const Tvalue& value) {
-    for (Titer iter = begin; iter != end; ++iter)
-    {
-        if ((*iter) == value) {
-            return iter;
-        }
+    while (begin != end && *begin != value) {
+        ++begin;
     }
-    return end;
+    return begin;
 }
 
 
