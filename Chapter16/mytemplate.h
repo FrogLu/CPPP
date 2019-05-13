@@ -27,7 +27,7 @@ Titer myfind(const Titer& begin, const Titer& end, const Tvalue& value) {
 
 
 //  Just for arr
-template<typename T,size_t N>
+template<typename T,std::size_t N>
 void print(const T (&arr)[N]) {
     for (auto iter = std::begin(arr); iter != std::end(arr); iter++) {
         std::cout << *iter << " ";
@@ -43,5 +43,11 @@ constexpr T* mybegin(T (&array)[N]) noexcept{
 template<typename T,std::size_t N>
 constexpr T* myend(T (&array)[N]) noexcept{
     return &array[0] + N;
+}
+
+
+template <typename T, std::size_t N>
+constexpr int arr_size(const T(&arr)[N]) {
+    return N;
 }
 #endif // _MYTEMPLATE_H_
