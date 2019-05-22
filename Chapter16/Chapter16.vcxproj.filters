@@ -29,5 +29,8 @@
     <ClInclude Include="mytemplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tVec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

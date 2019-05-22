@@ -342,4 +342,5 @@ std::ostream& operator<<(std::ostream& os, const Screen<H, W>& rhs)
     return os << rhs.contents;
 }
 //  class template Screen end
+
 #endif // _MYTEMPLATE_H_
