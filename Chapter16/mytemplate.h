@@ -240,8 +240,17 @@ BlobPtr<T>& BlobPtr<T>::operator++()
 
 
 //  class template Screen begin
+/// forward declarations begin
+template<int H, int W> class Screen;
+template<int H, int W>
+std::ostream& operator<<(std::ostream&, const Screen<H, W>&);
+template<int H, int W>
+std::istream& operator<<(std::ostream&, const Screen<H, W>&);
+/// forward declarations end
 template<int H,int W>
 class Screen {
+    friend std::ostream& operator<<(std::ostream&, const Screen&);
+    friend std::istream& operator>>(std::istream&, const Screen&);
 public:
     Screen() :contents(H* W, ' ') {};
     Screen(const char c) :contents(H* W, c) {}
@@ -268,6 +277,18 @@ private:
     int cursor = 0;
     std::string contents;
 };
+
+template<int H, int W>
+std::istream& operator>>(std::istream& is, const Screen<H, W>& rhs)
+{
+    return is >> rhs.constents;
+}
+
+template<int H, int W>
+std::ostream& operator<<(std::ostream& os, const Screen<H, W>& rhs)
+{
+    return os << rhs.contents;
+}
 
 template<int H, int W>
 Screen<H, W>& Screen<H, W>::set(int r, int col, char ch)
