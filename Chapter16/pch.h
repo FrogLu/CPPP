@@ -9,4 +9,7 @@ using std::cout; using std::endl;
 #include <vector>
 using std::vector;
 
+#include<string>
+using std::string;
+
 #endif // !_PCH_H_

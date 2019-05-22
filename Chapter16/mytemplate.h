@@ -62,12 +62,6 @@ constexpr int arr_size(const T(&arr)[N]) {
 
 //  class template Blob
 ////    forward declarations begin
-template <typename T>
-bool operator==(const Blob<T>& lhs, const Blob<T>& rhs)
-{
-    return (lhs.data) == (rhs.data);
-}
-
 template <typename> class BlobPtr;
 template <typename> class Blob; //  needed for parameters in operator==
 template <typename T>
@@ -174,20 +168,21 @@ inline void Blob<T>::check(size_type i, const std::string& msg) const
         throw std::out_of_range(msg);
     }
 }
+
+template <typename T>
+bool operator==(const Blob<T>& lhs, const Blob<T>& rhs)
+{
+    return (lhs.data) == (rhs.data);
+}
+
 //  class template Blob end
 
 
 //  class template BlobPtr begin
 ////    forward declarations begin
-template<typename T>
-bool operator==(const BlobPtr<T>& lhs, const BlobPtr<T>& rhs)
-{
-    return lhs.lock() == rhs.lock();
-}
-
 template<typename T> class BlobPtr;
 template<typename T>
-bool operator==<T>(const BlobPtr<T>&, const BlobPtr<T>&);
+bool operator==(const BlobPtr<T>&, const BlobPtr<T>&);
 ////    forward declarations end
 template <typename T> class BlobPtr {
     friend bool operator==<T>(const BlobPtr<T>&, const BlobPtr<T>&);
@@ -243,4 +238,82 @@ BlobPtr<T>& BlobPtr<T>::operator++()
 }
 //  class template BlobPtr end
 
+
+//  class template Screen begin
+template<int H,int W>
+class Screen {
+public:
+    Screen() :contents(H* W, ' ') {};
+    Screen(const char c) :contents(H* W, c) {}
+    friend class Window_mgr;
+    char get() const { return contents[cursor]; }
+    inline char get(int, int)const;
+    Screen& clear(char = bkground);
+private:
+    static const char bkground = ' ';
+public:
+    Screen& move(int, int);
+    Screen& set(char);
+    Screen& set(int, int, char);
+    Screen& display(std::ostream& os) {
+        do_display(os);
+        return *this;
+    }
+    const Screen& display(std::ostream& os) const {
+        do_display(os);
+        return *this;
+    }
+private:
+    void do_display(std::ostream& os)const { os << contents; }
+    int cursor = 0;
+    std::string contents;
+};
+
+template<int H, int W>
+Screen<H, W>& Screen<H, W>::set(int r, int col, char ch)
+{
+    contents[r * W + col] = ch;
+
+    return *this;
+}
+
+template<int H, int W>
+Screen<H, W>& Screen<H, W>::set(char c) {
+    contents[cursor] = c;
+
+    return *this;
+}
+
+template<int H, int W>
+inline  // not know why
+Screen<H, W>& Screen<H, W>::move(int r, int c)
+{
+    int row = r * W;
+    cursor = row + c;
+    
+    return *this;
+}
+
+template<int H, int W>
+char Screen<H, W>::get(int r, int c) const
+{
+    int row = r * W;
+    
+    return contents[row + c];
+}
+
+template<int H,int W>
+Screen<H, W>& Screen<H, W>::clear(char c) {
+    contents = std::string(H * W, c);
+    
+    return *this;
+}
+
+template<typename T>
+bool operator==(const BlobPtr<T>& lhs, const BlobPtr<T>& rhs)
+{
+    return lhs.lock() == rhs.lock();
+}
+
+//  class template Screen end
 #endif // _MYTEMPLATE_H_
