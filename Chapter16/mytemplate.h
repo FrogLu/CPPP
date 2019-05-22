@@ -61,12 +61,12 @@ constexpr int arr_size(const T(&arr)[N]) {
 
 
 //  class template Blob
-////    forward declarations begin
+/// forward declarations begin
 template <typename> class BlobPtr;
 template <typename> class Blob; //  needed for parameters in operator==
 template <typename T>
 bool operator==(const Blob<T>&, const Blob<T>&);
-////    forward declarations end
+/// forward declarations end
 template <typename T> class Blob {
     friend class BlobPtr<T>;
     friend bool operator==<T>(const Blob<T>&, const Blob<T>&);
@@ -179,11 +179,11 @@ bool operator==(const Blob<T>& lhs, const Blob<T>& rhs)
 
 
 //  class template BlobPtr begin
-////    forward declarations begin
+/// forward declarations begin
 template<typename T> class BlobPtr;
 template<typename T>
 bool operator==(const BlobPtr<T>&, const BlobPtr<T>&);
-////    forward declarations end
+/// forward declarations end
 template <typename T> class BlobPtr {
     friend bool operator==<T>(const BlobPtr<T>&, const BlobPtr<T>&);
 public:
@@ -245,12 +245,14 @@ template<int H, int W> class Screen;
 template<int H, int W>
 std::ostream& operator<<(std::ostream&, const Screen<H, W>&);
 template<int H, int W>
-std::istream& operator<<(std::ostream&, const Screen<H, W>&);
+std::istream& operator>>(std::istream&, Screen<H, W>&);
 /// forward declarations end
 template<int H,int W>
 class Screen {
-    friend std::ostream& operator<<(std::ostream&, const Screen&);
-    friend std::istream& operator>>(std::istream&, const Screen&);
+    template<int H, int W> 
+    friend std::ostream& operator<<(std::ostream&, const Screen<H, W>&);
+    template<int H, int W>
+    friend std::istream& operator>>(std::istream&, Screen<H, W>&);
 public:
     Screen() :contents(H* W, ' ') {};
     Screen(const char c) :contents(H* W, c) {}
@@ -277,18 +279,6 @@ private:
     int cursor = 0;
     std::string contents;
 };
-
-template<int H, int W>
-std::istream& operator>>(std::istream& is, const Screen<H, W>& rhs)
-{
-    return is >> rhs.constents;
-}
-
-template<int H, int W>
-std::ostream& operator<<(std::ostream& os, const Screen<H, W>& rhs)
-{
-    return os << rhs.contents;
-}
 
 template<int H, int W>
 Screen<H, W>& Screen<H, W>::set(int r, int col, char ch)
@@ -336,5 +326,16 @@ bool operator==(const BlobPtr<T>& lhs, const BlobPtr<T>& rhs)
     return lhs.lock() == rhs.lock();
 }
 
+template<int H, int W>
+std::istream& operator>>(std::istream& is, Screen<H, W>& rhs)
+{
+    return is >> rhs.contents;
+}
+
+template<int H, int W>
+std::ostream& operator<<(std::ostream& os, const Screen<H, W>& rhs)
+{
+    return os << rhs.contents;
+}
 //  class template Screen end
 #endif // _MYTEMPLATE_H_
