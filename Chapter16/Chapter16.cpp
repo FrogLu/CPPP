@@ -4,9 +4,12 @@
 
 int main()
 {
-    int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
-    std::cout << sizeof(int) << std::endl;
-    print(mybegin(arr), myend(arr));
+    Blob<int> ia;
+    Blob<int> ia2 = { 0,1,2,3,4 };
+    Blob<std::string> strb = { "hello","world","FrogLu" };
+    print(ia2.begin(),ia2.end());
+    std::cout << std::endl;
+    print(strb.begin(), strb.end());
     
     return 0;
 }

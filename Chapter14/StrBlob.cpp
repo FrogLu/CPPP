@@ -35,7 +35,7 @@ std::string& StrBlob::back()
 const std::string& StrBlob::back() const 
 {
     do_back();
-	return data->back();	// return type is std::string,data is not a const.
+	return data->back();	// return type is std::string, data is not a const.
 }
 
 
@@ -163,7 +163,7 @@ StrBlobPtr& StrBlobPtr::add(size_t num)
 std::shared_ptr<std::vector<std::string>> 
     StrBlobPtr::check(std::size_t i, const std::string& msg) const
 {
-    auto ret = wptr.lock(); // "auto ret" is neccessary for return value
+    auto ret = wptr.lock(); // "auto ret" is necessary for return value
     if (!ret) {
         throw std::runtime_error("unbound StrBlobPtr");
     }

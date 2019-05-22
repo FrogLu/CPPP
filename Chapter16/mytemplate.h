@@ -5,6 +5,7 @@
 #include <functional>
 using std::less;
 
+//  function template
 template<typename T>
 int compare(const T& v1, const T& v2) {
     if (std::less<T>()(v1, v2)) {
@@ -34,6 +35,13 @@ void print(const T (&arr)[N]) {
     }
 }
 
+template<typename Titer>
+void print(const Titer& begin, const Titer& end) {
+    for (auto iter = begin; iter != end; ++iter)
+    {
+        std::cout << *iter << " ";
+    }
+}
 
 template<typename T, std::size_t N>
 constexpr T* mybegin(T (&array)[N]) noexcept{
@@ -50,4 +58,189 @@ template <typename T, std::size_t N>
 constexpr int arr_size(const T(&arr)[N]) {
     return N;
 }
+
+
+//  class template Blob
+////    forward declarations begin
+template <typename T>
+bool operator==(const Blob<T>& lhs, const Blob<T>& rhs)
+{
+    return (lhs.data) == (rhs.data);
+}
+
+template <typename> class BlobPtr;
+template <typename> class Blob; //  needed for parameters in operator==
+template <typename T>
+bool operator==(const Blob<T>&, const Blob<T>&);
+////    forward declarations end
+template <typename T> class Blob {
+    friend class BlobPtr<T>;
+    friend bool operator==<T>(const Blob<T>&, const Blob<T>&);
+public:
+    typedef T value_type;
+    typedef typename std::vector<T>::size_type size_type;
+    typedef typename std::vector<T>::iterator iterator;
+
+    Blob() :data(std::make_shared<std::vector<T>>()) {/*void*/};
+    Blob(std::initializer_list<T> il)
+        :data(std::make_shared<std::vector<T>>(il)) {/*void*/};
+
+    size_type size() const { return data->size(); }
+    bool empty() const { return data->empty; }
+    void push_back(const T& t) { data->push_back(t); }
+    void push_back(T&& t) { data->push_back(std::move(t)); }
+    void pop_back();
+
+    iterator begin() { return data->begin(); }
+    iterator begin() const { return data->begin(); }
+    iterator end() { return data->end(); }
+    iterator end() const { return data->end(); }
+
+    T& back();
+    const T& back() const;
+    T& front();
+    const T& front() const;
+    T& operator[](size_type i);
+private:
+    void do_back();
+    void do_front();
+    std::shared_ptr<std::vector<T>> data;
+    void check(size_type i, const std::string& msg) const;
+};
+
+template <typename T>
+const T& Blob<T>::front() const
+{
+    do_front();
+
+    return data->front();
+}
+
+template <typename T>
+T& Blob<T>::front()
+{
+    do_front();
+
+    return data->front();
+}
+
+template <typename T>
+void Blob<T>::do_front()
+{
+    check(0, "pop on empty Blob");
+}
+
+template <typename T>
+const T& Blob<T>::back() const
+{
+    do_back();
+
+    return data->back();
+}
+
+
+template<typename T>
+inline void Blob<T>::pop_back()
+{
+    check(0, "pop_back on empty StrBlob");
+    data->pop_back();
+}
+
+template<typename T>
+inline T& Blob<T>::back()
+{
+    do_back();
+    return data->back();
+}
+
+template<typename T>
+inline T& Blob<T>::operator[](size_type i)
+{
+    check(i, "subscript out of range");
+
+    return (*data)[i];
+}
+
+template<typename T>
+inline void Blob<T>::do_back()
+{
+    check(0, "back on empty Blob");
+}
+
+template<typename T>
+inline void Blob<T>::check(size_type i, const std::string& msg) const
+{
+    if ((data->size()) <= i) {
+        throw std::out_of_range(msg);
+    }
+}
+//  class template Blob end
+
+
+//  class template BlobPtr begin
+////    forward declarations begin
+template<typename T>
+bool operator==(const BlobPtr<T>& lhs, const BlobPtr<T>& rhs)
+{
+    return lhs.lock() == rhs.lock();
+}
+
+template<typename T> class BlobPtr;
+template<typename T>
+bool operator==<T>(const BlobPtr<T>&, const BlobPtr<T>&);
+////    forward declarations end
+template <typename T> class BlobPtr {
+    friend bool operator==<T>(const BlobPtr<T>&, const BlobPtr<T>&);
+public:
+    BlobPtr():curr(0){/*void*/ }
+    BlobPtr(Blob<T> &a,std::size_t sz=0):
+        wptr(a.data),curr(sz){/*void*/ }
+    T& operator*() const {
+        auto p = check(curr, "dereference past end");
+        
+        return (*p)[curr];
+    }
+    BlobPtr& operator++();
+    BlobPtr& operator--();
+private:
+    std::shared_ptr<std::vector<T>>
+        check(std::size_t, const std::string&) const;
+    std::weak_ptr<std::vector<T>> wptr;
+    std::size_t curr;
+};
+
+template <typename T>
+std::shared_ptr<std::vector<T>> 
+    BlobPtr<T>::check(std::size_t i, const std::string& msg) const
+{
+    auto ret = wptr.lock();
+    if (!ret) {
+        throw std::runtime_error("unbound StrBlobPtr");
+    }
+    if (ret->size() <= i) {
+        throw std::out_of_range(msg);
+    }
+
+    return ret;
+}
+
+template <typename T>
+BlobPtr<T>& BlobPtr<T>::operator--()
+{
+    BlobPtr ret = *this;
+    --* this;
+    
+    return ret;
+}
+
+template <typename T>
+BlobPtr<T>& BlobPtr<T>::operator++()
+{
+    BlobPtr ret = *this;
+    ++* this;
+    
+    return ret;
+}
+//  class template BlobPtr end
+
 #endif // _MYTEMPLATE_H_
