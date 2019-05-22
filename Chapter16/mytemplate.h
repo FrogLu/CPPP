@@ -249,10 +249,10 @@ std::istream& operator>>(std::istream&, Screen<H, W>&);
 /// forward declarations end
 template<int H,int W>
 class Screen {
-    template<int H, int W> 
-    friend std::ostream& operator<<(std::ostream&, const Screen<H, W>&);
-    template<int H, int W>
-    friend std::istream& operator>>(std::istream&, Screen<H, W>&);
+    //template<int H, int W>    //  still think my way is better.
+    friend std::ostream& operator<< <H, W>(std::ostream&, const Screen<H, W>&);
+    //template<int H, int W>
+    friend std::istream& operator>> <H, W>(std::istream&, Screen<H, W>&);
 public:
     Screen() :contents(H* W, ' ') {};
     Screen(const char c) :contents(H* W, c) {}
@@ -329,7 +329,11 @@ bool operator==(const BlobPtr<T>& lhs, const BlobPtr<T>& rhs)
 template<int H, int W>
 std::istream& operator>>(std::istream& is, Screen<H, W>& rhs)
 {
-    return is >> rhs.contents;
+    std::string str;
+    is >> str;
+    rhs.contents = str.substr(0, H * W);
+
+    return is;
 }
 
 template<int H, int W>
